@@ -17,9 +17,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
 @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,-15px)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:0 60px;height:64px;background:rgba(250,247,242,.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(221,213,200,.6);transition:transform .3s,box-shadow .3s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:0 60px;height:64px;background:rgba(250,247,242,.95);backdrop-filter:blur(16px);border-bottom:0.5px solid rgba(221,213,200,.6);transition:transform .3s,box-shadow .3s;}
 nav.hide{transform:translateY(-100%);}
 nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:400;font-style:italic;color:var(--ink);text-decoration:none;}
@@ -27,12 +27,11 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .nav-links a{font-size:.76rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:7px 14px;border-radius:100px;transition:all .2s;}
 .nav-links a:hover{color:var(--accent);background:var(--accent-light);}
 
-/* HERO */
 .hero{min-height:100vh;padding:110px 60px 80px;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;top:-200px;right:-150px;width:700px;height:700px;background:radial-gradient(circle,rgba(46,95,163,.05) 0%,transparent 65%);pointer-events:none;animation:drift 12s ease-in-out infinite;}
 .hero::after{content:'';position:absolute;bottom:-100px;left:5%;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.04) 0%,transparent 65%);pointer-events:none;animation:drift 16s ease-in-out infinite reverse;}
 .hero-top{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:center;margin-bottom:60px;position:relative;z-index:1;}
-.hero-tag{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);border:1px solid rgba(46,95,163,.15);color:var(--accent);padding:7px 16px;border-radius:100px;font-size:.78rem;font-weight:600;letter-spacing:.05em;margin-bottom:22px;width:fit-content;opacity:0;animation:fadeUp .5s ease forwards .1s;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);border:0.5px solid rgba(46,95,163,.15);color:var(--accent);padding:7px 16px;border-radius:100px;font-size:.78rem;font-weight:600;letter-spacing:.05em;margin-bottom:22px;width:fit-content;opacity:0;animation:fadeUp .5s ease forwards .1s;}
 .tag-item{transition:all .35s ease;border-radius:100px;padding:2px 8px;margin:-2px -4px;}
 .tag-item.active{background:var(--accent);color:#fff;}
 .tag-sep{opacity:.3;font-weight:300;}
@@ -54,7 +53,6 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .stat-title{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.88);margin-bottom:4px;line-height:1.3;}
 .stat-sub{font-size:.71rem;color:rgba(255,255,255,.38);line-height:1.5;}
 
-/* SECTION BASE */
 .section{padding:88px 60px;}
 .section.alt{background:var(--bg2);}
 .s-label{font-size:.67rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
@@ -66,20 +64,17 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .reveal.in{opacity:1;transform:translateY(0);}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
 
-/* WORK — STRIP LIST */
 .filter-bar{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;}
-.ftab{background:#fff;border:1px solid var(--border);color:var(--muted);padding:9px 22px;border-radius:100px;font-size:.76rem;font-weight:600;cursor:pointer;transition:all .22s;font-family:'DM Sans',sans-serif;letter-spacing:.04em;}
+.ftab{background:#fff;border:0.5px solid var(--border);color:var(--muted);padding:9px 22px;border-radius:100px;font-size:.76rem;font-weight:600;cursor:pointer;transition:all .22s;font-family:'DM Sans',sans-serif;letter-spacing:.04em;}
 .ftab:hover{border-color:var(--accent);color:var(--accent);}
 .ftab.active{background:var(--navy);border-color:var(--navy);color:#fff;}
-.proj-list{display:flex;flex-direction:column;gap:2px;}
-.proj-row{border:1px solid var(--border);border-radius:12px;background:#fff;overflow:hidden;transition:all .22s;cursor:pointer;}
-.proj-row.hidden{display:none;}
-.proj-row:hover{border-color:rgba(46,95,163,.3);box-shadow:0 4px 20px rgba(26,26,46,.06);}
-.proj-row.open{border-color:var(--accent);box-shadow:0 6px 28px rgba(46,95,163,.12);}
-.proj-summary{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:24px;padding:20px 28px;}
-.proj-num{font-family:'Playfair Display',serif;font-size:1rem;font-weight:900;color:var(--border);transition:color .2s;}
-.proj-row.open .proj-num,.proj-row:hover .proj-num{color:var(--accent);}
-.proj-meta{display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap;}
+
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.proj-card{border:0.5px solid var(--border);border-radius:16px;background:#fff;overflow:hidden;transition:all .25s;cursor:pointer;display:flex;flex-direction:column;}
+.proj-card.hidden{display:none;}
+.proj-card:hover{border-color:rgba(46,95,163,.3);box-shadow:0 8px 32px rgba(26,26,46,.08);transform:translateY(-3px);}
+.proj-card-top{padding:24px 24px 0;flex:1;}
+.proj-card-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
 .proj-cat{font-size:.62rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:100px;}
 .proj-cat.ai{background:rgba(46,95,163,.1);color:var(--accent);}
 .proj-cat.ux{background:rgba(27,122,140,.1);color:var(--teal);}
@@ -87,66 +82,47 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .proj-live{display:inline-flex;align-items:center;gap:4px;font-size:.62rem;font-weight:600;color:#22C55E;letter-spacing:.06em;}
 .proj-live::before{content:'';width:5px;height:5px;background:#22C55E;border-radius:50%;animation:pulse 2s infinite;}
 .proj-badge{font-size:.62rem;font-weight:600;padding:3px 8px;border-radius:100px;}
-.proj-badge.award{background:rgba(201,168,76,.1);color:#92680E;border:1px solid rgba(201,168,76,.25);}
-.proj-badge.pub{background:rgba(27,122,140,.1);color:var(--teal);border:1px solid rgba(27,122,140,.2);}
-.proj-title{font-family:'Playfair Display',serif;font-size:1.18rem;font-weight:900;color:var(--ink);line-height:1.2;margin-bottom:3px;}
-.proj-desc{font-size:.82rem;color:var(--muted);line-height:1.55;}
-.proj-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;}
-.proj-tags{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;}
-.proj-toggle{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);transition:all .22s;background:#fff;flex-shrink:0;}
-.proj-row.open .proj-toggle{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg);}
-.proj-row:hover .proj-toggle{border-color:var(--accent);color:var(--accent);}
-.proj-links{display:flex;gap:10px;}
-.plink{font-size:.74rem;font-weight:600;color:var(--accent);text-decoration:none;}
-.plink:hover{text-decoration:underline;}
-
-/* EXPAND PANEL */
-.proj-deep{display:none;border-top:1px solid var(--border);background:var(--bg);}
-.proj-row.open .proj-deep{display:block;}
-.proj-deep-inner{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0;}
-.rp-left{padding:32px 36px;border-right:1px solid var(--border);}
-.rp-right{padding:32px 36px;background:var(--bg2);}
-.rp-project-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--ink);margin-bottom:3px;}
-.rp-project-sub{font-size:.76rem;color:var(--muted);margin-bottom:22px;}
-.rp-think{display:flex;flex-direction:column;gap:18px;}
-.rp-think-item{display:flex;gap:12px;}
-.rp-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;}
-.rp-dot.p{background:#FEE2E2;}.rp-dot.i{background:#FEF3C7;}.rp-dot.s{background:#D1FAE5;}
-.rp-think-body h5{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
-.rp-think-body p{font-size:.82rem;color:var(--ink-soft);line-height:1.7;}
-.rp-think-body p em{font-style:italic;color:var(--ink);}
-.rp-stack{display:flex;gap:5px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--border);}
-.rp-stack-label{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);width:100%;margin-bottom:3px;}
-.rp-tag{background:var(--navy);color:rgba(255,255,255,.7);padding:3px 9px;border-radius:4px;font-size:.67rem;font-weight:500;}
-.rp-metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
-.rp-metric{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 14px;text-align:center;}
-.rp-metric-num{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:900;color:var(--accent);line-height:1;margin-bottom:3px;}
-.rp-metric-label{font-size:.68rem;color:var(--muted);line-height:1.4;}
-.rp-build-header{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
-.rp-build-steps{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
-.rp-step{display:flex;gap:10px;align-items:flex-start;}
-.rp-step-num{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
-.rp-step-text{font-size:.8rem;color:var(--ink-soft);line-height:1.5;}
-.rp-visual{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:16px;}
-.flow{display:flex;flex-direction:column;align-items:center;width:100%;}
-.flow-inputs{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-bottom:6px;}
-.flow-chip{background:var(--accent-light);color:var(--accent);border:1px solid rgba(46,95,163,.15);padding:4px 10px;border-radius:5px;font-size:.7rem;font-weight:500;}
-.flow-arrow{color:var(--border);font-size:.9rem;margin:1px 0;}
-.flow-engine{background:var(--accent);color:#fff;padding:8px 22px;border-radius:7px;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;box-shadow:0 3px 12px rgba(46,95,163,.22);margin:3px 0;}
-.flow-outputs{display:flex;flex-direction:column;gap:3px;width:100%;}
-.flow-out{background:#fff;border:1px solid var(--border);padding:5px 10px;border-radius:5px;font-size:.7rem;color:var(--ink-soft);text-align:center;}
-.rp-close{float:right;background:var(--navy);color:#fff;border:none;padding:6px 14px;border-radius:5px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:16px;}
-.rp-close:hover{background:var(--accent);}
-
-/* PILLS / TAGS */
-.wtag{padding:3px 8px;border-radius:4px;font-size:.65rem;font-weight:500;border:1px solid transparent;}
+.proj-badge.award{background:rgba(201,168,76,.1);color:#92680E;border:0.5px solid rgba(201,168,76,.25);}
+.proj-badge.pub{background:rgba(27,122,140,.1);color:var(--teal);border:0.5px solid rgba(27,122,140,.2);}
+.proj-num{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:900;color:var(--border);margin-bottom:8px;}
+.proj-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--ink);line-height:1.2;margin-bottom:10px;}
+.proj-hook{font-size:.84rem;color:var(--ink-soft);line-height:1.6;font-style:italic;margin-bottom:16px;}
+.proj-card-bottom{padding:16px 24px 20px;}
+.proj-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px;}
+.wtag{padding:3px 8px;border-radius:4px;font-size:.65rem;font-weight:500;border:0.5px solid transparent;}
 .wtag.ai{background:#EEF4FB;color:#2E5FA3;border-color:#C5D9EF;}
 .wtag.ux{background:#E8F6F8;color:#1B7A8C;border-color:#A8DCE4;}
 .wtag.res{background:#FBF6E8;color:#7A5C0F;border-color:#DEC97A;}
 .wtag.gen{background:#F4F2EF;color:#5A5047;border-color:#D8D3CC;}
-.wtag.del{background:#EEF6F0;color:#166534;border-color:#A7D7B3;}
+.proj-open-btn{width:100%;padding:10px;border:0.5px solid var(--border);border-radius:8px;background:transparent;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.04em;}
+.proj-card:hover .proj-open-btn{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
 
-/* HOW I THINK */
+.modal-overlay{position:fixed;inset:0;background:rgba(15,26,46,.75);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(6px);}
+.modal-overlay.active{opacity:1;pointer-events:all;}
+.modal{background:#fff;border-radius:20px;width:100%;max-width:660px;max-height:88vh;overflow-y:auto;animation:modalIn .3s ease forwards;position:relative;}
+.modal-header{padding:18px 24px 16px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:10;border-radius:20px 20px 0 0;}
+.modal-header-left{display:flex;align-items:center;gap:10px;}
+.modal-counter{font-size:.74rem;color:var(--muted);font-weight:500;}
+.modal-links{display:flex;align-items:center;gap:14px;}
+.modal-link{font-size:.75rem;font-weight:600;color:var(--accent);text-decoration:none;transition:opacity .2s;}
+.modal-link:hover{opacity:.7;}
+.modal-close{width:30px;height:30px;border-radius:50%;border:0.5px solid var(--border);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--muted);transition:all .2s;font-family:'DM Sans',sans-serif;}
+.modal-close:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.modal-body{padding:0;}
+.modal-section{padding:22px 24px;border-bottom:0.5px solid var(--border);}
+.modal-section-label{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block;}
+.modal-section-text{font-size:.88rem;color:var(--ink-soft);line-height:1.78;}
+.modal-metrics-row{display:grid;background:var(--navy);border-bottom:0.5px solid var(--border);}
+.modal-metric-item{padding:22px 24px;text-align:center;border-right:0.5px solid rgba(255,255,255,.08);}
+.modal-metric-item:last-child{border-right:none;}
+.modal-metric-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--accent2);line-height:1;margin-bottom:4px;}
+.modal-metric-label{font-size:.7rem;color:rgba(255,255,255,.5);line-height:1.4;}
+.modal-nav{padding:14px 24px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;bottom:0;background:#fff;border-radius:0 0 20px 20px;}
+.modal-nav-btn{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:8px 12px;border-radius:8px;transition:all .2s;}
+.modal-nav-btn:hover:not(:disabled){color:var(--accent);background:var(--accent-light);}
+.modal-nav-btn:disabled{opacity:.25;cursor:not-allowed;}
+.modal-nav-counter{font-size:.78rem;color:var(--muted);}
+
 .think-section{background:var(--navy);padding:88px 60px;}
 .think-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
 .think-left .s-label{color:var(--accent2);}
@@ -154,7 +130,7 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .think-left .s-title{color:#fff;}
 .think-left .s-title em{color:var(--accent2);}
 .principle-list{display:flex;flex-direction:column;gap:4px;}
-.pitem{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:10px;cursor:pointer;transition:all .2s;border:1px solid transparent;}
+.pitem{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:10px;cursor:pointer;transition:all .2s;border:0.5px solid transparent;}
 .pitem:hover{background:rgba(255,255,255,.05);}
 .pitem.active{background:rgba(74,143,212,.12);border-color:rgba(74,143,212,.2);}
 .pitem-icon{font-size:1.1rem;flex-shrink:0;width:32px;text-align:center;}
@@ -163,34 +139,32 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .pitem-arrow{margin-left:auto;color:rgba(255,255,255,.2);transition:color .2s;font-size:.9rem;}
 .pitem.active .pitem-arrow{color:var(--accent2);}
 .think-right{position:sticky;top:88px;}
-.proof-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:32px 28px;min-height:260px;}
+.proof-card{background:rgba(255,255,255,.04);border:0.5px solid rgba(255,255,255,.08);border-radius:14px;padding:32px 28px;min-height:260px;}
 .proof-content{display:none;}
 .proof-content.active{display:block;}
 .proof-label{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px;opacity:.7;}
 .proof-headline{font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:700;color:#fff;line-height:1.45;margin-bottom:14px;}
 .proof-body{font-size:.83rem;color:rgba(255,255,255,.52);line-height:1.75;margin-bottom:20px;}
-.proof-stat{display:flex;align-items:baseline;gap:10px;padding-top:18px;border-top:1px solid rgba(255,255,255,.07);}
+.proof-stat{display:flex;align-items:baseline;gap:10px;padding-top:18px;border-top:0.5px solid rgba(255,255,255,.07);}
 .ps-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent2);line-height:1;}
 .ps-label{font-size:.76rem;color:rgba(255,255,255,.38);line-height:1.4;}
 
-/* WHAT I BRING — clean light grid */
 .bring-section{padding:88px 60px;}
-.bring-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-top:40px;}
-.bring-group{padding:28px 22px;border-right:1px solid var(--border);background:#fff;transition:background .2s;}
+.bring-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:0.5px solid var(--border);border-radius:14px;overflow:hidden;margin-top:40px;}
+.bring-group{padding:28px 22px;border-right:0.5px solid var(--border);background:#fff;transition:background .2s;}
 .bring-group:last-child{border-right:none;}
 .bring-group:hover{background:var(--bg);}
 .bg-label{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:block;}
 .bg-pills{display:flex;flex-direction:column;gap:6px;}
-.bpill{padding:5px 11px;border-radius:6px;font-size:.74rem;font-weight:500;border:1px solid transparent;display:inline-block;white-space:nowrap;}
+.bpill{padding:5px 11px;border-radius:6px;font-size:.74rem;font-weight:500;border:0.5px solid transparent;display:inline-block;}
 .bpill.ai{background:#EEF4FB;color:#2E5FA3;border-color:#C5D9EF;}
 .bpill.ux{background:#E8F6F8;color:#1B7A8C;border-color:#A8DCE4;}
 .bpill.res{background:#FBF6E8;color:#7A5C0F;border-color:#DEC97A;}
 .bpill.del{background:#EEF6F0;color:#166534;border-color:#A7D7B3;}
 .bpill.gen{background:#F4F2EF;color:#5A5047;border-color:#D8D3CC;}
 
-/* EXPERIENCE */
 .exp-list{display:flex;flex-direction:column;gap:0;}
-.exp-item{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:40px 0;border-bottom:1px solid var(--border);}
+.exp-item{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:40px 0;border-bottom:0.5px solid var(--border);}
 .exp-item:first-child{padding-top:0;}
 .exp-item:last-child{border-bottom:none;}
 .exp-meta{padding-top:4px;}
@@ -201,7 +175,6 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .exp-tags{display:flex;flex-wrap:wrap;gap:6px;}
 .exp-tags .bpill{padding:4px 10px;border-radius:5px;font-size:.72rem;}
 
-/* STORY */
 .story-section{background:var(--navy);padding:88px 60px;}
 .story-inner{max-width:700px;margin:0 auto;text-align:center;}
 .story-q{font-family:'Playfair Display',serif;font-size:5rem;line-height:.5;color:rgba(74,143,212,.18);display:block;margin-bottom:26px;}
@@ -210,16 +183,14 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .story-text p:last-child{margin-bottom:0;}
 .story-text em{color:var(--accent2);font-style:normal;}
 
-/* CONTACT */
 .contact-section{background:var(--bg2);padding:72px 60px;text-align:center;}
 .contact-warm{font-family:'Playfair Display',serif;font-size:1.25rem;font-style:italic;color:var(--ink-soft);margin-bottom:28px;line-height:1.5;}
 .contact-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-.c-btn{display:inline-flex;align-items:center;gap:7px;padding:12px 24px;border-radius:6px;font-size:.82rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:all .2s;border:1px solid var(--border);color:var(--ink-soft);background:#fff;}
+.c-btn{display:inline-flex;align-items:center;gap:7px;padding:12px 24px;border-radius:6px;font-size:.82rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:all .2s;border:0.5px solid var(--border);color:var(--ink-soft);background:#fff;}
 .c-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);box-shadow:0 4px 16px rgba(46,95,163,.1);}
 .c-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
 .c-btn.primary:hover{background:#1A4A8A;color:#fff;}
 
-/* RESPONSIVE */
 @media(max-width:960px){
   nav{padding:0 24px;}
   .hero{padding:100px 24px 60px;}
@@ -234,13 +205,11 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
   .exp-item{grid-template-columns:1fr;gap:8px;}
   .story-section{padding:64px 24px;}
   .contact-section{padding:64px 24px;}
-  .proj-deep-inner{grid-template-columns:1fr;}
-  .rp-left{border-right:none;border-bottom:1px solid var(--border);}
+  .proj-grid{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:600px){
   .bring-grid{grid-template-columns:1fr;}
-  .proj-summary{grid-template-columns:1fr auto;}
-  .proj-num{display:none;}
+  .proj-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -250,385 +219,145 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
   <a href="#hero" class="nav-logo">hello!</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
-    <li><a href="#howithink">How I Think</a></li>
+    <li><a href="#howithink">How I Work</a></li>
     <li><a href="#story">Story</a></li>
     <li><a href="#contact">Connect</a></li>
   </ul>
 </nav>
 
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="proj-cat" id="modalCat"></span>
+        <span class="modal-counter" id="modalCounter"></span>
+      </div>
+      <div class="modal-links">
+        <a href="#" class="modal-link" id="modalLive" target="_blank" style="display:none">Live ↗</a>
+        <a href="#" class="modal-link" id="modalGithub" target="_blank" style="display:none">GitHub ↗</a>
+        <a href="#" class="modal-link" id="modalPaper" target="_blank" style="display:none">Read Paper ↗</a>
+        <a href="#" class="modal-link" id="modalProto" target="_blank" style="display:none">Prototype ↗</a>
+        <a href="#" class="modal-link" id="modalProceedings" target="_blank" style="display:none">Proceedings, Pg 563 ↗</a>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-nav">
+      <button class="modal-nav-btn" id="modalPrev">← Previous</button>
+      <span class="modal-nav-counter" id="modalNavCounter"></span>
+      <button class="modal-nav-btn" id="modalNext">Next →</button>
+    </div>
+  </div>
+</div>
+
 <section class="hero" id="hero">
   <div class="hero-top">
     <div class="hero-left">
       <div class="hero-tag" id="heroTag">
-        <span class="tag-item" data-index="0">Engineer</span>
-        <span class="tag-sep">·</span>
-        <span class="tag-item" data-index="1">Researcher</span>
-        <span class="tag-sep">·</span>
-        <span class="tag-item" data-index="2">Builder</span>
-        <span class="tag-sep">·</span>
-        <span class="tag-item" data-index="3">PM</span>
+        <span class="tag-item">Engineer</span><span class="tag-sep">·</span>
+        <span class="tag-item">Researcher</span><span class="tag-sep">·</span>
+        <span class="tag-item">Builder</span><span class="tag-sep">·</span>
+        <span class="tag-item">PM</span>
       </div>
       <h1 class="hero-name">Amrutha Hari</h1>
-      <p class="hero-story">Every product I've built started with the same question: <em>what is the problem that needs to be resolved for the user?</em></p>
-      <div class="hero-cta">
-        <a href="#work" class="btn">See the work <span class="bi">↓</span></a>
-      </div>
+      <p class="hero-story">Every product I've built started with the same question: <em>what problem am I actually solving?</em></p>
+      <div class="hero-cta"><a href="#work" class="btn">See the work ↓</a></div>
     </div>
     <div class="hero-photo-wrap">
       <img src="profile.jpg" alt="Amrutha Hari" class="hero-photo">
+    </div>
   </div>
   <div class="stats-row">
-    <div class="stat-card"><div class="stat-icon">🚀</div><div class="stat-num">0<span>→1</span></div><div class="stat-title">Two AI Products Built &amp; Shipped</div><div class="stat-sub">Designed, built, and launched to production</div></div>
-    <div class="stat-card"><div class="stat-icon">💬</div><div class="stat-num">100<span>+</span></div><div class="stat-title">Conversations before a single wireframe</div><div class="stat-sub">Problem first. Always.</div></div>
-    <div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-num">70<span>%</span></div><div class="stat-title">Faster sprint delivery after Agile transformation</div><div class="stat-sub">Azure DevOps · Certified ScrumMaster</div></div>
-    <div class="stat-card"><div class="stat-icon">★</div><div class="stat-num">2<span>×</span></div><div class="stat-title">Peer-reviewed publications</div><div class="stat-sub">IEEE + ASEM</div></div>
+    <div class="stat-card"><div class="stat-icon">📄</div><div class="stat-num">2<span>×</span></div><div class="stat-title">Peer-reviewed publications</div><div class="stat-sub">IEEE + ASEM International Conference</div></div>
+    <div class="stat-card"><div class="stat-icon">🚀</div><div class="stat-num">2</div><div class="stat-title">AI products shipped</div><div class="stat-sub">Live, real users, real metrics</div></div>
+    <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-num">76<span>%</span></div><div class="stat-title">Activation rate</div><div class="stat-sub">PocketPlans — industry avg under 5%</div></div>
+    <div class="stat-card"><div class="stat-icon">🏫</div><div class="stat-num">IDEA</div><div class="stat-title">Startup Incubator</div><div class="stat-sub">Northeastern University selected</div></div>
   </div>
 </section>
 
 <section class="section" id="work">
   <p class="s-label">Work</p>
-  <h2 class="s-title reveal">Everything I've <em>built.</em></h2>
-  <p class="s-sub reveal d1">Click any project to see how I think through it.</p>
-
+  <h2 class="s-title reveal">The <em>work.</em></h2>
+  <p class="s-sub reveal d1">Click any project to read the thinking behind it.</p>
   <div class="filter-bar reveal d1">
     <button class="ftab active" data-filter="all">All</button>
     <button class="ftab" data-filter="ai">AI Products</button>
-    <button class="ftab" data-filter="ux">UX &amp; Strategy</button>
+    <button class="ftab" data-filter="ux">UX & Strategy</button>
     <button class="ftab" data-filter="research">Research</button>
   </div>
-
-  <div class="proj-list reveal d2" id="projList">
-
-    <!-- POCKETPLANS -->
-    <div class="proj-row" data-cat="ai">
-      <div class="proj-summary">
+  <div class="proj-grid reveal d2" id="projGrid">
+    <div class="proj-card" data-cat="ai" data-index="0">
+      <div class="proj-card-top">
+        <div class="proj-card-meta"><span class="proj-cat ai">AI Product</span><span class="proj-live">Live</span><span class="proj-badge award">🏫 IDEA Incubator</span></div>
         <div class="proj-num">01</div>
-        <div class="proj-main">
-          <div class="proj-meta">
-            <span class="proj-cat ai">AI Product</span>
-            <span class="proj-live">Live</span>
-            <span class="proj-badge award">🏫 IDEA Incubator</span>
-          </div>
-          <div class="proj-title">PocketPlans</div>
-          <div class="proj-desc">A personalized venue recommendation system. From decision fatigue to a plan in seconds — real venues, zero hallucinations, filtered by vibe, group, weather, and city.</div>
-        </div>
-        <div class="proj-right">
-          <div class="proj-tags">
-            <span class="wtag ai">Next.js</span>
-            <span class="wtag ai">Google Places API</span>
-            <span class="wtag gen">Clarity</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://pocket-plans-pied.vercel.app/" target="_blank" class="plink" onclick="event.stopPropagation()">Live ↗</a>
-            <a href="https://github.com/amruthahari1207/PocketPlans" target="_blank" class="plink" onclick="event.stopPropagation()">GitHub ↗</a>
-          </div>
-          <div class="proj-toggle">+</div>
-        </div>
+        <div class="proj-title">PocketPlans</div>
+        <div class="proj-hook">"I went from 10 inputs to 4 because users told me to. That cut is the product."</div>
       </div>
-      <div class="proj-deep">
-        <div class="proj-deep-inner">
-          <div class="rp-left">
-            <button class="rp-close" onclick="this.closest('.proj-row').click()">✕ Close</button>
-            <div class="rp-project-title">PocketPlans</div>
-            <div class="rp-project-sub">Co-Founder &amp; PM · Live on Vercel</div>
-            <div class="rp-think">
-              <div class="rp-think-item"><div class="rp-dot p">🔴</div><div class="rp-think-body"><h5>Problem</h5><p>People burn 45 minutes across Maps, Instagram, and review tabs just to pick somewhere to go, not because options don't exist, but because there's no one to just say <em>"go here."</em></p></div></div>
-              <div class="rp-think-item"><div class="rp-dot i">💡</div><div class="rp-think-body"><h5>Insight</h5><p>The gap isn't information, it's easy judgment. Tested with 25–30 users pre-launch, who told me 10 inputs were too many. Cut to 4.</p></div></div>
-              <div class="rp-think-item"><div class="rp-dot s">✅</div><div class="rp-think-body"><h5>Solution</h5><p>5 curated picks in seconds: real venues via Google Places, ranked by vibe × group × weather. Swap any suggestion without re-running the full query.</p></div></div>
-            </div>
-            <div class="rp-stack"><span class="rp-stack-label">Stack</span><span class="rp-tag">Next.js</span><span class="rp-tag">Supabase</span><span class="rp-tag">Google Places</span><span class="rp-tag">OpenWeather</span><span class="rp-tag">OpenAI</span><span class="rp-tag">Clarity</span></div>
-          </div>
-          <div class="rp-right">
-            <div class="rp-visual">
-              <div class="flow">
-                <div class="flow-inputs"><span class="flow-chip">🎭 Vibe</span><span class="flow-chip">👥 Group</span><span class="flow-chip">🌤 Weather</span><span class="flow-chip">📍 City</span></div>
-                <div class="flow-arrow">↓</div>
-                <div class="flow-engine">PocketPlans</div>
-                <div class="flow-arrow">↓</div>
-                <div class="flow-outputs"><div class="flow-out">📍 5 Curated Picks</div></div>
-              </div>
-            </div>
-            <div class="rp-metric-grid">
-              <div class="rp-metric"><div class="rp-metric-num">97%</div><div class="rp-metric-label">Scroll depth</div></div>
-              <div class="rp-metric"><div class="rp-metric-num">76%</div><div class="rp-metric-label">Homepage → /plan</div></div>
-              <div class="rp-metric"><div class="rp-metric-num">1.1 min</div><div class="rp-metric-label">Active session time</div></div>
-              <div class="rp-metric"><div class="rp-metric-num">26.67%</div><div class="rp-metric-label">Dead clicks → v2 signal</div></div>
-            </div>
-          </div>
-        </div>
+      <div class="proj-card-bottom">
+        <div class="proj-tags"><span class="wtag ai">Next.js</span><span class="wtag ai">Google Places API</span><span class="wtag gen">Clarity</span></div>
+        <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
-
-    <!-- STRUCTIFY -->
-    <div class="proj-row" data-cat="ai">
-      <div class="proj-summary">
+    <div class="proj-card" data-cat="ai" data-index="1">
+      <div class="proj-card-top">
+        <div class="proj-card-meta"><span class="proj-cat ai">AI Product</span><span class="proj-live">Live</span></div>
         <div class="proj-num">02</div>
-        <div class="proj-main">
-          <div class="proj-meta">
-            <span class="proj-cat ai">AI Product</span>
-            <span class="proj-live">Live</span>
-          </div>
-          <div class="proj-title">Structify</div>
-          <div class="proj-desc">Stop formatting. Start thinking. Converts any unstructured input into user stories, acceptance criteria, and epics instantly.</div>
-        </div>
-        <div class="proj-right">
-          <div class="proj-tags">
-            <span class="wtag ai">LLMs</span><span class="wtag ai">RAG</span><span class="wtag ai">OCR</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://structify.streamlit.app/" target="_blank" class="plink" onclick="event.stopPropagation()">Live ↗</a>
-            <a href="https://github.com/amruthahari1207/structify" target="_blank" class="plink" onclick="event.stopPropagation()">GitHub ↗</a>
-          </div>
-          <div class="proj-toggle">+</div>
-        </div>
+        <div class="proj-title">Structify</div>
+        <div class="proj-hook">"PMs spend hours formatting what should take seconds. I fixed that."</div>
       </div>
-      <div class="proj-deep">
-        <div class="proj-deep-inner">
-          <div class="rp-left">
-            <button class="rp-close" onclick="this.closest('.proj-row').click()">✕ Close</button>
-            <div class="rp-project-title">Structify</div>
-            <div class="rp-project-sub">PM · Live on Streamlit · LLMs + RAG + OCR</div>
-            <div class="rp-think">
-              <div class="rp-think-item"><div class="rp-dot p">🔴</div><div class="rp-think-body"><h5>Problem</h5><p>PMs spend hours converting Slack threads, meeting notes, and rough ideas into structured user stories. The format is always the same; the work shouldn't be manual.</p></div></div>
-              <div class="rp-think-item"><div class="rp-dot i">💡</div><div class="rp-think-body"><h5>Insight</h5><p>If the output format is predictable, it can be automated. The PM's real job is the thinking, not the formatting.</p></div></div>
-              <div class="rp-think-item"><div class="rp-dot s">✅</div><div class="rp-think-body"><h5>Solution</h5><p>Paste anything in and get structured user stories, acceptance criteria, and epics in seconds. 60–70% reduction in manual PM effort.</p></div></div>
-            </div>
-            <div class="rp-stack"><span class="rp-stack-label">Stack</span><span class="rp-tag">LLMs</span><span class="rp-tag">RAG</span><span class="rp-tag">OCR</span><span class="rp-tag">Prompt Engineering</span><span class="rp-tag">Streamlit</span></div>
-          </div>
-          <div class="rp-right">
-            <div class="rp-visual">
-              <div class="flow">
-                <div class="flow-inputs"><span class="flow-chip">💬 Slack</span><span class="flow-chip">📝 Notes</span><span class="flow-chip">💡 Ideas</span></div>
-                <div class="flow-arrow">↓</div>
-                <div class="flow-engine">Structify</div>
-                <div class="flow-arrow">↓</div>
-                <div class="flow-outputs"><div class="flow-out">📋 User Story · ✅ Criteria · 🗂 Epic</div></div>
-              </div>
-            </div>
-            <div class="rp-metric-grid">
-              <div class="rp-metric"><div class="rp-metric-num">60–70%</div><div class="rp-metric-label">Manual PM effort reduced</div></div>
-              <div class="rp-metric"><div class="rp-metric-num">&lt;5s</div><div class="rp-metric-label">Time to structured output</div></div>
-            </div>
-          </div>
-        </div>
+      <div class="proj-card-bottom">
+        <div class="proj-tags"><span class="wtag ai">LLMs</span><span class="wtag ai">RAG</span><span class="wtag ai">OCR</span></div>
+        <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
-
-
-      <!-- PROTOTHON + EVENTBRITE COMBINED -->
-<div class="proj-row" data-cat="ux">
-  <div class="proj-summary">
-    <div class="proj-num">03</div>
-    <div class="proj-main">
-      <div class="proj-meta">
-        <span class="proj-cat ux">UX &amp; Strategy</span>
-        <span class="proj-badge award">🥈 2nd / 45+ teams</span>
+    <div class="proj-card" data-cat="ux" data-index="2">
+      <div class="proj-card-top">
+        <div class="proj-card-meta"><span class="proj-cat ux">UX & Strategy</span><span class="proj-badge award">🥈 2nd / 45+ teams</span></div>
+        <div class="proj-num">03</div>
+        <div class="proj-title">Protothon — Eventbrite</div>
+        <div class="proj-hook">"100+ interviews. 12 hours. $6.24M opportunity. Top 2 of 45+ teams."</div>
       </div>
-      <div class="proj-title">Protothon 5.0 — Eventbrite Redesign</div>
-      <div class="proj-desc">Diagnosed Eventbrite’s acquisition and retention gaps through 100+ user interviews, rebuilt the journey using Kano prioritization and iterative prototyping, and sized a $6.24M opportunity.</div>
-    </div>
-    <div class="proj-right">
-      <div class="proj-tags">
-        <span class="wtag ux">User Interviews</span>
-        <span class="wtag gen">Roadmapping</span>
-        <span class="wtag ux">Kano Model</span>
-        <span class="wtag gen">Figma</span>
-      </div>
-      <div class="proj-links">
-        <a href="https://www.figma.com/proto/HcPt0JqZnVm4qCIo1YFk7X/EventBrite?type=design&node-id=731-1305&t=N6f4pM33VOpaK7OK-0&scaling=scale-down&page-id=1669%3A162202&starting-point-node-id=731%3A1305" target="_blank" class="plink" onclick="event.stopPropagation()">Prototype ↗</a>
-        <a href="https://www.linkedin.com/in/amruthahari/overlay/Project/887654310/treasury/?profileId=ACoAADxbAaUBkbDDKDhr-OUwJLeA-D684Dr1Tuo" target="_blank" class="plink" onclick="event.stopPropagation()">Pitch Deck ↗</a>
-      </div>
-      <div class="proj-toggle">+</div>
-    </div>
-  </div>
-  <div class="proj-deep">
-    <div class="proj-deep-inner">
-      <div class="rp-left">
-        <button class="rp-close" onclick="this.closest('.proj-row').click()">✕ Close</button>
-        <div class="rp-project-title">Protothon 5.0 — Eventbrite Redesign</div>
-        <div class="rp-project-sub">PM · March 2024 · UX Strategy + Figma Prototype</div>
-        <div class="rp-think">
-          <div class="rp-think-item">
-            <div class="rp-dot p">🔴</div>
-            <div class="rp-think-body">
-              <h5>Problem</h5>
-              <p>Eventbrite was struggling with discovery and retention; the user journey was not strong enough to bring them back.</p>
-            </div>
-          </div>
-          <div class="rp-think-item">
-            <div class="rp-dot i">💡</div>
-            <div class="rp-think-body">
-              <h5>Approach</h5>
-              <p>Ran 100+ user interviews, used the Kano model to separate must-haves from delighters, defined north star metrics before opening Figma, and sized the opportunity at <em>$6.24M</em>.</p>
-            </div>
-          </div>
-          <div class="rp-think-item">
-            <div class="rp-dot s">✅</div>
-            <div class="rp-think-body">
-              <h5>Result</h5>
-              <p>Built a high-fidelity Figma prototype, developed a full GTM and KPI plan, and placed <em>2nd out of 45+ teams</em>. The judges highlighted the research-first thinking behind the solution.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="rp-right">
-        <div class="rp-build-header">PM process applied</div>
-        <div class="rp-build-steps">
-          <div class="rp-step">
-            <div class="rp-step-num">1</div>
-            <div class="rp-step-text"><strong>Diagnose:</strong> 100+ user interviews and surveys to identify acquisition and retention drop-off points.</div>
-          </div>
-          <div class="rp-step">
-            <div class="rp-step-num">2</div>
-            <div class="rp-step-text"><strong>Prioritize:</strong> Kano model used to define must-haves vs delighters. North star metric: repeat attendees/month.</div>
-          </div>
-          <div class="rp-step">
-            <div class="rp-step-num">3</div>
-            <div class="rp-step-text"><strong>Design:</strong> Built a high-fidelity Figma prototype and iterated on onboarding and discovery flows.</div>
-          </div>
-          <div class="rp-step">
-            <div class="rp-step-num">4</div>
-            <div class="rp-step-text"><strong>Pitch:</strong> Presented the solution to judges from Google, McKinsey, and Schneider Electric.</div>
-          </div>
-        </div>
-        <div class="rp-metric-grid">
-          <div class="rp-metric">
-            <div class="rp-metric-num">100+</div>
-            <div class="rp-metric-label">User interviews</div>
-          </div>
-          <div class="rp-metric">
-            <div class="rp-metric-num">$6.24M</div>
-            <div class="rp-metric-label">Market opportunity sized</div>
-          </div>
-        </div>
+      <div class="proj-card-bottom">
+        <div class="proj-tags"><span class="wtag ux">User Research</span><span class="wtag ux">Kano Model</span><span class="wtag gen">Figma</span></div>
+        <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
-  </div>
-</div>
-    
-    <!-- WORLDIFY -->
-    <div class="proj-row" data-cat="ux">
-      <div class="proj-summary">
+    <div class="proj-card" data-cat="ux" data-index="3">
+      <div class="proj-card-top">
+        <div class="proj-card-meta"><span class="proj-cat ux">UX & Strategy</span><span class="proj-badge award">🥇 1st / 10 teams</span></div>
         <div class="proj-num">04</div>
-        <div class="proj-main">
-          <div class="proj-meta"><span class="proj-cat ux">UX &amp; Strategy</span>
-          <span class="proj-badge award">🥇 1st / 10 teams</span>
-          </div>
-          <div class="proj-title">Worldify</div>
-          <div class="proj-desc">Industry-specific language learning with work culture insights. Full roadmap from concept through alpha and beta. End-to-end PM ownership.</div>
-        </div>
-        <div class="proj-right">
-          <div class="proj-tags"><span class="wtag ux">Roadmapping</span><span class="wtag ux">GTM Strategy</span><span class="wtag gen">Figma</span></div>
-          <div class="proj-links"><a href="https://www.figma.com/proto/sAGz5CohWTE2WkyFQxluSG/Wireframing-(Copy)?type=design&node-id=889265-705" target="_blank" class="plink" onclick="event.stopPropagation()">Prototype ↗</a></div>
-          <div class="proj-toggle">+</div>
-        </div>
+        <div class="proj-title">Worldify</div>
+        <div class="proj-hook">"Defined the roadmap before anyone knew if the product should exist."</div>
       </div>
-      <div class="proj-deep">
-        <div class="proj-deep-inner">
-          <div class="rp-left">
-            <button class="rp-close" onclick="this.closest('.proj-row').click()">✕ Close</button>
-            <div class="rp-project-title">Worldify</div>
-            <div class="rp-project-sub">PM · Jan–May 2024 · Zero to MVP</div>
-            <div class="rp-think">
-              <div class="rp-think-item"><div class="rp-dot p">🔴</div><div class="rp-think-body"><h5>Problem</h5><p>Language learners master vocabulary but struggle professionally, because of cultural context and industry-specific norms they've never been taught.</p></div></div>
-              <div class="rp-think-item"><div class="rp-dot i">💡</div><div class="rp-think-body"><h5>Approach</h5><p>Defined user segments, built alpha and beta roadmaps, designed GTM strategy, and prototyped in Figma, tested with real target users.</p></div></div>
-              <div class="rp-think-item"><div class="rp-dot s">✅</div><div class="rp-think-body"><h5>Outcome</h5><p>End-to-end PM ownership from zero to a validated MVP with a full launch plan.</p></div></div>
-            </div>
-          </div>
-          <div class="rp-right">
-            <div class="rp-build-header">Roadmap phases</div>
-            <div class="rp-build-steps">
-              <div class="rp-step"><div class="rp-step-num">α</div><div class="rp-step-text"><strong>Alpha:</strong> Core language + industry module. User research validation. Retention loop defined.</div></div>
-              <div class="rp-step"><div class="rp-step-num">β</div><div class="rp-step-text"><strong>Beta:</strong> Culture context layer. A/B testing on onboarding. GTM strategy finalized.</div></div>
-              <div class="rp-step"><div class="rp-step-num">🚀</div><div class="rp-step-text"><strong>Launch:</strong> Full go-to-market plan. Investor deck. Figma prototype validated.</div></div>
-            </div>
-          </div>
-        </div>
+      <div class="proj-card-bottom">
+        <div class="proj-tags"><span class="wtag ux">Roadmapping</span><span class="wtag ux">GTM Strategy</span><span class="wtag gen">Figma</span></div>
+        <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
-
-    <!-- IEEE -->
-    <div class="proj-row" data-cat="research">
-      <div class="proj-summary">
+    <div class="proj-card" data-cat="research" data-index="4">
+      <div class="proj-card-top">
+        <div class="proj-card-meta"><span class="proj-cat res">Research</span><span class="proj-badge pub">Published</span></div>
         <div class="proj-num">05</div>
-        <div class="proj-main">
-          <div class="proj-meta">
-            <span class="proj-cat res">Research</span>
-            <span class="proj-badge pub">Published</span>
-          </div>
-          <div class="proj-title">Alzheimer's Detection</div>
-          <div class="proj-desc">ELM models on 6,000+ MRI scans. 95% accuracy. 17% improvement over SVMs and neural networks. IEEE GUCON 2021, Malaysia.</div>
-        </div>
-        <div class="proj-right">
-          <div class="proj-tags"><span class="wtag res">Machine Learning</span><span class="wtag res">ELM Models</span><span class="wtag res">MRI Analysis</span></div>
-          <div class="proj-links"><a href="https://ieeexplore.ieee.org/document/9573589" target="_blank" class="plink" onclick="event.stopPropagation()">Read Paper ↗</a></div>
-          <div class="proj-toggle">+</div>
-        </div>
+        <div class="proj-title">Alzheimer's Detection</div>
+        <div class="proj-hook">"Chose ELM over SVMs and neural nets. 95% accuracy proved the call."</div>
       </div>
-      <div class="proj-deep">
-        <div class="proj-deep-inner">
-          <div class="rp-left">
-            <button class="rp-close" onclick="this.closest('.proj-row').click()">✕ Close</button>
-            <div class="rp-project-title">Alzheimer's Detection via ML</div>
-            <div class="rp-project-sub">IEEE GUCON 2021 · Kuala Lumpur, Malaysia · Peer-reviewed</div>
-            <div class="rp-think">
-              <div class="rp-think-item"><div class="rp-dot p">🔴</div><div class="rp-think-body"><h5>Problem</h5><p>Early Alzheimer's detection from MRI scans is slow and error-prone. Existing ML benchmarks lacked accuracy at scale.</p></div></div>
-              <div class="rp-think-item"><div class="rp-dot i">💡</div><div class="rp-think-body"><h5>Approach</h5><p>Processed 6,000+ MRI scans. Applied Extreme Learning Machine models and benchmarked rigorously against SVMs and neural networks.</p></div></div>
-              <div class="rp-think-item"><div class="rp-dot s">✅</div><div class="rp-think-body"><h5>Result</h5><p>95% classification accuracy. 17% better than prior benchmarks. Published and presented at IEEE GUCON 2021, Malaysia.</p></div></div>
-            </div>
-          </div>
-          <div class="rp-right">
-            <div class="rp-metric-grid">
-              <div class="rp-metric"><div class="rp-metric-num">95%</div><div class="rp-metric-label">Classification accuracy</div></div>
-              <div class="rp-metric"><div class="rp-metric-num">+17%</div><div class="rp-metric-label">vs SVMs &amp; neural nets</div></div>
-              <div class="rp-metric"><div class="rp-metric-num">6,000+</div><div class="rp-metric-label">MRI scans processed</div></div>
-              <div class="rp-metric"><div class="rp-metric-num">IEEE</div><div class="rp-metric-label">Peer-reviewed &amp; published</div></div>
-            </div>
-          </div>
-        </div>
+      <div class="proj-card-bottom">
+        <div class="proj-tags"><span class="wtag res">Machine Learning</span><span class="wtag res">ELM Models</span></div>
+        <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
-
-    <!-- ASEM -->
-    <div class="proj-row" data-cat="research">
-      <div class="proj-summary">
+    <div class="proj-card" data-cat="research" data-index="5">
+      <div class="proj-card-top">
+        <div class="proj-card-meta"><span class="proj-cat res">Research</span><span class="proj-badge pub">Published</span></div>
         <div class="proj-num">06</div>
-        <div class="proj-main">
-          <div class="proj-meta">
-            <span class="proj-cat res">Research</span>
-            <span class="proj-badge pub">Published</span>
-          </div>
-          <div class="proj-title">AI Lifecycle Framework</div>
-          <div class="proj-desc">Co-authored framework for AI product roadmapping, cutting launch timelines 12–15% and improving cross-functional alignment by 20%. ASEM 2025, Boise.</div>
-        </div>
-        <div class="proj-right">
-          <div class="proj-tags"><span class="wtag res">AI Strategy</span><span class="wtag res">Roadmapping</span></div>
-          <div class="proj-links"><a href="https://asem.org/resources/Website/Publications/IAC%20Proceedings%20Files/ASEM%202025%20IAC%20Proceedings.pdf" target="_blank" class="plink" onclick="event.stopPropagation()">Read Paper, Page 563 ↗</a></div>
-          <div class="proj-toggle">+</div>
-        </div>
+        <div class="proj-title">AI Lifecycle Framework</div>
+        <div class="proj-hook">"Built a framework that cuts AI product launch timelines by 12–15%."</div>
       </div>
-      <div class="proj-deep">
-        <div class="proj-deep-inner">
-          <div class="rp-left">
-            <button class="rp-close" onclick="this.closest('.proj-row').click()">✕ Close</button>
-            <div class="rp-project-title">AI Product Lifecycle Framework</div>
-            <div class="rp-project-sub">ASEM 2025 · Boise, ID · Co-authored &amp; presented</div>
-            <div class="rp-think">
-              <div class="rp-think-item"><div class="rp-dot p">🔴</div><div class="rp-think-body"><h5>Problem</h5><p>AI product teams lack structured lifecycle frameworks: leading to misaligned roadmaps, delayed launches, and wasted engineering effort.</p></div></div>
-              <div class="rp-think-item"><div class="rp-dot i">💡</div><div class="rp-think-body"><h5>Contribution</h5><p>Co-authored a practical framework for integrating AI considerations across the full product lifecycle, from discovery and scoping through post-launch measurement.</p></div></div>
-              <div class="rp-think-item"><div class="rp-dot s">✅</div><div class="rp-think-body"><h5>Impact</h5><p>Framework reduces launch timelines by 12–15% and improves cross-functional alignment by 20%. Presented at ASEM 2025, Boise, Idaho.</p></div></div>
-            </div>
-          </div>
-          <div class="rp-right">
-            <div class="rp-metric-grid">
-              <div class="rp-metric"><div class="rp-metric-num">12–15%</div><div class="rp-metric-label">Faster launch timelines</div></div>
-              <div class="rp-metric"><div class="rp-metric-num">20%</div><div class="rp-metric-label">Better team alignment</div></div>
-            </div>
-          </div>
-        </div>
+      <div class="proj-card-bottom">
+        <div class="proj-tags"><span class="wtag res">AI Strategy</span><span class="wtag res">Roadmapping</span></div>
+        <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -636,95 +365,53 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
   <div class="think-inner">
     <div class="think-left">
       <p class="s-label" style="color:var(--accent2);opacity:.8;">Mindset</p>
-      <h2 class="s-title" style="color:#fff;margin-bottom:32px;">How I <em style="color:var(--accent2);">think.</em></h2>
+      <h2 class="s-title" style="color:#fff;margin-bottom:32px;">How I <em style="color:var(--accent2);">work.</em></h2>
       <div class="principle-list">
-        <div class="pitem active" data-key="problem">
-          <div class="pitem-icon">🔍</div>
-          <div class="pitem-text">
-            <div class="pitem-title">Problem first, always</div>
-            <div class="pitem-sub">I don't touch solutions until I understand the problem.</div>
-          </div>
-          <div class="pitem-arrow">→</div>
-        </div>
-        <div class="pitem" data-key="users">
-          <div class="pitem-icon">👥</div>
-          <div class="pitem-text">
-            <div class="pitem-title">Talk to users before anything else</div>
-            <div class="pitem-sub">Understand their needs</div>
-          </div>
-          <div class="pitem-arrow">→</div>
-        </div>
-        <div class="pitem" data-key="simple">
-          <div class="pitem-icon">✂️</div>
-          <div class="pitem-text">
-            <div class="pitem-title">Simplicity is a decision, not a default</div>
-            <div class="pitem-sub">Simple is harder than complex and more valuable.</div>
-          </div>
-          <div class="pitem-arrow">→</div>
-        </div>
-        <div class="pitem" data-key="ship">
-          <div class="pitem-icon">📊</div>
-          <div class="pitem-text">
-            <div class="pitem-title">Ship, then watch</div>
-            <div class="pitem-sub">Data tells you what users won't say out loud.</div>
-          </div>
-          <div class="pitem-arrow">→</div>
-        </div>
-        <div class="pitem" data-key="feedback">
-          <div class="pitem-icon">🔁</div>
-          <div class="pitem-text">
-            <div class="pitem-title">Feedback closes the loop</div>
-            <div class="pitem-sub">Every signal shapes what gets built next.</div>
-          </div>
-          <div class="pitem-arrow">→</div>
-        </div>
-        <div class="pitem" data-key="ai">
-          <div class="pitem-icon">🤖</div>
-          <div class="pitem-text">
-            <div class="pitem-title">AI as a tool, not a feature</div>
-            <div class="pitem-sub">The question is always: does this actually help the user?</div>
-          </div>
-          <div class="pitem-arrow">→</div>
-        </div>
+        <div class="pitem active" data-key="problem"><div class="pitem-icon">🔍</div><div class="pitem-text"><div class="pitem-title">Problem first, always</div><div class="pitem-sub">I don't touch solutions until I understand the problem.</div></div><div class="pitem-arrow">→</div></div>
+        <div class="pitem" data-key="users"><div class="pitem-icon">👥</div><div class="pitem-text"><div class="pitem-title">Talk to users before anything else</div><div class="pitem-sub">What they say and what they do are different signals.</div></div><div class="pitem-arrow">→</div></div>
+        <div class="pitem" data-key="simple"><div class="pitem-icon">✂️</div><div class="pitem-text"><div class="pitem-title">Simplicity is a decision, not a default</div><div class="pitem-sub">Simple is harder than complex and more valuable.</div></div><div class="pitem-arrow">→</div></div>
+        <div class="pitem" data-key="ship"><div class="pitem-icon">📊</div><div class="pitem-text"><div class="pitem-title">Ship, then watch</div><div class="pitem-sub">Data tells you what users won't say out loud.</div></div><div class="pitem-arrow">→</div></div>
+        <div class="pitem" data-key="feedback"><div class="pitem-icon">🔁</div><div class="pitem-text"><div class="pitem-title">Feedback closes the loop</div><div class="pitem-sub">Every signal shapes what gets built next.</div></div><div class="pitem-arrow">→</div></div>
+        <div class="pitem" data-key="ai"><div class="pitem-icon">🤖</div><div class="pitem-text"><div class="pitem-title">AI as a tool, not a feature</div><div class="pitem-sub">Does this actually help the user?</div></div><div class="pitem-arrow">→</div></div>
       </div>
     </div>
     <div class="think-right">
-      <div class="proof-card" id="proofCard">
+      <div class="proof-card">
         <div class="proof-content active" data-key="problem">
           <div class="proof-label">How this shows up</div>
-          <h3 class="proof-headline">I spent weeks in conversations before writing a single requirement.</h3>
-          <p class="proof-body">For PocketPlans, I ran 25–30 user sessions before touching code. For Protothon, 100+ interviews in 12 hours before opening Figma. The pattern is always the same: understand the problem so deeply that the solution becomes obvious.</p>
+          <h3 class="proof-headline">I ran 100+ interviews before opening Figma. Every time.</h3>
+          <p class="proof-body">For Protothon, 100+ interviews in 12 hours revealed a retention problem disguised as a discovery problem. For PocketPlans, 25–30 user sessions before touching code. The pattern is deliberate — I don't touch solutions until the problem is so clear the answer becomes obvious.</p>
           <div class="proof-stat"><span class="ps-num">100+</span><span class="ps-label">conversations before first wireframe, every time</span></div>
         </div>
         <div class="proof-content" data-key="users" style="display:none">
           <div class="proof-label">How this shows up</div>
-          <h3 class="proof-headline">Users always tell what needs to be built.</h3>
-          <p class="proof-body">Before launching PocketPlans, testing with 25–30 users revealed needs and wants. Differentiating made the product better.</p>
-          <div class="proof-stat"><span class="ps-num">25–30</span><span class="ps-label">users tested pre-launch</span></div>
+          <h3 class="proof-headline">Users told me to cut inputs. Data showed 26% dead clicks nobody mentioned.</h3>
+          <p class="proof-body">On PocketPlans, users said simplify — I cut from 10 to 4 inputs. Then Clarity revealed a 26.67% dead click rate that nobody mentioned in a single session. What users say and what they do are different signals. I use both.</p>
+          <div class="proof-stat"><span class="ps-num">2×</span><span class="ps-label">signals always used — qualitative and behavioral, never just one</span></div>
         </div>
         <div class="proof-content" data-key="simple" style="display:none">
           <div class="proof-label">How this shows up</div>
-          <h3 class="proof-headline">Cut features to make the product easier to use</h3>
-          <p class="proof-body">Simplicity is a conclusion you reach after understanding what users actually need. Every feature I've removed has made the product stronger.</p>
-          <div class="proof-stat"><span class="ps-num">10→4</span><span class="ps-label">inputs cut after user research</span></div>
+          <h3 class="proof-headline">I cut 6 features before launch. Every cut made it stronger.</h3>
+          <p class="proof-body">Simplicity is the conclusion you reach after understanding what users need — not the starting point. Every feature I've removed has made the product stronger. The hardest product decision is often what not to build.</p>
+          <div class="proof-stat"><span class="ps-num">10→4</span><span class="ps-label">inputs cut after user research revealed complexity was the enemy</span></div>
         </div>
         <div class="proof-content" data-key="ship" style="display:none">
           <div class="proof-label">How this shows up</div>
           <h3 class="proof-headline">Clarity was running before the first user arrived.</h3>
-          <p class="proof-body">On PocketPlans, session recording and heatmaps were live from day one, which is how I caught a 26.67% dead click rate that no user ever mentioned in feedback. The data found what conversations missed.</p>
-          <div class="proof-stat"><span class="ps-num">97%</span><span class="ps-label">scroll depth measured, data confirmed what users wouldn't say</span></div>
+          <p class="proof-body">On PocketPlans, session recording and heatmaps were live from day one. That's how I caught a 26.67% dead click rate nobody mentioned in feedback. Data finds what conversations miss. I set up measurement before I need it.</p>
+          <div class="proof-stat"><span class="ps-num">97%</span><span class="ps-label">scroll depth — data confirmed what users wouldn't say</span></div>
         </div>
         <div class="proof-content" data-key="feedback" style="display:none">
           <div class="proof-label">How this shows up</div>
-          <h3 class="proof-headline">User feedback and behavior → Next Roadmap</h3>
-          <p class="proof-body">Clarity flagged that users were clicking elements that weren't interactive. No one complained, but the data showed unmet expectations. That signal became the foundation of the v2 interaction redesign.</p>
-          <div class="proof-stat"><span class="ps-num">26.67%</span><span class="ps-label">dead click rate → directly informed v2 redesign priorities</span></div>
+          <h3 class="proof-headline">The dead click rate became the entire v2 roadmap.</h3>
+          <p class="proof-body">Clarity flagged users clicking elements that weren't interactive. No one complained — the data found it. That signal became the foundation of the v2 interaction redesign. I didn't guess what to build next. The behavior told me.</p>
+          <div class="proof-stat"><span class="ps-num">26.67%</span><span class="ps-label">dead click rate → directly informed v2 roadmap priorities</span></div>
         </div>
         <div class="proof-content" data-key="ai" style="display:none">
           <div class="proof-label">How this shows up</div>
           <h3 class="proof-headline">Two AI products shipped. Neither started with "let's add AI."</h3>
-          <p class="proof-body">PocketPlans uses parallel API orchestration to solve decision fatigue. Structify uses LLMs and RAG to eliminate manual formatting work for PMs. AI was chosen because it was the right tool, not because it was impressive on a pitch deck.</p>
-          <div class="proof-stat"><span class="ps-num">0→2</span><span class="ps-label">live AI products, built as a PM and founder, not just shipped</span></div>
+          <p class="proof-body">PocketPlans uses API orchestration — not LLM generation — because hallucinated venues destroy trust. Structify uses LLMs because the output format is predictable enough to automate reliably. I choose AI where it solves the problem. I remove it where it creates one.</p>
+          <div class="proof-stat"><span class="ps-num">0→2</span><span class="ps-label">live AI products, built where AI was the right tool — not the impressive one</span></div>
         </div>
       </div>
     </div>
@@ -736,61 +423,11 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
   <h2 class="s-title reveal">What I <em>bring.</em></h2>
   <p class="s-sub reveal d1">The skills behind every product I've built.</p>
   <div class="bring-grid reveal d2">
-    <div class="bring-group">
-      <span class="bg-label">Research</span>
-      <div class="bg-pills">
-        <span class="bpill ux">User Interviews</span>
-        <span class="bpill ux">Discover User Problem</span>
-        <span class="bpill ux">Kano Model</span>
-        <span class="bpill ux">Usability Testing</span>
-        <span class="bpill ux">Surveys &amp; Analysis</span>
-        <span class="bpill ux">Market Sizing</span>
-      </div>
-    </div>
-    <div class="bring-group">
-      <span class="bg-label">Strategy</span>
-      <div class="bg-pills">
-        <span class="bpill gen">Roadmapping</span>
-        <span class="bpill gen">OKRs</span>
-        <span class="bpill gen">North Star Metrics</span>
-        <span class="bpill gen">Omni-Channel & GTM Strategy</span>
-        <span class="bpill gen">Competitive Analysis</span>
-        <span class="bpill gen">Feature Scoping</span>
-      </div>
-    </div>
-    <div class="bring-group">
-      <span class="bg-label">Delivery</span>
-      <div class="bg-pills">
-        <span class="bpill del">Agile / Scrum</span>
-        <span class="bpill del">Sprint Planning</span>
-        <span class="bpill del">Azure DevOps</span>
-        <span class="bpill del">Stakeholder Management</span>
-        <span class="bpill del">Backlog Grooming</span>
-        <span class="bpill del">Certified ScrumMaster</span>
-      </div>
-    </div>
-    <div class="bring-group">
-      <span class="bg-label">AI &amp; Tech</span>
-      <div class="bg-pills">
-        <span class="bpill ai">AI Product Development</span>
-        <span class="bpill ai">LLMs &amp; RAG</span>
-        <span class="bpill ai">Prompt Engineering</span>
-        <span class="bpill ai">Vector Search</span>
-        <span class="bpill ai">API Orchestration</span>
-        <span class="bpill ai">OCR Pipelines</span>
-      </div>
-    </div>
-    <div class="bring-group">
-      <span class="bg-label">Design &amp; Data</span>
-      <div class="bg-pills">
-        <span class="bpill gen">Figma</span>
-        <span class="bpill gen">A/B Testing</span>
-        <span class="bpill gen">Clarity / Heatmaps</span>
-        <span class="bpill gen">SQL &amp; Data Analysis</span>
-        <span class="bpill gen">Funnel Analysis</span>
-        <span class="bpill gen">Data Visualization</span>
-      </div>
-    </div>
+    <div class="bring-group"><span class="bg-label">Discovery & Validation</span><div class="bg-pills"><span class="bpill ux">User Interviews</span><span class="bpill ux">Survey Design & Synthesis</span><span class="bpill ux">Persona Development</span><span class="bpill ux">Usability Testing</span><span class="bpill ux">Kano Model</span><span class="bpill ux">Market Sizing</span></div></div>
+    <div class="bring-group"><span class="bg-label">Product Strategy</span><div class="bg-pills"><span class="bpill gen">Roadmapping</span><span class="bpill gen">OKRs & North Star Metrics</span><span class="bpill gen">GTM Strategy</span><span class="bpill gen">Omnichannel Strategy</span><span class="bpill gen">Competitive Analysis</span><span class="bpill gen">Feature Prioritization</span></div></div>
+    <div class="bring-group"><span class="bg-label">Execution & Delivery</span><div class="bg-pills"><span class="bpill del">Agile / Scrum</span><span class="bpill del">Sprint Planning</span><span class="bpill del">Azure DevOps</span><span class="bpill del">Stakeholder Management</span><span class="bpill del">Backlog Grooming</span><span class="bpill del">Certified ScrumMaster</span></div></div>
+    <div class="bring-group"><span class="bg-label">AI & Technical Depth</span><div class="bg-pills"><span class="bpill ai">LLMs & RAG</span><span class="bpill ai">Prompt Engineering</span><span class="bpill ai">API Orchestration</span><span class="bpill ai">OCR Pipelines</span><span class="bpill ai">ML Model Evaluation</span><span class="bpill ai">Python & SQL</span></div></div>
+    <div class="bring-group"><span class="bg-label">Design & Analytics</span><div class="bg-pills"><span class="bpill gen">Figma</span><span class="bpill gen">A/B Testing</span><span class="bpill gen">Funnel Analysis</span><span class="bpill gen">Behavioral Analytics</span><span class="bpill gen">Microsoft Clarity</span><span class="bpill gen">Data Visualization</span></div></div>
   </div>
 </section>
 
@@ -799,56 +436,27 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
   <h2 class="s-title reveal">Where I've <em>worked.</em></h2>
   <div class="exp-list reveal d1">
     <div class="exp-item">
-      <div class="exp-meta">
-        <span class="exp-date">Aug – Sep 2025 · India, Freelance</span>
-        <span class="exp-role">Business Analyst, Product & Strategy</span>
-      </div>
+      <div class="exp-meta"><span class="exp-date">Aug – Sep 2025 · India (Freelance)</span><span class="exp-role">Business Analyst, Product & Strategy</span></div>
       <div class="exp-body">
         <h3 class="exp-co">BVM Technology Associates</h3>
-        <p class="exp-story">I owned the full product lifecycle for a grants management system used by 80+ school districts, overseeing $200M+ in annual funding. When I arrived, delivery was slow and sprint velocity was inconsistent. I led a migration to Azure DevOps and a full Agile transformation that improved delivery efficiency by 70%. Cross-functional alignment was the real product: better demos reduced rollout issues by 30% and lifted user satisfaction by 40%.The omnichannel roadmap I consolidated became the single source of truth across 80+ districts.</p>
-        <div class="exp-tags">
-          <span class="bpill del">Agile / Scrum</span>
-          <span class="bpill del">Azure DevOps</span>
-          <span class="bpill del">Omnichannel Strategy</span>
-          <span class="bpill del">Sprint Planning</span>
-          <span class="bpill gen">Roadmapping</span>
-          <span class="bpill gen">Product Strategy</span>
-        </div>
+        <p class="exp-story">When I joined BVM, two enterprise platforms were running on Excel with no sprint structure and inconsistent delivery. I didn't just migrate them to Azure DevOps — I diagnosed why delivery was failing, rebuilt the entire workflow, and got buy-in from CEOs and Senior Architects to change how the team operated. In practice, I functioned as the product owner across both platforms. The 70% improvement in sprint velocity wasn't the goal. It was proof the system was finally working.</p>
+        <div class="exp-tags"><span class="bpill del">Agile / Scrum</span><span class="bpill del">Azure DevOps</span><span class="bpill gen">Omnichannel Strategy</span><span class="bpill del">Sprint Planning</span><span class="bpill gen">Roadmapping</span><span class="bpill gen">Digital Transformation</span></div>
       </div>
     </div>
     <div class="exp-item">
-      <div class="exp-meta">
-        <span class="exp-date">Jul – Dec 2024 · Charlotte, NC</span>
-        <span class="exp-role">Associate Product Manager</span>
-      </div>
+      <div class="exp-meta"><span class="exp-date">Jul – Dec 2024 · Charlotte, NC</span><span class="exp-role">Associate Product Manager</span></div>
       <div class="exp-body">
         <h3 class="exp-co">Kreative Integrations LLC</h3>
-        <p class="exp-story">I led the full research-to-launch cycle for a ChatGPT-powered RAG chatbot, running user interviews, surveys, and usability tests, then translating findings into a roadmap that improved accuracy by 20% and reduced drop-off by 12%. I also designed and ran A/B tests and personalization experiments tracked via Google Analytics, collaborating directly with UX on high-fidelity Figma prototypes to validate decisions before shipping.</p>
-        <div class="exp-tags">
-          <span class="bpill ux">User Research</span>
-          <span class="bpill ux">Usability Testing</span>
-          <span class="bpill ai">LLMs &amp; RAG</span>
-          <span class="bpill ai">Prompt Engineering</span>
-          <span class="bpill gen">Figma</span>
-          <span class="bpill gen">Personalization</span>
-          <span class="bpill gen">A/B Testing</span>
-        </div>
+        <p class="exp-story">At Kreative I went further than the brief. I interviewed physicians, ran surveys, and used what I found to change the roadmap mid-build. The RAG chatbot accuracy improved 20% not because the model got better — but because I iterated on the prompts until the outputs were reliable enough for a healthcare context. I also built the investor CRM from scratch, wrote the pitches, and secured a potential investor.</p>
+        <div class="exp-tags"><span class="bpill ux">User Research</span><span class="bpill ux">Usability Testing</span><span class="bpill ai">LLMs & RAG</span><span class="bpill ai">Prompt Engineering</span><span class="bpill gen">Personalization</span><span class="bpill gen">A/B Testing</span></div>
       </div>
     </div>
     <div class="exp-item">
-      <div class="exp-meta">
-        <span class="exp-date">Jan – Jun 2021 · Bengaluru, India</span>
-        <span class="exp-role">Product Research Intern</span>
-      </div>
+      <div class="exp-meta"><span class="exp-date">Jan – Jun 2021 · Bengaluru, India</span><span class="exp-role">Product Research Intern</span></div>
       <div class="exp-body">
         <h3 class="exp-co">STARC (SITAR)</h3>
-        <p class="exp-story">Working at the intersection of research and product, I contributed to shipping a MEMS accelerometer that achieved 10% higher signal accuracy than the previous iteration, generating ~$50K in revenue. I coordinated across design, testing, and fabrication teams, improving cross-functional efficiency by 15%.</p>
-        <div class="exp-tags">
-          <span class="bpill res">Hardware Research</span>
-          <span class="bpill del">Cross-functional Coordination</span>
-          <span class="bpill gen">Product Testing</span>
-          <span class="bpill res">Signal Processing</span>
-        </div>
+        <p class="exp-story">My first lesson in owning data as a product decision. I built the testing repository from scratch — every input, output, and finding documented. When I caught calibration errors others missed, I didn't just flag them — I proposed the process fix that delivered 10% accuracy improvement and ~$50K in revenue impact.</p>
+        <div class="exp-tags"><span class="bpill res">Hardware Research</span><span class="bpill del">Cross-functional Coordination</span><span class="bpill gen">Data Integrity</span><span class="bpill gen">Process Improvement</span></div>
       </div>
     </div>
   </div>
@@ -860,7 +468,7 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
     <div class="story-text">
       <p>In undergrad, I built a gesture-controlled laptop using Arduino and an ultrasound sensor, and it made me wonder: <em>what else is possible when you rethink how people interact with technology?</em></p>
       <p>That curiosity brought me to Engineering Management, where I started understanding not just the technology, but the people using it and the problems worth solving for them.</p>
-      <p>Building products that start with a real problem, for a real person, <em>is what gets me excited.</em></p>
+      <p>Building products that start with a real problem, for a real person, is what gets me excited. <em>The engineer in me wants it to work. The PM in me needs to know why.</em></p>
     </div>
   </div>
 </section>
@@ -875,61 +483,189 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 </section>
 
 <script>
-var lastY = 0;
-var navEl = document.getElementById('nav');
-window.addEventListener('scroll', function() {
-  var y = window.scrollY;
-  if (y > lastY && y > 80) { navEl.classList.add('hide'); } else { navEl.classList.remove('hide'); }
-  if (y > 20) { navEl.classList.add('shadow'); } else { navEl.classList.remove('shadow'); }
-  lastY = y;
-});
-var revealObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
-var tagItems = document.querySelectorAll('.tag-item');
-if (tagItems.length) {
-  var cur = 0;
-  tagItems[0].classList.add('active');
-  setInterval(function() {
-    tagItems[cur].classList.remove('active');
-    cur = (cur + 1) % tagItems.length;
-    tagItems[cur].classList.add('active');
-  }, 1400);
-}
-document.querySelectorAll('.ftab').forEach(function(tab) {
-  tab.addEventListener('click', function() {
-    document.querySelectorAll('.ftab').forEach(function(t) { t.classList.remove('active'); });
+var projects=[
+  {cat:'ai',catClass:'ai',catLabel:'AI Product',
+   live:'https://pocket-plans-pied.vercel.app/',github:'https://github.com/amruthahari1207/PocketPlans',
+   sections:[
+    {label:'The Problem',text:'People don\'t lack venue options. They lack a trusted voice that says "go here." Every existing solution gives more information. Nobody gave a decision.'},
+    {label:'The Decision',text:'I could have used LLM generation — it would have been more impressive to demo. I chose API-driven filtering instead, because hallucinated venues destroy trust faster than a slow product loses users. Reliability over impressiveness, every time.'},
+    {label:'How I Built It',text:'Cut inputs from 10 to 4 after user testing revealed complexity was the real barrier. Tracked everything from day one — Clarity was live before the first user arrived. Selected into Northeastern\'s IDEA Startup Incubator.'},
+    {type:'metrics',items:[{num:'97%',label:'Scroll depth'},{num:'0',label:'Drop-offs'},{num:'76%',label:'Activation rate'}]},
+    {label:'What Didn\'t Work',text:'26% dead click rate caught in Clarity — users expected interactive elements that weren\'t there. Nobody complained. The data found it.'},
+    {label:'What\'s Next',text:'Interactive venue cards, save and share plans, retention loop. Every v2 decision comes from behavioral data, not assumption.'}
+   ]},
+  {cat:'ai',catClass:'ai',catLabel:'AI Product',
+   live:'https://structify.streamlit.app/',github:'https://github.com/amruthahari1207/structify',
+   sections:[
+    {label:'The Problem',text:'The format of a user story never changes. The thinking inside it does. PMs were spending 60–70% of their time on the wrapper, not the thinking.'},
+    {label:'The Decision',text:'I chose LLM + OCR + prompt engineering — not because AI is impressive, but because the output format is predictable enough to automate reliably. If structure is constant, creativity can live in the content, not the formatting.'},
+    {label:'How I Built It',text:'Iterated on prompt architecture until consistency improved 25% across varied input formats. Benchmark tested every change. Shipped on Streamlit as a live tool.'},
+    {type:'metrics',items:[{num:'60–70%',label:'Manual PM effort reduced'},{num:'<5s',label:'Time to structured output'},{num:'25%',label:'Output consistency improvement'}]},
+    {label:'What Didn\'t Work',text:'Early prompt architecture produced inconsistent epics across different input formats. Benchmark testing revealed the pattern — fixed in iteration 3.'},
+    {label:'What\'s Next',text:'Jira integration, team collaboration layer, input-type detection. Goal: zero formatting time for any PM.'}
+   ]},
+  {cat:'ux',catClass:'ux',catLabel:'UX & Strategy',
+   proto:'https://www.figma.com/proto/HcPt0JqZnVm4qCIo1YFk7X/EventBrite?type=design&node-id=731-1305&t=N6f4pM33VOpaK7OK-0&scaling=scale-down&page-id=1669%3A162202&starting-point-node-id=731%3A1305',
+   sections:[
+    {label:'The Problem',text:'Eventbrite had a retention problem disguised as a discovery problem. Only 8% of users found events through Eventbrite directly — 76% relied on word of mouth. The platform wasn\'t sticky enough to bring people back.'},
+    {label:'The Decision',text:'I chose to start with user survey synthesis before touching Figma — a decision most teams skip under time pressure. 92% of users needed reviews to choose events. 96% loved connecting with people to go out with. That data changed everything: we deprioritized discovery and built the retention loop first.'},
+    {label:'How I Built It',text:'100+ user interviews, competitive analysis across 6 platforms including Meetup, Facebook Events, and Ticketmaster. Kano Model prioritization. North Star metrics defined before any wireframe.'},
+    {type:'metrics',items:[{num:'100+',label:'User interviews'},{num:'$6.24M',label:'SOM identified'},{num:'Top 2',label:'Of 45+ teams'}]},
+    {label:'What Didn\'t Work',text:'First prototype over-indexed on discovery features. User feedback in iteration 2 revealed retention was the real lever. Pivoted the entire concept in hour 8 of a 12-hour competition.'},
+    {label:'What\'s Next',text:'Personalized event recommendations based on past attendance. The social layer — connecting people to go out with — is the differentiator no competitor had.'}
+   ]},
+  {cat:'ux',catClass:'ux',catLabel:'UX & Strategy',
+   proto:'https://www.figma.com/proto/sAGz5CohWTE2WkyFQxluSG/Wireframing-(Copy)?type=design&node-id=889265-705',
+   sections:[
+    {label:'The Problem',text:'Language learners master vocabulary but fail professionally. The missing layer isn\'t grammar — it\'s cultural and industry-specific context nobody teaches.'},
+    {label:'The Decision',text:'I cut language features from the alpha entirely after user testing showed culture was the real differentiator. It felt counterintuitive for a language learning app — but the data was clear. Scope ruthlessly to what actually matters.'},
+    {label:'How I Built It',text:'Defined user segments before building anything. Alpha roadmap focused entirely on the culture layer. GTM strategy defined before any wireframe existed. Won 1st of 10 teams, presented to faculty and industry judges.'},
+    {type:'metrics',items:[{num:'1st',label:'Of 10 teams'},{num:'Full',label:'Alpha to launch roadmap'},{num:'Real',label:'User-validated MVP'}]},
+    {label:'What Didn\'t Work',text:'Initial scope tried to solve language AND culture simultaneously. User testing showed culture was the differentiator. Cut scope to focus.'},
+    {label:'What\'s Next',text:'Industry-specific modules — legal, medical, tech. Each vertical is its own GTM motion.'}
+   ]},
+  {cat:'research',catClass:'res',catLabel:'Research',
+   paper:'https://ieeexplore.ieee.org/document/9573589',
+   sections:[
+    {label:'The Problem',text:'Early Alzheimer\'s detection from MRI scans was slow and error-prone. Existing ML benchmarks lacked accuracy at scale. The data existed — the right model didn\'t.'},
+    {label:'The Decision',text:'I compared multiple ML models systematically — Regularised ELM and MLP ELM both explored — rather than defaulting to the most popular approach. I chose not to use SVMs or standard neural nets despite them being the convention. The benchmark decided, not the assumption.'},
+    {label:'How I Built It',text:'Preprocessed 6,000+ MRI scans, extracted 77 features using Matlab. Lead author and presenter at IEEE GUCON 2021, Kuala Lumpur, Malaysia. Selected from 1,386 submissions across 37 countries — 17% acceptance rate.'},
+    {type:'metrics',items:[{num:'95%',label:'Classification accuracy'},{num:'+17%',label:'vs SVMs & neural nets'},{num:'6,000+',label:'MRI scans processed'}]},
+    {label:'What Didn\'t Work',text:'Initial feature extraction produced noise that reduced accuracy. Reprocessing the full dataset with tighter parameters is where the 17% improvement actually came from.'},
+    {label:'What\'s Next',text:'The same model evaluation rigor I applied here is how I evaluate every product decision: what\'s the benchmark, what are the alternatives, what does the data actually say.'}
+   ]},
+  {cat:'research',catClass:'res',catLabel:'Research',
+   paper:'https://ieeexplore.ieee.org/document/9573589',
+   proceedings:'https://asem.org/resources/Website/Publications/IAC%20Proceedings%20Files/ASEM%202025%20IAC%20Proceedings.pdf',
+   sections:[
+    {label:'The Problem',text:'AI product teams were applying traditional software lifecycle frameworks to AI development. The misalignment was costing teams months and producing roadmaps that didn\'t account for AI-specific constraints.'},
+    {label:'The Decision',text:'I chose to make every stage of the framework actionable with specific checkpoints — rather than keeping it academically elegant. The first version was more theoretically rigorous. Practitioner feedback changed the direction entirely. Usability over elegance.'},
+    {label:'How I Built It',text:'Co-authored and presented at ASEM 2025 International Annual Conference, Boise, ID. Validated against real product roadmap contexts before submission. Published in official conference proceedings.'},
+    {type:'metrics',items:[{num:'12–15%',label:'Faster launch timelines'},{num:'20%',label:'Better team alignment'},{num:'Intl.',label:'Conference presented'}]},
+    {label:'What Didn\'t Work',text:'First framework version was too theoretical. Practitioner feedback pushed us to make every stage actionable. That revision is what made it adoptable.'},
+    {label:'What\'s Next',text:'This framework directly informs how I structure every product roadmap I own. It\'s not research for research\'s sake — it\'s how I work.'}
+   ]}
+];
+
+var activeFilter='all';
+var filteredIndices=[0,1,2,3,4,5];
+var currentModalIndex=0;
+
+document.querySelectorAll('.ftab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('active');});
     tab.classList.add('active');
-    var filter = tab.getAttribute('data-filter');
-    document.querySelectorAll('.proj-row').forEach(function(row) {
-      var show = filter === 'all' || row.getAttribute('data-cat') === filter;
-      if (show) { row.classList.remove('hidden'); } else { row.classList.add('hidden'); }
+    activeFilter=tab.getAttribute('data-filter');
+    filteredIndices=[];
+    document.querySelectorAll('.proj-card').forEach(function(card){
+      var show=activeFilter==='all'||card.getAttribute('data-cat')===activeFilter;
+      if(show){card.classList.remove('hidden');filteredIndices.push(parseInt(card.getAttribute('data-index')));}
+      else{card.classList.add('hidden');}
     });
   });
 });
-document.querySelectorAll('.proj-row').forEach(function(row) {
-  row.addEventListener('click', function(e) {
-    if (e.target.tagName === 'A' || e.target.closest('A')) return;
-    if (e.target.tagName === 'BUTTON') return;
-    var isOpen = row.classList.contains('open');
-    document.querySelectorAll('.proj-row').forEach(function(r) { r.classList.remove('open'); });
-    if (!isOpen) {
-      row.classList.add('open');
-      setTimeout(function() { row.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120);
+
+function buildModalBody(p){
+  var html='';
+  p.sections.forEach(function(s){
+    if(s.type==='metrics'){
+      html+='<div class="modal-metrics-row" style="grid-template-columns:repeat('+s.items.length+',1fr)">';
+      s.items.forEach(function(m,i){
+        html+='<div class="modal-metric-item"><div class="modal-metric-num">'+m.num+'</div><div class="modal-metric-label">'+m.label+'</div></div>';
+      });
+      html+='</div>';
+    }else{
+      html+='<div class="modal-section"><span class="modal-section-label">'+s.label+'</span><div class="modal-section-text">'+s.text+'</div></div>';
     }
   });
+  return html;
+}
+
+function openModal(idx){
+  var p=projects[idx];
+  currentModalIndex=idx;
+  var catEl=document.getElementById('modalCat');
+  catEl.textContent=p.catLabel;
+  catEl.className='proj-cat '+p.catClass;
+  var pos=filteredIndices.indexOf(idx);
+  document.getElementById('modalCounter').textContent=(pos+1)+' of '+filteredIndices.length;
+  document.getElementById('modalNavCounter').textContent=(pos+1)+' / '+filteredIndices.length;
+  var liveEl=document.getElementById('modalLive');
+  var ghEl=document.getElementById('modalGithub');
+  var paperEl=document.getElementById('modalPaper');
+  var protoEl=document.getElementById('modalProto');
+  var procEl=document.getElementById('modalProceedings');
+  liveEl.style.display=p.live?'inline':'none';
+  ghEl.style.display=p.github?'inline':'none';
+  paperEl.style.display=p.paper?'inline':'none';
+  protoEl.style.display=p.proto?'inline':'none';
+  procEl.style.display=p.proceedings?'inline':'none';
+  if(p.live)liveEl.href=p.live;
+  if(p.github)ghEl.href=p.github;
+  if(p.paper)paperEl.href=p.paper;
+  if(p.proto)protoEl.href=p.proto;
+  if(p.proceedings)procEl.href=p.proceedings;
+  document.getElementById('modalBody').innerHTML=buildModalBody(p);
+  document.getElementById('modalPrev').disabled=pos===0;
+  document.getElementById('modalNext').disabled=pos===filteredIndices.length-1;
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow='hidden';
+  document.getElementById('modal').scrollTop=0;
+}
+
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+
+document.querySelectorAll('.proj-card').forEach(function(card){
+  card.addEventListener('click',function(){openModal(parseInt(card.getAttribute('data-index')));});
 });
-document.querySelectorAll('.pitem').forEach(function(item) {
-  item.addEventListener('click', function() {
-    document.querySelectorAll('.pitem').forEach(function(p) { p.classList.remove('active'); });
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('modalPrev').addEventListener('click',function(){
+  var pos=filteredIndices.indexOf(currentModalIndex);
+  if(pos>0)openModal(filteredIndices[pos-1]);
+});
+document.getElementById('modalNext').addEventListener('click',function(){
+  var pos=filteredIndices.indexOf(currentModalIndex);
+  if(pos<filteredIndices.length-1)openModal(filteredIndices[pos+1]);
+});
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('modalOverlay').classList.contains('active'))return;
+  if(e.key==='Escape')closeModal();
+  if(e.key==='ArrowLeft'){var pos=filteredIndices.indexOf(currentModalIndex);if(pos>0)openModal(filteredIndices[pos-1]);}
+  if(e.key==='ArrowRight'){var pos=filteredIndices.indexOf(currentModalIndex);if(pos<filteredIndices.length-1)openModal(filteredIndices[pos+1]);}
+});
+
+var lastY=0;
+var navEl=document.getElementById('nav');
+window.addEventListener('scroll',function(){
+  var y=window.scrollY;
+  if(y>lastY&&y>80){navEl.classList.add('hide');}else{navEl.classList.remove('hide');}
+  if(y>20){navEl.classList.add('shadow');}else{navEl.classList.remove('shadow');}
+  lastY=y;
+});
+
+var revealObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');revealObs.unobserve(e.target);}});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+
+var tagItems=document.querySelectorAll('.tag-item');
+if(tagItems.length){
+  var cur=0;tagItems[0].classList.add('active');
+  setInterval(function(){tagItems[cur].classList.remove('active');cur=(cur+1)%tagItems.length;tagItems[cur].classList.add('active');},1400);
+}
+
+document.querySelectorAll('.pitem').forEach(function(item){
+  item.addEventListener('click',function(){
+    document.querySelectorAll('.pitem').forEach(function(p){p.classList.remove('active');});
     item.classList.add('active');
-    var key = item.getAttribute('data-key');
-    document.querySelectorAll('.proof-content').forEach(function(p) { p.style.display = 'none'; });
-    var target = document.querySelector('.proof-content[data-key="' + key + '"]');
-    if (target) { target.style.display = 'block'; }
+    var key=item.getAttribute('data-key');
+    document.querySelectorAll('.proof-content').forEach(function(p){p.style.display='none';});
+    var target=document.querySelector('.proof-content[data-key="'+key+'"]');
+    if(target){target.style.display='block';}
   });
 });
 </script>
