@@ -30,7 +30,7 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .hero{min-height:100vh;padding:110px 60px 80px;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;top:-200px;right:-150px;width:700px;height:700px;background:radial-gradient(circle,rgba(46,95,163,.05) 0%,transparent 65%);pointer-events:none;animation:drift 12s ease-in-out infinite;}
 .hero::after{content:'';position:absolute;bottom:-100px;left:5%;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.04) 0%,transparent 65%);pointer-events:none;animation:drift 16s ease-in-out infinite reverse;}
-.hero-top{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:center;margin-bottom:60px;position:relative;z-index:1;}
+.hero-top{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:center;margin-bottom:48px;position:relative;z-index:1;}
 .hero-tag{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);border:0.5px solid rgba(46,95,163,.15);color:var(--accent);padding:7px 16px;border-radius:100px;font-size:.78rem;font-weight:600;letter-spacing:.05em;margin-bottom:22px;width:fit-content;opacity:0;animation:fadeUp .5s ease forwards .1s;}
 .tag-item{transition:all .35s ease;border-radius:100px;padding:2px 8px;margin:-2px -4px;}
 .tag-item.active{background:var(--accent);color:#fff;}
@@ -43,15 +43,17 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .btn:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(46,95,163,.3);}
 .hero-photo-wrap{opacity:0;animation:fadeUp .7s ease forwards .35s;display:flex;align-items:center;justify-content:center;}
 .hero-photo{width:320px;height:320px;object-fit:cover;object-position:50% 5%;border-radius:50%;display:block;box-shadow:0 12px 48px rgba(26,26,46,.18);border:4px solid white;}
+
+/* TIGHTENED STAT CARDS */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative;z-index:1;opacity:0;animation:fadeUp .7s ease forwards .55s;}
-.stat-card{background:var(--navy);border-radius:12px;padding:22px 20px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.stat-card{background:var(--navy);border-radius:12px;padding:18px 16px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
 .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--teal));}
 .stat-card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(15,26,46,.3);}
-.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:#fff;line-height:1;margin-bottom:5px;letter-spacing:-.02em;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:#fff;line-height:1;margin-bottom:4px;letter-spacing:-.02em;}
 .stat-num span{color:var(--accent2);}
-.stat-icon{font-size:1rem;margin-bottom:10px;}
-.stat-title{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.88);margin-bottom:4px;line-height:1.3;}
-.stat-sub{font-size:.71rem;color:rgba(255,255,255,.38);line-height:1.5;}
+.stat-icon{font-size:.9rem;margin-bottom:8px;}
+.stat-title{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.88);margin-bottom:3px;line-height:1.3;}
+.stat-sub{font-size:.68rem;color:rgba(255,255,255,.38);line-height:1.4;}
 
 .section{padding:88px 60px;}
 .section.alt{background:var(--bg2);}
@@ -88,36 +90,44 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 .proj-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--ink);line-height:1.2;margin-bottom:10px;}
 .proj-hook{font-size:.84rem;color:var(--ink-soft);line-height:1.6;font-style:italic;margin-bottom:16px;}
 .proj-card-bottom{padding:16px 24px 20px;}
-.proj-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px;}
+.proj-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;}
 .wtag{padding:3px 8px;border-radius:4px;font-size:.65rem;font-weight:500;border:0.5px solid transparent;}
 .wtag.ai{background:#EEF4FB;color:#2E5FA3;border-color:#C5D9EF;}
 .wtag.ux{background:#E8F6F8;color:#1B7A8C;border-color:#A8DCE4;}
 .wtag.res{background:#FBF6E8;color:#7A5C0F;border-color:#DEC97A;}
 .wtag.gen{background:#F4F2EF;color:#5A5047;border-color:#D8D3CC;}
-.proj-open-btn{width:100%;padding:10px;border:0.5px solid var(--border);border-radius:8px;background:transparent;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.04em;}
-.proj-card:hover .proj-open-btn{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
+.proj-open-btn{width:100%;padding:11px;border:1px solid var(--accent);border-radius:8px;background:transparent;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--accent);cursor:pointer;transition:all .2s;letter-spacing:.04em;}
+.proj-open-btn:hover{background:var(--accent);color:#fff;}
 
-.modal-overlay{position:fixed;inset:0;background:rgba(15,26,46,.75);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(6px);}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(15,26,46,.75);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(6px);}
 .modal-overlay.active{opacity:1;pointer-events:all;}
-.modal{background:#fff;border-radius:20px;width:100%;max-width:660px;max-height:88vh;overflow-y:auto;animation:modalIn .3s ease forwards;position:relative;}
-.modal-header{padding:18px 24px 16px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:10;border-radius:20px 20px 0 0;}
+.modal{background:#fff;border-radius:20px;width:100%;max-width:780px;max-height:94vh;overflow:hidden;display:flex;flex-direction:column;animation:modalIn .3s ease forwards;position:relative;}
+.modal-header{padding:16px 24px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:#fff;border-radius:20px 20px 0 0;}
 .modal-header-left{display:flex;align-items:center;gap:10px;}
-.modal-counter{font-size:.74rem;color:var(--muted);font-weight:500;}
+.modal-title-wrap{display:flex;flex-direction:column;gap:2px;}
+.modal-project-title{font-size:.88rem;font-weight:700;color:var(--ink);}
+.modal-counter{font-size:.72rem;color:var(--muted);font-weight:500;}
 .modal-links{display:flex;align-items:center;gap:14px;}
 .modal-link{font-size:.75rem;font-weight:600;color:var(--accent);text-decoration:none;transition:opacity .2s;}
 .modal-link:hover{opacity:.7;}
 .modal-close{width:30px;height:30px;border-radius:50%;border:0.5px solid var(--border);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--muted);transition:all .2s;font-family:'DM Sans',sans-serif;}
 .modal-close:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+/* SCROLLABLE BODY WITH FADE */
+.modal-scroll{flex:1;overflow-y:auto;position:relative;}
+.modal-scroll-fade{position:sticky;bottom:0;height:40px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.95));pointer-events:none;margin-top:-40px;}
 .modal-body{padding:0;}
-.modal-section{padding:22px 24px;border-bottom:0.5px solid var(--border);}
+.modal-section{padding:22px 28px;border-bottom:0.5px solid var(--border);}
 .modal-section-label{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block;}
 .modal-section-text{font-size:.88rem;color:var(--ink-soft);line-height:1.78;}
-.modal-metrics-row{display:grid;background:var(--navy);border-bottom:0.5px solid var(--border);}
+.modal-metrics-row{display:grid;background:var(--navy);}
 .modal-metric-item{padding:22px 24px;text-align:center;border-right:0.5px solid rgba(255,255,255,.08);}
 .modal-metric-item:last-child{border-right:none;}
 .modal-metric-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--accent2);line-height:1;margin-bottom:4px;}
 .modal-metric-label{font-size:.7rem;color:rgba(255,255,255,.5);line-height:1.4;}
-.modal-nav{padding:14px 24px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;bottom:0;background:#fff;border-radius:0 0 20px 20px;}
+
+.modal-nav{padding:14px 24px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:#fff;border-radius:0 0 20px 20px;}
 .modal-nav-btn{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:8px 12px;border-radius:8px;transition:all .2s;}
 .modal-nav-btn:hover:not(:disabled){color:var(--accent);background:var(--accent-light);}
 .modal-nav-btn:disabled{opacity:.25;cursor:not-allowed;}
@@ -230,7 +240,10 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
     <div class="modal-header">
       <div class="modal-header-left">
         <span class="proj-cat" id="modalCat"></span>
-        <span class="modal-counter" id="modalCounter"></span>
+        <div class="modal-title-wrap">
+          <span class="modal-project-title" id="modalProjectTitle"></span>
+          <span class="modal-counter" id="modalCounter"></span>
+        </div>
       </div>
       <div class="modal-links">
         <a href="#" class="modal-link" id="modalLive" target="_blank" style="display:none">Live ↗</a>
@@ -241,7 +254,10 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
         <button class="modal-close" id="modalClose">✕</button>
       </div>
     </div>
-    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-scroll" id="modalScroll">
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-scroll-fade"></div>
+    </div>
     <div class="modal-nav">
       <button class="modal-nav-btn" id="modalPrev">← Previous</button>
       <span class="modal-nav-counter" id="modalNavCounter"></span>
@@ -286,78 +302,109 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
     <button class="ftab" data-filter="research">Research</button>
   </div>
   <div class="proj-grid reveal d2" id="projGrid">
+
     <div class="proj-card" data-cat="ai" data-index="0">
       <div class="proj-card-top">
         <div class="proj-card-meta"><span class="proj-cat ai">AI Product</span><span class="proj-live">Live</span><span class="proj-badge award">🏫 IDEA Incubator</span></div>
         <div class="proj-num">01</div>
         <div class="proj-title">PocketPlans</div>
-        <div class="proj-hook">"I went from 10 inputs to 4 because users told me to. That cut is the product."</div>
+        <div class="proj-hook">I went from 10 inputs to 4 because users told me to. That cut is the product.</div>
       </div>
       <div class="proj-card-bottom">
-        <div class="proj-tags"><span class="wtag ai">Next.js</span><span class="wtag ai">Google Places API</span><span class="wtag gen">Clarity</span></div>
+        <div class="proj-tags">
+          <span class="wtag ai">Personalization</span>
+          <span class="wtag ai">Behavioral Analytics</span>
+          <span class="wtag gen">0→1 Product</span>
+        </div>
         <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
+
     <div class="proj-card" data-cat="ai" data-index="1">
       <div class="proj-card-top">
         <div class="proj-card-meta"><span class="proj-cat ai">AI Product</span><span class="proj-live">Live</span></div>
         <div class="proj-num">02</div>
         <div class="proj-title">Structify</div>
-        <div class="proj-hook">"PMs spend hours formatting what should take seconds. I fixed that."</div>
+        <div class="proj-hook">PMs spend hours formatting what should take seconds. I fixed that.</div>
       </div>
       <div class="proj-card-bottom">
-        <div class="proj-tags"><span class="wtag ai">LLMs</span><span class="wtag ai">RAG</span><span class="wtag ai">OCR</span></div>
+        <div class="proj-tags">
+          <span class="wtag ai">LLMs & RAG</span>
+          <span class="wtag ai">Prompt Engineering</span>
+          <span class="wtag ai">AI Product Development</span>
+        </div>
         <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
+
     <div class="proj-card" data-cat="ux" data-index="2">
       <div class="proj-card-top">
         <div class="proj-card-meta"><span class="proj-cat ux">UX & Strategy</span><span class="proj-badge award">🥈 2nd / 45+ teams</span></div>
         <div class="proj-num">03</div>
         <div class="proj-title">Protothon — Eventbrite</div>
-        <div class="proj-hook">"100+ interviews. 12 hours. $6.24M opportunity. Top 2 of 45+ teams."</div>
+        <div class="proj-hook">100+ interviews. 12 hours. $6.24M opportunity. Top 2 of 45+ teams.</div>
       </div>
       <div class="proj-card-bottom">
-        <div class="proj-tags"><span class="wtag ux">User Research</span><span class="wtag ux">Kano Model</span><span class="wtag gen">Figma</span></div>
+        <div class="proj-tags">
+          <span class="wtag ux">User Research</span>
+          <span class="wtag ux">Product Strategy</span>
+          <span class="wtag gen">Market Sizing</span>
+        </div>
         <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
+
     <div class="proj-card" data-cat="ux" data-index="3">
       <div class="proj-card-top">
         <div class="proj-card-meta"><span class="proj-cat ux">UX & Strategy</span><span class="proj-badge award">🥇 1st / 10 teams</span></div>
         <div class="proj-num">04</div>
         <div class="proj-title">Worldify</div>
-        <div class="proj-hook">"Defined the roadmap before anyone knew if the product should exist."</div>
+        <div class="proj-hook">Defined the roadmap before anyone knew if the product should exist.</div>
       </div>
       <div class="proj-card-bottom">
-        <div class="proj-tags"><span class="wtag ux">Roadmapping</span><span class="wtag ux">GTM Strategy</span><span class="wtag gen">Figma</span></div>
+        <div class="proj-tags">
+          <span class="wtag ux">0→1 Roadmap</span>
+          <span class="wtag gen">GTM Strategy</span>
+          <span class="wtag ux">Product-Market Fit</span>
+        </div>
         <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
+
     <div class="proj-card" data-cat="research" data-index="4">
       <div class="proj-card-top">
         <div class="proj-card-meta"><span class="proj-cat res">Research</span><span class="proj-badge pub">Published</span></div>
         <div class="proj-num">05</div>
         <div class="proj-title">Alzheimer's Detection</div>
-        <div class="proj-hook">"Chose ELM over SVMs and neural nets. 95% accuracy proved the call."</div>
+        <div class="proj-hook">Chose ELM over SVMs and neural nets. 95% accuracy proved the call.</div>
       </div>
       <div class="proj-card-bottom">
-        <div class="proj-tags"><span class="wtag res">Machine Learning</span><span class="wtag res">ELM Models</span></div>
+        <div class="proj-tags">
+          <span class="wtag res">Machine Learning</span>
+          <span class="wtag res">ML Model Evaluation</span>
+          <span class="wtag res">Data Analytics</span>
+        </div>
         <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
+
     <div class="proj-card" data-cat="research" data-index="5">
       <div class="proj-card-top">
         <div class="proj-card-meta"><span class="proj-cat res">Research</span><span class="proj-badge pub">Published</span></div>
         <div class="proj-num">06</div>
         <div class="proj-title">AI Lifecycle Framework</div>
-        <div class="proj-hook">"Built a framework that cuts AI product launch timelines by 12–15%."</div>
+        <div class="proj-hook">Built a framework that cuts AI product launch timelines by 12–15%.</div>
       </div>
       <div class="proj-card-bottom">
-        <div class="proj-tags"><span class="wtag res">AI Strategy</span><span class="wtag res">Roadmapping</span></div>
+        <div class="proj-tags">
+          <span class="wtag res">AI Strategy</span>
+          <span class="wtag res">Product Roadmapping</span>
+          <span class="wtag res">Lead Author</span>
+        </div>
         <button class="proj-open-btn">Read the thinking →</button>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -484,7 +531,7 @@ nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
 
 <script>
 var projects=[
-  {cat:'ai',catClass:'ai',catLabel:'AI Product',
+  {title:'PocketPlans',cat:'ai',catClass:'ai',catLabel:'AI Product',
    live:'https://pocket-plans-pied.vercel.app/',github:'https://github.com/amruthahari1207/PocketPlans',
    sections:[
     {label:'The Problem',text:'People don\'t lack venue options. They lack a trusted voice that says "go here." Every existing solution gives more information. Nobody gave a decision.'},
@@ -494,7 +541,7 @@ var projects=[
     {label:'What Didn\'t Work',text:'26% dead click rate caught in Clarity — users expected interactive elements that weren\'t there. Nobody complained. The data found it.'},
     {label:'What\'s Next',text:'Interactive venue cards, save and share plans, retention loop. Every v2 decision comes from behavioral data, not assumption.'}
    ]},
-  {cat:'ai',catClass:'ai',catLabel:'AI Product',
+  {title:'Structify',cat:'ai',catClass:'ai',catLabel:'AI Product',
    live:'https://structify.streamlit.app/',github:'https://github.com/amruthahari1207/structify',
    sections:[
     {label:'The Problem',text:'The format of a user story never changes. The thinking inside it does. PMs were spending 60–70% of their time on the wrapper, not the thinking.'},
@@ -504,7 +551,7 @@ var projects=[
     {label:'What Didn\'t Work',text:'Early prompt architecture produced inconsistent epics across different input formats. Benchmark testing revealed the pattern — fixed in iteration 3.'},
     {label:'What\'s Next',text:'Jira integration, team collaboration layer, input-type detection. Goal: zero formatting time for any PM.'}
    ]},
-  {cat:'ux',catClass:'ux',catLabel:'UX & Strategy',
+  {title:'Protothon — Eventbrite',cat:'ux',catClass:'ux',catLabel:'UX & Strategy',
    proto:'https://www.figma.com/proto/HcPt0JqZnVm4qCIo1YFk7X/EventBrite?type=design&node-id=731-1305&t=N6f4pM33VOpaK7OK-0&scaling=scale-down&page-id=1669%3A162202&starting-point-node-id=731%3A1305',
    sections:[
     {label:'The Problem',text:'Eventbrite had a retention problem disguised as a discovery problem. Only 8% of users found events through Eventbrite directly — 76% relied on word of mouth. The platform wasn\'t sticky enough to bring people back.'},
@@ -514,7 +561,7 @@ var projects=[
     {label:'What Didn\'t Work',text:'First prototype over-indexed on discovery features. User feedback in iteration 2 revealed retention was the real lever. Pivoted the entire concept in hour 8 of a 12-hour competition.'},
     {label:'What\'s Next',text:'Personalized event recommendations based on past attendance. The social layer — connecting people to go out with — is the differentiator no competitor had.'}
    ]},
-  {cat:'ux',catClass:'ux',catLabel:'UX & Strategy',
+  {title:'Worldify',cat:'ux',catClass:'ux',catLabel:'UX & Strategy',
    proto:'https://www.figma.com/proto/sAGz5CohWTE2WkyFQxluSG/Wireframing-(Copy)?type=design&node-id=889265-705',
    sections:[
     {label:'The Problem',text:'Language learners master vocabulary but fail professionally. The missing layer isn\'t grammar — it\'s cultural and industry-specific context nobody teaches.'},
@@ -524,7 +571,7 @@ var projects=[
     {label:'What Didn\'t Work',text:'Initial scope tried to solve language AND culture simultaneously. User testing showed culture was the differentiator. Cut scope to focus.'},
     {label:'What\'s Next',text:'Industry-specific modules — legal, medical, tech. Each vertical is its own GTM motion.'}
    ]},
-  {cat:'research',catClass:'res',catLabel:'Research',
+  {title:'Alzheimer\'s Detection',cat:'research',catClass:'res',catLabel:'Research',
    paper:'https://ieeexplore.ieee.org/document/9573589',
    sections:[
     {label:'The Problem',text:'Early Alzheimer\'s detection from MRI scans was slow and error-prone. Existing ML benchmarks lacked accuracy at scale. The data existed — the right model didn\'t.'},
@@ -534,14 +581,13 @@ var projects=[
     {label:'What Didn\'t Work',text:'Initial feature extraction produced noise that reduced accuracy. Reprocessing the full dataset with tighter parameters is where the 17% improvement actually came from.'},
     {label:'What\'s Next',text:'The same model evaluation rigor I applied here is how I evaluate every product decision: what\'s the benchmark, what are the alternatives, what does the data actually say.'}
    ]},
-  {cat:'research',catClass:'res',catLabel:'Research',
-   paper:'https://ieeexplore.ieee.org/document/9573589',
+  {title:'AI Lifecycle Framework',cat:'research',catClass:'res',catLabel:'Research',
    proceedings:'https://asem.org/resources/Website/Publications/IAC%20Proceedings%20Files/ASEM%202025%20IAC%20Proceedings.pdf',
    sections:[
     {label:'The Problem',text:'AI product teams were applying traditional software lifecycle frameworks to AI development. The misalignment was costing teams months and producing roadmaps that didn\'t account for AI-specific constraints.'},
     {label:'The Decision',text:'I chose to make every stage of the framework actionable with specific checkpoints — rather than keeping it academically elegant. The first version was more theoretically rigorous. Practitioner feedback changed the direction entirely. Usability over elegance.'},
     {label:'How I Built It',text:'Co-authored and presented at ASEM 2025 International Annual Conference, Boise, ID. Validated against real product roadmap contexts before submission. Published in official conference proceedings.'},
-    {type:'metrics',items:[{num:'12–15%',label:'Faster launch timelines'},{num:'20%',label:'Better team alignment'},{num:'Intl.',label:'Conference presented'}]},
+    {type:'metrics',items:[{num:'12–15%',label:'Faster launch timelines'},{num:'20%',label:'Better team alignment'},{num:'ASEM 2025',label:'Presented'}]},
     {label:'What Didn\'t Work',text:'First framework version was too theoretical. Practitioner feedback pushed us to make every stage actionable. That revision is what made it adoptable.'},
     {label:'What\'s Next',text:'This framework directly informs how I structure every product roadmap I own. It\'s not research for research\'s sake — it\'s how I work.'}
    ]}
@@ -570,7 +616,7 @@ function buildModalBody(p){
   p.sections.forEach(function(s){
     if(s.type==='metrics'){
       html+='<div class="modal-metrics-row" style="grid-template-columns:repeat('+s.items.length+',1fr)">';
-      s.items.forEach(function(m,i){
+      s.items.forEach(function(m){
         html+='<div class="modal-metric-item"><div class="modal-metric-num">'+m.num+'</div><div class="modal-metric-label">'+m.label+'</div></div>';
       });
       html+='</div>';
@@ -587,6 +633,7 @@ function openModal(idx){
   var catEl=document.getElementById('modalCat');
   catEl.textContent=p.catLabel;
   catEl.className='proj-cat '+p.catClass;
+  document.getElementById('modalProjectTitle').textContent=p.title;
   var pos=filteredIndices.indexOf(idx);
   document.getElementById('modalCounter').textContent=(pos+1)+' of '+filteredIndices.length;
   document.getElementById('modalNavCounter').textContent=(pos+1)+' / '+filteredIndices.length;
@@ -610,7 +657,7 @@ function openModal(idx){
   document.getElementById('modalNext').disabled=pos===filteredIndices.length-1;
   document.getElementById('modalOverlay').classList.add('active');
   document.body.style.overflow='hidden';
-  document.getElementById('modal').scrollTop=0;
+  document.getElementById('modalScroll').scrollTop=0;
 }
 
 function closeModal(){
