@@ -4,716 +4,802 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amrutha Hari</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#FAF7F2;--bg2:#F3EDE3;--navy:#0F1A2E;--ink:#1C1C2E;--ink-soft:#3D3D5C;
-  --muted:#7A7A9A;--accent:#2E5FA3;--accent2:#4A8FD4;--accent-light:#EBF3FA;
-  --teal:#1B7A8C;--border:#DDD5C8;--gold:#C9A84C;
+  --white:#FFFFFF;
+  --off:#F9F9F8;
+  --ink:#0C0C0C;
+  --ink-soft:#4A4A4A;
+  --muted:#9A9A9A;
+  --border:#EBEBEB;
+  --border2:#E0E0E0;
+  --sage:#4A7C59;
+  --sage-mid:#6A9E78;
+  --sage-light:#EEF4F0;
+  --sage-glow:rgba(74,124,89,.09);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden;}
-@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,-15px)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-@keyframes modalIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);font-size:15px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:0 60px;height:64px;background:rgba(250,247,242,.95);backdrop-filter:blur(16px);border-bottom:0.5px solid rgba(221,213,200,.6);transition:transform .3s,box-shadow .3s;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+@keyframes modalIn{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes drawUnder{from{width:0}to{width:100%}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes countUp{from{opacity:0}to{opacity:1}}
+@keyframes cursorPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.4);opacity:.4}}
+
+/* PAGE LOAD OVERLAY */
+.page-loader{position:fixed;inset:0;background:var(--white);z-index:9000;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease;}
+.page-loader.gone{opacity:0;visibility:hidden;}
+.loader-name{font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;font-style:italic;color:var(--sage);letter-spacing:-.02em;}
+
+/* SCRAMBLE EFFECT */
+.scramble{display:inline-block;}
+
+/* SECTION LABEL DRAW */
+.s-eye::before{content:'';width:0;height:1.5px;background:var(--sage);border-radius:2px;flex-shrink:0;transition:width .7s ease;}
+.s-eye.drawn::before{width:16px;}
+
+/* STAGGERED CARD REVEAL */
+.proj-card{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease,border-color .22s,box-shadow .22s,margin-top .22s;}
+.proj-card.revealed{opacity:1;transform:translateY(0);}
+.proj-card.hidden{opacity:0!important;transform:none!important;display:none;}
+
+/* CARD TILT */
+.proj-card-inner{width:100%;height:100%;display:flex;flex-direction:column;transform-style:preserve-3d;transition:transform .15s ease;}
+
+/* STAT SLOT */
+.stat-num{position:relative;overflow:hidden;}
+
+/* NUMBER TICKER */
+@keyframes tickDown{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.tick-in{animation:tickDown .3s ease forwards;}
+
+/* PROOF CARD TRANSITION */
+.pc-inner{opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease;display:none;}
+.pc-inner.on{display:block;opacity:1;transform:translateY(0);}
+.pc-inner.entering{display:block;opacity:0;transform:translateY(8px);}
+
+/* HOVER LIFT on stat cards */
+.stat-card{transition:all .22s cubic-bezier(.34,1.56,.64,1);}
+.stat-card:hover{transform:translateY(-6px) scale(1.02);}
+
+/* POLAROID HOVER TILT */
+.polaroid{transition:transform .25s ease,box-shadow .25s ease,z-index 0s;will-change:transform;}
+.polaroid:hover{z-index:20!important;}
+
+/* ABOUT TEXT HIGHLIGHT on scroll */
+.about-highlight{background:linear-gradient(120deg,transparent 0%,var(--sage-light) 0%);background-size:200% 100%;background-position:100% 0;transition:background-position 1s ease;}
+.about-highlight.lit{background-position:0 0;}
+
+/* CONTACT SECTION GLOW */
+.contact-section{position:relative;overflow:hidden;}
+.contact-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:200px;background:radial-gradient(ellipse,var(--sage-glow) 0%,transparent 70%);pointer-events:none;}
+
+/* SMOOTH FILTER TRANSITION */
+.proj-grid{transition:opacity .2s ease;}
+
+/* NAV ACTIVE STATE */
+.nav-links a.active{color:var(--sage);}
+@keyframes float1{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-3deg) translateY(-6px)}}
+@keyframes float2{0%,100%{transform:rotate(2deg) translateY(0)}50%{transform:rotate(2deg) translateY(-8px)}}
+@keyframes float3{0%,100%{transform:rotate(-1deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-5px)}}
+@keyframes float4{0%,100%{transform:rotate(4deg) translateY(0)}50%{transform:rotate(4deg) translateY(-7px)}}
+@keyframes float5{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-9px)}}
+@keyframes float6{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-6px)}}
+@keyframes float7{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(-4deg) translateY(-7px)}}
+@keyframes float8{0%,100%{transform:rotate(1deg) translateY(0)}50%{transform:rotate(1deg) translateY(-5px)}}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:transform .3s,box-shadow .3s;}
 nav.hide{transform:translateY(-100%);}
-nav.shadow{box-shadow:0 2px 24px rgba(46,95,163,.07);}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:400;font-style:italic;color:var(--ink);text-decoration:none;}
-.nav-links{display:flex;gap:4px;list-style:none;align-items:center;}
-.nav-links a{font-size:.76rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:7px 14px;border-radius:100px;transition:all .2s;}
-.nav-links a:hover{color:var(--accent);background:var(--accent-light);}
+nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:var(--ink);text-decoration:none;transition:color .2s;}
+.nav-logo:hover{color:var(--sage);}
+.nav-links{display:flex;list-style:none;align-items:center;gap:2px;}
+.nav-links a{font-size:.69rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:100px;transition:all .18s;}
+.nav-links a:hover{color:var(--sage);background:var(--sage-light);}
 
-.hero{min-height:100vh;padding:110px 60px 80px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;top:-200px;right:-150px;width:700px;height:700px;background:radial-gradient(circle,rgba(46,95,163,.05) 0%,transparent 65%);pointer-events:none;animation:drift 12s ease-in-out infinite;}
-.hero::after{content:'';position:absolute;bottom:-100px;left:5%;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.04) 0%,transparent 65%);pointer-events:none;animation:drift 16s ease-in-out infinite reverse;}
-.hero-top{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:center;margin-bottom:48px;position:relative;z-index:1;}
-.hero-tag{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);border:0.5px solid rgba(46,95,163,.15);color:var(--accent);padding:7px 16px;border-radius:100px;font-size:.78rem;font-weight:600;letter-spacing:.05em;margin-bottom:22px;width:fit-content;opacity:0;animation:fadeUp .5s ease forwards .1s;}
-.tag-item{transition:all .35s ease;border-radius:100px;padding:2px 8px;margin:-2px -4px;}
-.tag-item.active{background:var(--accent);color:#fff;}
-.tag-sep{opacity:.3;font-weight:300;}
-.hero-name{font-family:'Playfair Display',serif;font-size:clamp(3.4rem,5.5vw,5.2rem);font-weight:900;color:var(--ink);line-height:1;letter-spacing:-.03em;margin-bottom:22px;opacity:0;animation:fadeUp .6s ease forwards .2s;}
-.hero-story{font-size:1rem;color:var(--ink-soft);line-height:1.8;max-width:500px;margin-bottom:32px;padding-left:18px;border-left:2px solid var(--accent);opacity:0;animation:fadeUp .6s ease forwards .3s;}
-.hero-story em{font-style:italic;color:var(--accent);}
-.hero-cta{opacity:0;animation:fadeUp .6s ease forwards .4s;}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;padding:13px 28px;border-radius:4px;font-size:.88rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:all .25s;box-shadow:0 4px 20px rgba(26,26,46,.2);}
-.btn:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(46,95,163,.3);}
-.hero-photo-wrap{opacity:0;animation:fadeUp .7s ease forwards .35s;display:flex;align-items:center;justify-content:center;}
-.hero-photo{width:320px;height:320px;object-fit:cover;object-position:50% 5%;border-radius:50%;display:block;box-shadow:0 12px 48px rgba(26,26,46,.18);border:4px solid white;}
+.hero{min-height:100vh;padding:130px 56px 88px;background:var(--white);position:relative;overflow:hidden;}
+.hero-top{display:grid;grid-template-columns:1fr 220px;gap:72px;align-items:center;margin-bottom:64px;}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px;opacity:0;animation:fadeUp .5s ease forwards .1s;}
+.avail{display:inline-flex;align-items:center;gap:6px;background:var(--sage-light);border:1px solid rgba(74,124,89,.18);color:var(--sage);padding:5px 12px;border-radius:100px;font-size:.66rem;font-weight:600;letter-spacing:.06em;}
+.avail-dot{width:5px;height:5px;background:#4A7C59;border-radius:50%;animation:pulse 2.2s infinite;flex-shrink:0;}
+.tag-row{display:flex;align-items:center;gap:7px;}
+.tw{font-size:.66rem;font-weight:500;color:var(--muted);letter-spacing:.04em;transition:color .28s,font-weight .28s;}
+.tw.lit{color:var(--sage);font-weight:600;}
+.tsep{color:var(--border2);font-size:.55rem;}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;color:var(--ink);line-height:1.0;letter-spacing:-.04em;margin-bottom:22px;opacity:0;animation:fadeUp .6s ease forwards .22s;}
+.name-em{font-style:italic;font-weight:400;color:var(--sage);}
+.hero-sub{font-size:.94rem;color:var(--ink-soft);line-height:1.92;max-width:460px;margin-bottom:32px;opacity:0;animation:fadeUp .6s ease forwards .34s;}
+.hero-sub .hl{position:relative;display:inline;}
+.hero-sub .hl::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1.5px;background:var(--sage);transition:width 1.1s ease .5s;border-radius:2px;}
+.hero-sub .hl.drawn::after{width:100%;}
+.hero-sub em{color:var(--sage);font-style:normal;font-weight:500;}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;opacity:0;animation:fadeUp .6s ease forwards .44s;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:7px;font-size:.79rem;font-weight:600;letter-spacing:.02em;text-decoration:none;transition:all .2s;cursor:pointer;font-family:'Inter',sans-serif;border:none;}
+.btn-primary{background:var(--ink);color:#fff;}
+.btn-primary:hover{background:#222;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.18);}
+.btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--border2);}
+.btn-ghost:hover{border-color:var(--sage);color:var(--sage);background:var(--sage-light);}
+.hero-img-wrap{opacity:0;animation:fadeUp .7s ease forwards .38s;}
+.hero-img{width:200px;height:200px;object-fit:cover;object-position:center top;border-radius:18px;border:1px solid var(--border2);box-shadow:0 16px 48px rgba(0,0,0,.09);}
+.hero-img-ph{width:200px;height:200px;border-radius:18px;background:var(--sage-light);border:1px solid rgba(74,124,89,.12);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:4.5rem;color:var(--sage);opacity:.25;}
 
-/* TIGHTENED STAT CARDS */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative;z-index:1;opacity:0;animation:fadeUp .7s ease forwards .55s;}
-.stat-card{background:var(--navy);border-radius:12px;padding:18px 16px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
-.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--teal));}
-.stat-card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(15,26,46,.3);}
-.stat-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:#fff;line-height:1;margin-bottom:4px;letter-spacing:-.02em;}
-.stat-num span{color:var(--accent2);}
-.stat-icon{font-size:.9rem;margin-bottom:8px;}
-.stat-title{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.88);margin-bottom:3px;line-height:1.3;}
-.stat-sub{font-size:.68rem;color:rgba(255,255,255,.38);line-height:1.4;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;opacity:0;animation:fadeUp .7s ease forwards .56s;}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 18px;position:relative;overflow:hidden;transition:all .22s;cursor:default;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--sage);transform:scaleX(0);transform-origin:left;transition:transform .38s ease;}
+.stat-card:hover{border-color:rgba(74,124,89,.22);box-shadow:0 6px 24px var(--sage-glow);transform:translateY(-3px);}
+.stat-card:hover::before{transform:scaleX(1);}
+.stat-icon{font-size:.88rem;margin-bottom:11px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:var(--sage);line-height:1;margin-bottom:5px;letter-spacing:-.02em;}
+.stat-title{font-size:.71rem;font-weight:600;color:var(--ink);margin-bottom:2px;line-height:1.3;}
+.stat-sub{font-size:.62rem;color:var(--muted);line-height:1.4;}
 
-.section{padding:88px 60px;}
-.section.alt{background:var(--bg2);}
-.s-label{font-size:.67rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
-.s-label::after{content:'';width:28px;height:1px;background:var(--accent);opacity:.4;}
-.s-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.2vw,2.6rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin-bottom:10px;}
-.s-title em{font-style:italic;font-weight:400;color:var(--accent);}
-.s-sub{font-size:.92rem;color:var(--muted);margin-bottom:44px;max-width:500px;line-height:1.7;}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.section{padding:96px 56px;}
+.section.alt{background:var(--off);}
+.s-eye{font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--sage);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.s-eye::before{content:'';width:16px;height:1.5px;background:var(--sage);border-radius:2px;flex-shrink:0;}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:900;line-height:1.1;letter-spacing:-.03em;color:var(--ink);margin-bottom:10px;}
+.s-title em{font-style:italic;font-weight:400;color:var(--sage);}
+.s-sub{font-size:.84rem;color:var(--muted);margin-bottom:44px;max-width:460px;line-height:1.8;}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 
-.filter-bar{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;}
-.ftab{background:#fff;border:0.5px solid var(--border);color:var(--muted);padding:9px 22px;border-radius:100px;font-size:.76rem;font-weight:600;cursor:pointer;transition:all .22s;font-family:'DM Sans',sans-serif;letter-spacing:.04em;}
-.ftab:hover{border-color:var(--accent);color:var(--accent);}
-.ftab.active{background:var(--navy);border-color:var(--navy);color:#fff;}
+.filter-bar{display:flex;gap:6px;margin-bottom:36px;flex-wrap:wrap;}
+.ftab{background:var(--white);border:1px solid var(--border);color:var(--muted);padding:6px 16px;border-radius:100px;font-size:.69rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:'Inter',sans-serif;letter-spacing:.04em;}
+.ftab:hover{border-color:var(--sage);color:var(--sage);}
+.ftab.active{background:var(--ink);border-color:var(--ink);color:#fff;}
 
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.proj-card{border:0.5px solid var(--border);border-radius:16px;background:#fff;overflow:hidden;transition:all .25s;cursor:pointer;display:flex;flex-direction:column;}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.proj-card{border:1px solid var(--border);border-radius:14px;background:var(--white);overflow:hidden;transition:all .22s;cursor:pointer;display:flex;flex-direction:column;position:relative;}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--sage);transform:scaleX(0);transform-origin:left;transition:transform .32s ease;}
 .proj-card.hidden{display:none;}
-.proj-card:hover{border-color:rgba(46,95,163,.3);box-shadow:0 8px 32px rgba(26,26,46,.08);transform:translateY(-3px);}
-.proj-card-top{padding:24px 24px 0;flex:1;}
-.proj-card-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
-.proj-cat{font-size:.62rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:100px;}
-.proj-cat.ai{background:rgba(46,95,163,.1);color:var(--accent);}
-.proj-cat.ux{background:rgba(27,122,140,.1);color:var(--teal);}
-.proj-cat.res{background:rgba(201,168,76,.12);color:#7A5C0F;}
-.proj-live{display:inline-flex;align-items:center;gap:4px;font-size:.62rem;font-weight:600;color:#22C55E;letter-spacing:.06em;}
-.proj-live::before{content:'';width:5px;height:5px;background:#22C55E;border-radius:50%;animation:pulse 2s infinite;}
-.proj-badge{font-size:.62rem;font-weight:600;padding:3px 8px;border-radius:100px;}
-.proj-badge.award{background:rgba(201,168,76,.1);color:#92680E;border:0.5px solid rgba(201,168,76,.25);}
-.proj-badge.pub{background:rgba(27,122,140,.1);color:var(--teal);border:0.5px solid rgba(27,122,140,.2);}
-.proj-num{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:900;color:var(--border);margin-bottom:8px;}
-.proj-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--ink);line-height:1.2;margin-bottom:10px;}
-.proj-hook{font-size:.84rem;color:var(--ink-soft);line-height:1.6;font-style:italic;margin-bottom:16px;}
-.proj-card-bottom{padding:16px 24px 20px;}
-.proj-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;}
-.wtag{padding:3px 8px;border-radius:4px;font-size:.65rem;font-weight:500;border:0.5px solid transparent;}
-.wtag.ai{background:#EEF4FB;color:#2E5FA3;border-color:#C5D9EF;}
-.wtag.ux{background:#E8F6F8;color:#1B7A8C;border-color:#A8DCE4;}
-.wtag.res{background:#FBF6E8;color:#7A5C0F;border-color:#DEC97A;}
-.wtag.gen{background:#F4F2EF;color:#5A5047;border-color:#D8D3CC;}
-.proj-open-btn{width:100%;padding:11px;border:1px solid var(--accent);border-radius:8px;background:transparent;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--accent);cursor:pointer;transition:all .2s;letter-spacing:.04em;}
-.proj-open-btn:hover{background:var(--accent);color:#fff;}
+.proj-card:hover{border-color:rgba(74,124,89,.2);box-shadow:0 8px 28px var(--sage-glow);transform:translateY(-4px);}
+.proj-card:hover::before{transform:scaleX(1);}
+.proj-card-top{padding:20px 20px 0;flex:1;}
+.proj-card-meta{display:flex;align-items:center;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+.proj-cat{font-size:.57rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;padding:3px 8px;border-radius:100px;background:var(--sage-light);color:var(--sage);border:1px solid rgba(74,124,89,.15);}
+.proj-live{display:inline-flex;align-items:center;gap:4px;font-size:.57rem;font-weight:600;color:#16A34A;letter-spacing:.06em;}
+.proj-live::before{content:'';width:5px;height:5px;background:#16A34A;border-radius:50%;animation:pulse 2s infinite;}
+.proj-badge{font-size:.57rem;font-weight:500;padding:3px 8px;border-radius:100px;background:var(--off);color:var(--muted);border:1px solid var(--border);}
+.proj-num{font-family:'Playfair Display',serif;font-size:.78rem;color:var(--border2);margin-bottom:6px;font-weight:700;}
+.proj-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:var(--ink);line-height:1.2;margin-bottom:8px;letter-spacing:-.02em;}
+.proj-hook{font-size:.79rem;color:var(--ink-soft);line-height:1.68;font-style:italic;margin-bottom:14px;}
+.proj-card-bottom{padding:12px 20px 18px;}
+.proj-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px;}
+.wtag{padding:2px 7px;border-radius:4px;font-size:.59rem;font-weight:500;background:var(--off);color:var(--muted);border:1px solid var(--border);}
+.proj-open-btn{width:100%;padding:9px;border:1px solid var(--border2);border-radius:7px;background:transparent;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:all .18s;}
+.proj-open-btn:hover{border-color:var(--sage);color:var(--sage);background:var(--sage-light);}
 
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(15,26,46,.75);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(6px);}
+.modal-overlay{position:fixed;inset:0;background:rgba(12,12,12,.6);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .26s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
 .modal-overlay.active{opacity:1;pointer-events:all;}
-.modal{background:#fff;border-radius:20px;width:100%;max-width:780px;max-height:94vh;overflow:hidden;display:flex;flex-direction:column;animation:modalIn .3s ease forwards;position:relative;}
-.modal-header{padding:16px 24px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:#fff;border-radius:20px 20px 0 0;}
-.modal-header-left{display:flex;align-items:center;gap:10px;}
-.modal-title-wrap{display:flex;flex-direction:column;gap:2px;}
-.modal-project-title{font-size:.88rem;font-weight:700;color:var(--ink);}
-.modal-counter{font-size:.72rem;color:var(--muted);font-weight:500;}
-.modal-links{display:flex;align-items:center;gap:14px;}
-.modal-link{font-size:.75rem;font-weight:600;color:var(--accent);text-decoration:none;transition:opacity .2s;}
-.modal-link:hover{opacity:.7;}
-.modal-close{width:30px;height:30px;border-radius:50%;border:0.5px solid var(--border);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--muted);transition:all .2s;font-family:'DM Sans',sans-serif;}
-.modal-close:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
-
-/* SCROLLABLE BODY WITH FADE */
-.modal-scroll{flex:1;overflow-y:auto;position:relative;}
-.modal-scroll-fade{position:sticky;bottom:0;height:40px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.95));pointer-events:none;margin-top:-40px;}
+.modal{background:var(--white);border-radius:18px;width:100%;max-width:730px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;animation:modalIn .34s cubic-bezier(.34,1.56,.64,1) forwards;border:1px solid var(--border);}
+.modal-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.modal-header-left{display:flex;align-items:center;gap:9px;}
+.modal-title-wrap{display:flex;flex-direction:column;gap:1px;}
+.modal-proj-title{font-size:.82rem;font-weight:600;color:var(--ink);}
+.modal-ctr{font-size:.64rem;color:var(--muted);}
+.modal-links{display:flex;align-items:center;gap:11px;}
+.modal-link{font-size:.69rem;font-weight:600;color:var(--sage);text-decoration:none;transition:opacity .18s;}
+.modal-link:hover{opacity:.6;}
+.modal-x{width:26px;height:26px;border-radius:50%;border:1px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.74rem;color:var(--muted);transition:all .18s;font-family:'Inter',sans-serif;}
+.modal-x:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.modal-scroll{flex:1;overflow-y:auto;}
+.modal-fade{position:sticky;bottom:0;height:30px;background:linear-gradient(transparent,rgba(255,255,255,.97));pointer-events:none;margin-top:-30px;}
 .modal-body{padding:0;}
-.modal-section{padding:22px 28px;border-bottom:0.5px solid var(--border);}
-.modal-section-label{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block;}
-.modal-section-text{font-size:.88rem;color:var(--ink-soft);line-height:1.78;}
-.modal-metrics-row{display:grid;background:var(--navy);}
-.modal-metric-item{padding:22px 24px;text-align:center;border-right:0.5px solid rgba(255,255,255,.08);}
-.modal-metric-item:last-child{border-right:none;}
-.modal-metric-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--accent2);line-height:1;margin-bottom:4px;}
-.modal-metric-label{font-size:.7rem;color:rgba(255,255,255,.5);line-height:1.4;}
+.modal-sec{padding:18px 24px;border-bottom:1px solid var(--border);}
+.modal-sec-lbl{font-size:.54rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;display:block;}
+.modal-sec-txt{font-size:.83rem;color:var(--ink-soft);line-height:1.84;}
+.modal-metrics{display:grid;background:var(--off);border-bottom:1px solid var(--border);}
+.modal-metric{padding:20px 18px;text-align:center;border-right:1px solid var(--border);}
+.modal-metric:last-child{border-right:none;}
+.modal-metric-n{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:900;color:var(--sage);line-height:1;margin-bottom:3px;}
+.modal-metric-l{font-size:.63rem;color:var(--muted);line-height:1.4;}
+.modal-nav{padding:10px 20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.modal-nav-btn{display:flex;align-items:center;gap:5px;font-size:.71rem;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;padding:6px 10px;border-radius:7px;transition:all .18s;}
+.modal-nav-btn:hover:not(:disabled){color:var(--sage);background:var(--sage-light);}
+.modal-nav-btn:disabled{opacity:.18;cursor:not-allowed;}
+.modal-nav-c{font-size:.71rem;color:var(--muted);}
 
-.modal-nav{padding:14px 24px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:#fff;border-radius:0 0 20px 20px;}
-.modal-nav-btn{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:8px 12px;border-radius:8px;transition:all .2s;}
-.modal-nav-btn:hover:not(:disabled){color:var(--accent);background:var(--accent-light);}
-.modal-nav-btn:disabled{opacity:.25;cursor:not-allowed;}
-.modal-nav-counter{font-size:.78rem;color:var(--muted);}
+.think-section{background:var(--off);padding:96px 56px;}
+.think-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+.principle-list{display:flex;flex-direction:column;gap:3px;margin-top:28px;}
+.pitem{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;cursor:pointer;transition:all .18s;border:1px solid transparent;}
+.pitem:hover{background:var(--white);border-color:var(--border);}
+.pitem.active{background:var(--white);border-color:rgba(74,124,89,.2);box-shadow:0 2px 14px var(--sage-glow);}
+.pitem-icon{font-size:.9rem;width:24px;text-align:center;flex-shrink:0;}
+.pitem-body{flex:1;}
+.pitem-title{font-size:.81rem;font-weight:600;color:var(--ink);margin-bottom:1px;line-height:1.3;}
+.pitem-sub{font-size:.68rem;color:var(--muted);line-height:1.4;}
+.pitem-arr{font-size:.78rem;color:var(--border2);transition:color .18s;}
+.pitem.active .pitem-arr{color:var(--sage);}
+.proof-wrap{position:sticky;top:96px;}
+.proof-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px 22px;min-height:238px;}
+.pc-inner{display:none;}
+.pc-inner.on{display:block;}
+.pc-lbl{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);margin-bottom:12px;}
+.pc-head{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--ink);line-height:1.45;margin-bottom:11px;letter-spacing:-.01em;}
+.pc-body{font-size:.79rem;color:var(--ink-soft);line-height:1.84;margin-bottom:18px;}
+.pc-stat{display:flex;align-items:baseline;gap:9px;padding-top:16px;border-top:1px solid var(--border);}
+.pc-n{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:900;color:var(--sage);line-height:1;}
+.pc-l{font-size:.69rem;color:var(--muted);line-height:1.5;}
 
-.think-section{background:var(--navy);padding:88px 60px;}
-.think-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-.think-left .s-label{color:var(--accent2);}
-.think-left .s-label::after{background:var(--accent2);}
-.think-left .s-title{color:#fff;}
-.think-left .s-title em{color:var(--accent2);}
-.principle-list{display:flex;flex-direction:column;gap:4px;}
-.pitem{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:10px;cursor:pointer;transition:all .2s;border:0.5px solid transparent;}
-.pitem:hover{background:rgba(255,255,255,.05);}
-.pitem.active{background:rgba(74,143,212,.12);border-color:rgba(74,143,212,.2);}
-.pitem-icon{font-size:1.1rem;flex-shrink:0;width:32px;text-align:center;}
-.pitem-title{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.9);line-height:1.3;margin-bottom:2px;}
-.pitem-sub{font-size:.75rem;color:rgba(255,255,255,.4);line-height:1.4;}
-.pitem-arrow{margin-left:auto;color:rgba(255,255,255,.2);transition:color .2s;font-size:.9rem;}
-.pitem.active .pitem-arrow{color:var(--accent2);}
-.think-right{position:sticky;top:88px;}
-.proof-card{background:rgba(255,255,255,.04);border:0.5px solid rgba(255,255,255,.08);border-radius:14px;padding:32px 28px;min-height:260px;}
-.proof-content{display:none;}
-.proof-content.active{display:block;}
-.proof-label{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px;opacity:.7;}
-.proof-headline{font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:700;color:#fff;line-height:1.45;margin-bottom:14px;}
-.proof-body{font-size:.83rem;color:rgba(255,255,255,.52);line-height:1.75;margin-bottom:20px;}
-.proof-stat{display:flex;align-items:baseline;gap:10px;padding-top:18px;border-top:0.5px solid rgba(255,255,255,.07);}
-.ps-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent2);line-height:1;}
-.ps-label{font-size:.76rem;color:rgba(255,255,255,.38);line-height:1.4;}
+.exp-list{display:flex;flex-direction:column;}
+.exp-row{display:grid;grid-template-columns:170px 1fr;gap:40px;padding:36px 0;border-bottom:1px solid var(--border);}
+.exp-row:first-child{padding-top:0;}
+.exp-row:last-child{border-bottom:none;}
+.exp-date{display:block;font-size:.67rem;color:var(--muted);line-height:1.6;margin-bottom:4px;}
+.exp-role{display:block;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);}
+.exp-co{font-family:'Playfair Display',serif;font-size:1.07rem;font-weight:700;color:var(--ink);margin-bottom:9px;letter-spacing:-.01em;}
+.exp-story{font-size:.81rem;color:var(--ink-soft);line-height:1.86;margin-bottom:11px;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.etag{padding:2px 8px;border-radius:5px;font-size:.63rem;font-weight:500;border:1px solid var(--border);color:var(--muted);background:var(--off);}
 
-.bring-section{padding:88px 60px;}
-.bring-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:0.5px solid var(--border);border-radius:14px;overflow:hidden;margin-top:40px;}
-.bring-group{padding:28px 22px;border-right:0.5px solid var(--border);background:#fff;transition:background .2s;}
-.bring-group:last-child{border-right:none;}
-.bring-group:hover{background:var(--bg);}
-.bg-label{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:block;}
-.bg-pills{display:flex;flex-direction:column;gap:6px;}
-.bpill{padding:5px 11px;border-radius:6px;font-size:.74rem;font-weight:500;border:0.5px solid transparent;display:inline-block;}
-.bpill.ai{background:#EEF4FB;color:#2E5FA3;border-color:#C5D9EF;}
-.bpill.ux{background:#E8F6F8;color:#1B7A8C;border-color:#A8DCE4;}
-.bpill.res{background:#FBF6E8;color:#7A5C0F;border-color:#DEC97A;}
-.bpill.del{background:#EEF6F0;color:#166534;border-color:#A7D7B3;}
-.bpill.gen{background:#F4F2EF;color:#5A5047;border-color:#D8D3CC;}
+/* ABOUT */
+.about-section{padding:96px 56px;background:var(--white);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.about-copy p{font-size:.92rem;color:var(--ink-soft);line-height:1.92;margin-bottom:16px;}
+.about-copy p:last-child{margin-bottom:0;}
+.about-copy em{color:var(--sage);font-style:italic;}
+.about-copy strong{color:var(--ink);font-weight:600;}
 
-.exp-list{display:flex;flex-direction:column;gap:0;}
-.exp-item{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:40px 0;border-bottom:0.5px solid var(--border);}
-.exp-item:first-child{padding-top:0;}
-.exp-item:last-child{border-bottom:none;}
-.exp-meta{padding-top:4px;}
-.exp-date{display:block;font-size:.72rem;color:var(--muted);font-weight:500;line-height:1.6;margin-bottom:6px;}
-.exp-role{display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
-.exp-co{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:12px;}
-.exp-story{font-size:.86rem;color:var(--ink-soft);line-height:1.8;margin-bottom:16px;}
-.exp-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.exp-tags .bpill{padding:4px 10px;border-radius:5px;font-size:.72rem;}
+/* POLAROID COLLAGE */
+.polaroid-stage{position:relative;width:100%;height:480px;}
+.polaroid{position:absolute;background:#fff;padding:10px 10px 32px 10px;box-shadow:0 4px 20px rgba(0,0,0,.1),0 1px 4px rgba(0,0,0,.08);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,z-index 0s;}
+.polaroid:hover{box-shadow:0 12px 40px rgba(0,0,0,.18),0 2px 8px rgba(0,0,0,.1);z-index:10;}
+.polaroid img{width:100%;height:100%;object-fit:cover;display:block;}
+.polaroid-ph{width:100%;height:100%;background:var(--sage-light);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--sage);opacity:.5;}
+.polaroid-ph .ph-icon{font-size:1.6rem;opacity:.7;}
+.polaroid-ph .ph-label{font-size:.62rem;font-weight:500;font-family:'Inter',sans-serif;}
+.polaroid-caption{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:.62rem;color:var(--muted);font-family:'Inter',sans-serif;letter-spacing:.02em;}
 
-.story-section{background:var(--navy);padding:88px 60px;}
-.story-inner{max-width:700px;margin:0 auto;text-align:center;}
-.story-q{font-family:'Playfair Display',serif;font-size:5rem;line-height:.5;color:rgba(74,143,212,.18);display:block;margin-bottom:26px;}
-.story-text{font-family:'Playfair Display',serif;font-size:clamp(1rem,1.6vw,1.2rem);font-style:italic;color:rgba(255,255,255,.72);line-height:1.9;}
-.story-text p{margin-bottom:18px;}
-.story-text p:last-child{margin-bottom:0;}
-.story-text em{color:var(--accent2);font-style:normal;}
+.p1{width:148px;height:148px;top:10px;left:0px;transform:rotate(-4deg);animation:float1 6s ease-in-out infinite;}
+.p2{width:160px;height:160px;top:5px;left:145px;transform:rotate(2.5deg);animation:float2 7s ease-in-out infinite .5s;}
+.p3{width:142px;height:142px;top:8px;left:310px;transform:rotate(-1.5deg);animation:float3 5.5s ease-in-out infinite 1s;}
+.p4{width:154px;height:154px;top:200px;left:20px;transform:rotate(3.5deg);animation:float4 6.5s ease-in-out infinite .3s;}
 
-.contact-section{background:var(--bg2);padding:72px 60px;text-align:center;}
-.contact-warm{font-family:'Playfair Display',serif;font-size:1.25rem;font-style:italic;color:var(--ink-soft);margin-bottom:28px;line-height:1.5;}
-.contact-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-.c-btn{display:inline-flex;align-items:center;gap:7px;padding:12px 24px;border-radius:6px;font-size:.82rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:all .2s;border:0.5px solid var(--border);color:var(--ink-soft);background:#fff;}
-.c-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);box-shadow:0 4px 16px rgba(46,95,163,.1);}
-.c-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
-.c-btn.primary:hover{background:#1A4A8A;color:#fff;}
+/* AMBIENT FLOATING ICONS AROUND POLAROIDS */
+.polaroid-stage{position:relative;}
+.p-ambient{position:absolute;font-size:1.2rem;opacity:0;pointer-events:none;user-select:none;animation:ambientFloat 4s ease-in-out infinite;}
+@keyframes ambientFloat{0%{opacity:0;transform:translateY(0) rotate(0deg)}20%{opacity:.6}80%{opacity:.6}100%{opacity:0;transform:translateY(-40px) rotate(15deg)}}
+.pa1{top:5%;left:-8%;animation-delay:0s;animation-duration:5.2s;}
+.pa2{top:15%;right:-6%;animation-delay:1.1s;animation-duration:4.8s;}
+.pa3{bottom:30%;left:-5%;animation-delay:2.3s;animation-duration:6s;}
+.pa4{bottom:10%;right:-4%;animation-delay:0.7s;animation-duration:5.5s;}
+.pa5{top:45%;left:-10%;animation-delay:1.8s;animation-duration:4.5s;}
+.pa6{top:60%;right:-8%;animation-delay:3.1s;animation-duration:5.8s;}
+
+.contact-section{background:var(--off);padding:72px 56px;text-align:center;}
+.contact-line{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--ink-soft);margin-bottom:24px;line-height:1.55;}
+.contact-btns{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;}
+.c-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:7px;font-size:.77rem;font-weight:600;letter-spacing:.02em;text-decoration:none;transition:all .18s;border:1px solid var(--border2);color:var(--ink-soft);background:var(--white);font-family:'Inter',sans-serif;}
+.c-btn:hover{border-color:var(--sage);color:var(--sage);transform:translateY(-2px);box-shadow:0 4px 14px var(--sage-glow);}
+.c-btn.primary{background:var(--ink);border-color:var(--ink);color:#fff;}
+.c-btn.primary:hover{background:#222;border-color:#222;box-shadow:0 6px 20px rgba(0,0,0,.18);}
 
 @media(max-width:960px){
-  nav{padding:0 24px;}
-  .hero{padding:100px 24px 60px;}
-  .hero-top{grid-template-columns:1fr;gap:32px;}
+  nav{padding:0 20px;}
+  .hero,.section,.think-section,.about-section,.contact-section{padding-left:20px;padding-right:20px;}
+  .hero{padding-top:100px;}
+  .hero-top{grid-template-columns:1fr;gap:28px;}
+  .hero-img,.hero-img-ph{width:160px;height:160px;}
   .stats-row{grid-template-columns:1fr 1fr;}
-  .section{padding:64px 24px;}
-  .think-section{padding:64px 24px;}
-  .think-inner{grid-template-columns:1fr;}
-  .think-right{position:static;}
-  .bring-section{padding:64px 24px;}
-  .bring-grid{grid-template-columns:1fr 1fr;}
-  .exp-item{grid-template-columns:1fr;gap:8px;}
-  .story-section{padding:64px 24px;}
-  .contact-section{padding:64px 24px;}
+  .think-grid{grid-template-columns:1fr;}
+  .proof-wrap{position:static;}
+  .about-grid{grid-template-columns:1fr;}
+  .polaroid-stage{height:320px;}
+  .exp-row{grid-template-columns:1fr;gap:6px;}
   .proj-grid{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:600px){
-  .bring-grid{grid-template-columns:1fr;}
   .proj-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .polaroid-stage{height:260px;}
 }
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 </style>
 </head>
 <body>
 
+<div class="page-loader" id="pageLoader"><span class="loader-name" id="loaderName">amrutha hari</span></div>
 <nav id="nav">
   <a href="#hero" class="nav-logo">hello!</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
-    <li><a href="#howithink">How I Work</a></li>
-    <li><a href="#story">Story</a></li>
+    <li><a href="#think">How I Think</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#contact">Connect</a></li>
   </ul>
 </nav>
 
 <div class="modal-overlay" id="modalOverlay">
-  <div class="modal" id="modal">
+  <div class="modal">
     <div class="modal-header">
       <div class="modal-header-left">
-        <span class="proj-cat" id="modalCat"></span>
+        <span class="proj-cat" id="mCat"></span>
         <div class="modal-title-wrap">
-          <span class="modal-project-title" id="modalProjectTitle"></span>
-          <span class="modal-counter" id="modalCounter"></span>
+          <span class="modal-proj-title" id="mTitle"></span>
+          <span class="modal-ctr" id="mCtr"></span>
         </div>
       </div>
       <div class="modal-links">
-        <a href="#" class="modal-link" id="modalLive" target="_blank" style="display:none">Live ↗</a>
-        <a href="#" class="modal-link" id="modalGithub" target="_blank" style="display:none">GitHub ↗</a>
-        <a href="#" class="modal-link" id="modalPaper" target="_blank" style="display:none">Read Paper ↗</a>
-        <a href="#" class="modal-link" id="modalProto" target="_blank" style="display:none">Prototype ↗</a>
-        <a href="#" class="modal-link" id="modalProceedings" target="_blank" style="display:none">Proceedings, Pg 563 ↗</a>
-        <button class="modal-close" id="modalClose">✕</button>
+        <a href="#" class="modal-link" id="mLive" target="_blank" style="display:none">Live ↗</a>
+        <a href="#" class="modal-link" id="mGh" target="_blank" style="display:none">GitHub ↗</a>
+        <a href="#" class="modal-link" id="mPaper" target="_blank" style="display:none">Paper ↗</a>
+        <a href="#" class="modal-link" id="mProto" target="_blank" style="display:none">Prototype ↗</a>
+        <a href="#" class="modal-link" id="mProc" target="_blank" style="display:none">Proceedings ↗</a>
+        <button class="modal-x" id="mClose">✕</button>
       </div>
     </div>
-    <div class="modal-scroll" id="modalScroll">
-      <div class="modal-body" id="modalBody"></div>
-      <div class="modal-scroll-fade"></div>
+    <div class="modal-scroll" id="mScroll">
+      <div class="modal-body" id="mBody"></div>
+      <div class="modal-fade"></div>
     </div>
     <div class="modal-nav">
-      <button class="modal-nav-btn" id="modalPrev">← Previous</button>
-      <span class="modal-nav-counter" id="modalNavCounter"></span>
-      <button class="modal-nav-btn" id="modalNext">Next →</button>
+      <button class="modal-nav-btn" id="mPrev">← Prev</button>
+      <span class="modal-nav-c" id="mNavC"></span>
+      <button class="modal-nav-btn" id="mNext">Next →</button>
     </div>
   </div>
 </div>
 
 <section class="hero" id="hero">
   <div class="hero-top">
-    <div class="hero-left">
-      <div class="hero-tag" id="heroTag">
-          <span class="tag-item">PM</span><span class="tag-sep">·</span>
-          <span class="tag-item">Builder</span><span class="tag-sep">·</span>
-          <span class="tag-item">Researcher</span><span class="tag-sep">·</span>
-          <span class="tag-item">Engineer</span>
+    <div>
+          <span class="tw lit" id="tw0">Builder</span><span class="tsep">·</span>
+          <span class="tw" id="tw1">Researcher</span><span class="tsep">·</span>
+          <span class="tw" id="tw2">PM</span><span class="tsep">·</span>
+          <span class="tw" id="tw3">Designer</span>
+        </div>
       </div>
-      <h1 class="hero-name">Amrutha Hari</h1>
-      <p class="hero-story">Every product I've built started with the same question: <em>what problem am I actually solving?</em></p>
-      <div class="hero-cta"><a href="#work" class="btn">See the work ↓</a></div>
+      <h1 class="hero-name">Amrutha<br>Hari</h1>
+      <p class="hero-sub">I've always cared more about the <span class="hl" id="heroHl">person using the product</span> than the product itself. I research what they need, design what makes sense, build it, and measure whether it worked. <em>Everything follows from that.</em></p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-primary">See the work ↓</a>
+      </div>
     </div>
-    <div class="hero-photo-wrap">
-      <img src="profile.jpg" alt="Amrutha Hari" class="hero-photo">
+    <div class="hero-img-wrap">
+      <!-- Replace div below with: <img src="profile.jpg" alt="Amrutha Hari" class="hero-img"> -->
+      <img src="profile.jpg" alt="Amrutha Hari" class="hero-img">
     </div>
   </div>
   <div class="stats-row">
-    <div class="stat-card"><div class="stat-icon">📄</div><div class="stat-num">2<span>×</span></div><div class="stat-title">Peer-reviewed publications (IEEE + ASEM)</div><div class="stat-sub">Engineering depth meets product thinking</div></div>
-    <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-num">76<span>%</span></div><div class="stat-title">Activation rate</div><div class="stat-sub">PocketPlans</div></div>
-    <div class="stat-card"><div class="stat-icon">🚀</div><div class="stat-num">0→70<span>%</span></div><div class="stat-title">Delivery efficiency</div><div class="stat-sub">Zero structure to successful delivery system</div></div>
-    <div class="stat-card"><div class="stat-icon">🏫</div><div class="stat-num">Co-Founder</div><div class="stat-title">IDEA Startup Incubator</div><div class="stat-sub">In Market</div></div>
+    <div class="stat-card"><div class="stat-icon">📄</div><div class="stat-num" data-t="2" data-s="×">2×</div><div class="stat-title">Peer-reviewed publications</div><div class="stat-sub">IEEE + ASEM international</div></div>
+    <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-num" data-t="76" data-s="%">76%</div><div class="stat-title">Activation rate</div><div class="stat-sub">PocketPlans · measured from day one</div></div>
+    <div class="stat-card"><div class="stat-icon">💬</div><div class="stat-num" data-t="100" data-s="+">100+</div><div class="stat-title">User conversations</div><div class="stat-sub">Before the first wireframe, every time</div></div>
+    <div class="stat-card"><div class="stat-icon">🚀</div><div class="stat-num" style="font-size:.92rem;padding-top:6px;color:var(--sage)">Co-Founder</div><div class="stat-title">IDEA Startup Incubator</div><div class="stat-sub">Northeastern University · In market</div></div>
   </div>
 </section>
 
 <section class="section" id="work">
-  <p class="s-label">Work</p>
-  <h2 class="s-title reveal">The <em>work.</em></h2>
-  <p class="s-sub reveal d1">Click any project to read the thinking behind it.</p>
+  <p class="s-eye">Work</p>
+  <h2 class="s-title reveal">What I've <em>shipped.</em></h2>
+  <p class="s-sub reveal d1">Problems researched, experiences designed, products built. Click any to read the thinking.</p>
   <div class="filter-bar reveal d1">
-    <button class="ftab active" data-filter="all">All</button>
-    <button class="ftab" data-filter="ai">AI Products</button>
-    <button class="ftab" data-filter="ux">UX & Strategy</button>
-    <button class="ftab" data-filter="research">Research</button>
+    <button class="ftab active" data-f="all">All</button>
+    <button class="ftab" data-f="ai">AI Products</button>
+    <button class="ftab" data-f="ux">UX & Research</button>
+    <button class="ftab" data-f="research">Publications</button>
   </div>
   <div class="proj-grid reveal d2" id="projGrid">
-
-    <div class="proj-card" data-cat="ai" data-index="0">
-      <div class="proj-card-top">
-        <div class="proj-card-meta"><span class="proj-cat ai">AI Product</span><span class="proj-live">Live</span><span class="proj-badge award">🏫 IDEA Incubator</span></div>
-        <div class="proj-num">01</div>
-        <div class="proj-title">PocketPlans</div>
-        <div class="proj-hook">I went from 10 inputs to 4 because users told me to. That cut is the product.</div>
-      </div>
-      <div class="proj-card-bottom">
-        <div class="proj-tags">
-          <span class="wtag ai">Personalization</span>
-          <span class="wtag ai">Behavioral Analytics</span>
-          <span class="wtag gen">0→1 Product</span>
-        </div>
-        <button class="proj-open-btn">Read the thinking →</button>
-      </div>
-    </div>
-
-    <div class="proj-card" data-cat="ai" data-index="1">
-      <div class="proj-card-top">
-        <div class="proj-card-meta"><span class="proj-cat ai">AI Product</span><span class="proj-live">Live</span></div>
-        <div class="proj-num">02</div>
-        <div class="proj-title">Structify</div>
-        <div class="proj-hook">PMs spend hours formatting what should take seconds. I fixed that.</div>
-      </div>
-      <div class="proj-card-bottom">
-        <div class="proj-tags">
-          <span class="wtag ai">LLMs & RAG</span>
-          <span class="wtag ai">Prompt Engineering</span>
-          <span class="wtag ai">AI Product Development</span>
-        </div>
-        <button class="proj-open-btn">Read the thinking →</button>
-      </div>
-    </div>
-
-    <div class="proj-card" data-cat="ux" data-index="2">
-      <div class="proj-card-top">
-        <div class="proj-card-meta"><span class="proj-cat ux">UX & Strategy</span><span class="proj-badge award">🥈 2nd / 45+ teams</span></div>
-        <div class="proj-num">03</div>
-        <div class="proj-title">Protothon — Eventbrite</div>
-        <div class="proj-hook">100+ interviews. 12 hours. $6.24M opportunity. Top 2 of 45+ teams.</div>
-      </div>
-      <div class="proj-card-bottom">
-        <div class="proj-tags">
-          <span class="wtag ux">User Research</span>
-          <span class="wtag ux">Product Strategy</span>
-          <span class="wtag gen">Market Sizing</span>
-        </div>
-        <button class="proj-open-btn">Read the thinking →</button>
-      </div>
-    </div>
-
-    <div class="proj-card" data-cat="ux" data-index="3">
-      <div class="proj-card-top">
-        <div class="proj-card-meta"><span class="proj-cat ux">UX & Strategy</span><span class="proj-badge award">🥇 1st / 10 teams</span></div>
-        <div class="proj-num">04</div>
-        <div class="proj-title">Worldify</div>
-        <div class="proj-hook">Defined the roadmap before anyone knew if the product should exist.</div>
-      </div>
-      <div class="proj-card-bottom">
-        <div class="proj-tags">
-          <span class="wtag ux">0→1 Roadmap</span>
-          <span class="wtag gen">GTM Strategy</span>
-          <span class="wtag ux">Product-Market Fit</span>
-        </div>
-        <button class="proj-open-btn">Read the thinking →</button>
-      </div>
-    </div>
-
-    <div class="proj-card" data-cat="research" data-index="4">
-      <div class="proj-card-top">
-        <div class="proj-card-meta"><span class="proj-cat res">Research</span><span class="proj-badge pub">Published</span></div>
-        <div class="proj-num">05</div>
-        <div class="proj-title">Alzheimer's Detection</div>
-        <div class="proj-hook">Chose ELM over SVMs and neural nets. 95% accuracy proved the call.</div>
-      </div>
-      <div class="proj-card-bottom">
-        <div class="proj-tags">
-          <span class="wtag res">Machine Learning</span>
-          <span class="wtag res">ML Model Evaluation</span>
-          <span class="wtag res">Data Analytics</span>
-        </div>
-        <button class="proj-open-btn">Read the thinking →</button>
-      </div>
-    </div>
-
-    <div class="proj-card" data-cat="research" data-index="5">
-      <div class="proj-card-top">
-        <div class="proj-card-meta"><span class="proj-cat res">Research</span><span class="proj-badge pub">Published</span></div>
-        <div class="proj-num">06</div>
-        <div class="proj-title">AI Lifecycle Framework</div>
-        <div class="proj-hook">Built a framework that cuts AI product launch timelines by 12–15%.</div>
-      </div>
-      <div class="proj-card-bottom">
-        <div class="proj-tags">
-          <span class="wtag res">AI Strategy</span>
-          <span class="wtag res">Product Roadmapping</span>
-          <span class="wtag res">Lead Author</span>
-        </div>
-        <button class="proj-open-btn">Read the thinking →</button>
-      </div>
-    </div>
-
+    <div class="proj-card" data-cat="ai" data-i="0"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">AI Product</span><span class="proj-live">Live</span><span class="proj-badge">🏫 IDEA Incubator</span></div><div class="proj-num">01</div><div class="proj-title">PocketPlans</div><div class="proj-hook">Went from 10 inputs to 4 because users told me to. That cut is the product.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">UX Research</span><span class="wtag">Figma</span><span class="wtag">Behavioral Analytics</span><span class="wtag">0→1</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
+    <div class="proj-card" data-cat="ai" data-i="1"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">AI Product</span><span class="proj-live">Live</span></div><div class="proj-num">02</div><div class="proj-title">Structify</div><div class="proj-hook">PMs spend hours formatting what should take seconds. I fixed that.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">LLMs & RAG</span><span class="wtag">Prompt Engineering</span><span class="wtag">Workflow Design</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
+    <div class="proj-card" data-cat="ux" data-i="2"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">UX & Research</span><span class="proj-badge">🥈 2nd / 45+ teams</span></div><div class="proj-num">03</div><div class="proj-title">Protothon — Eventbrite</div><div class="proj-hook">100+ interviews. 12 hours. Figma prototype. $6.24M opportunity identified.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">User Research</span><span class="wtag">Figma Prototype</span><span class="wtag">Market Sizing</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
+    <div class="proj-card" data-cat="ux" data-i="3"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">UX & Research</span><span class="proj-badge">🥇 1st / 10 teams</span></div><div class="proj-num">04</div><div class="proj-title">Worldify</div><div class="proj-hook">Defined the roadmap before anyone knew if the product should exist.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">0→1 Roadmap</span><span class="wtag">GTM Strategy</span><span class="wtag">Usability Testing</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
+    <div class="proj-card" data-cat="research" data-i="4"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Publication</span><span class="proj-badge">IEEE</span></div><div class="proj-num">05</div><div class="proj-title">Alzheimer's Detection</div><div class="proj-hook">Chose ELM over SVMs and neural nets. 95% accuracy proved the call.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">Machine Learning</span><span class="wtag">Model Evaluation</span><span class="wtag">Research</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
+    <div class="proj-card" data-cat="research" data-i="5"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Publication</span><span class="proj-badge">ASEM</span></div><div class="proj-num">06</div><div class="proj-title">AI Lifecycle Framework</div><div class="proj-hook">Built a framework that cuts AI product launch timelines by 12–15%.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">AI Strategy</span><span class="wtag">Product Roadmapping</span><span class="wtag">Lead Author</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
   </div>
 </section>
 
-<section class="think-section" id="howithink">
-  <div class="think-inner">
-    <div class="think-left">
-      <p class="s-label" style="color:var(--accent2);opacity:.8;">Mindset</p>
-      <h2 class="s-title" style="color:#fff;margin-bottom:32px;">How I <em style="color:var(--accent2);">work.</em></h2>
+<section class="think-section" id="think">
+  <div class="think-grid">
+    <div>
+      <p class="s-eye">Philosophy</p>
+      <h2 class="s-title">How I think about <em>problems.</em></h2>
+      <p style="font-size:.83rem;color:var(--muted);line-height:1.75;margin-top:8px;">Whether building a product, designing a flow, or researching a market — the process is the same.</p>
       <div class="principle-list">
-        <div class="pitem active" data-key="problem"><div class="pitem-icon">🔍</div><div class="pitem-text"><div class="pitem-title">Problem first, always</div><div class="pitem-sub">I don't touch solutions until I understand the problem.</div></div><div class="pitem-arrow">→</div></div>
-        <div class="pitem" data-key="users"><div class="pitem-icon">👥</div><div class="pitem-text"><div class="pitem-title">Talk to users before anything else</div><div class="pitem-sub">What they say and what they do are different signals.</div></div><div class="pitem-arrow">→</div></div>
-        <div class="pitem" data-key="simple"><div class="pitem-icon">✂️</div><div class="pitem-text"><div class="pitem-title">Simplicity is a decision, not a default</div><div class="pitem-sub">Simple is harder than complex and more valuable.</div></div><div class="pitem-arrow">→</div></div>
-        <div class="pitem" data-key="ship"><div class="pitem-icon">📊</div><div class="pitem-text"><div class="pitem-title">Ship, then watch</div><div class="pitem-sub">Data tells you what users won't say out loud.</div></div><div class="pitem-arrow">→</div></div>
-        <div class="pitem" data-key="feedback"><div class="pitem-icon">🔁</div><div class="pitem-text"><div class="pitem-title">Feedback closes the loop</div><div class="pitem-sub">Every signal shapes what gets built next.</div></div><div class="pitem-arrow">→</div></div>
-        <div class="pitem" data-key="ai"><div class="pitem-icon">🤖</div><div class="pitem-text"><div class="pitem-title">AI as a tool, not a feature</div><div class="pitem-sub">Does this actually help the user?</div></div><div class="pitem-arrow">→</div></div>
+        <div class="pitem active" data-k="people"><div class="pitem-icon">👥</div><div class="pitem-body"><div class="pitem-title">Talk to people first, always</div><div class="pitem-sub">What they say and what they do are different signals.</div></div><div class="pitem-arr">→</div></div>
+        <div class="pitem" data-k="simple"><div class="pitem-icon">✂️</div><div class="pitem-body"><div class="pitem-title">Complexity is a failure, not a feature</div><div class="pitem-sub">Simple is harder and more valuable than complex.</div></div><div class="pitem-arr">→</div></div>
+        <div class="pitem" data-k="decisions"><div class="pitem-icon">🎯</div><div class="pitem-body"><div class="pitem-title">Make decisions deliberately</div><div class="pitem-sub">Every product choice has a reason. I know mine.</div></div><div class="pitem-arr">→</div></div>
+        <div class="pitem" data-k="ai"><div class="pitem-icon">🤖</div><div class="pitem-body"><div class="pitem-title">AI where it earns its place</div><div class="pitem-sub">I've shipped LLM products. I know where AI creates confusion.</div></div><div class="pitem-arr">→</div></div>
+        <div class="pitem" data-k="measure"><div class="pitem-icon">📊</div><div class="pitem-body"><div class="pitem-title">Shipping is the start, not the end</div><div class="pitem-sub">Data finds what conversations miss.</div></div><div class="pitem-arr">→</div></div>
+        <div class="pitem" data-k="loop"><div class="pitem-icon">🔁</div><div class="pitem-body"><div class="pitem-title">Close the loop</div><div class="pitem-sub">Every signal shapes what gets built next.</div></div><div class="pitem-arr">→</div></div>
       </div>
     </div>
-    <div class="think-right">
+    <div class="proof-wrap">
       <div class="proof-card">
-        <div class="proof-content active" data-key="problem">
-          <div class="proof-label">How this shows up</div>
-          <h3 class="proof-headline">I ran 100+ interviews before opening Figma. Every time.</h3>
-          <p class="proof-body">For Protothon, 100+ interviews in 12 hours revealed a retention problem disguised as a discovery problem. For PocketPlans, 25–30 user sessions before touching code. The pattern is deliberate — I don't touch solutions until the problem is so clear the answer becomes obvious.</p>
-          <div class="proof-stat"><span class="ps-num">100+</span><span class="ps-label">conversations before first wireframe, every time</span></div>
-        </div>
-        <div class="proof-content" data-key="users" style="display:none">
-          <div class="proof-label">How this shows up</div>
-          <h3 class="proof-headline">Users told me to cut inputs. Data showed 26% dead clicks nobody mentioned.</h3>
-          <p class="proof-body">On PocketPlans, users said simplify — I cut from 10 to 4 inputs. Then Clarity revealed a 26.67% dead click rate that nobody mentioned in a single session. What users say and what they do are different signals. I use both.</p>
-          <div class="proof-stat"><span class="ps-num">2×</span><span class="ps-label">signals always used — qualitative and behavioral, never just one</span></div>
-        </div>
-        <div class="proof-content" data-key="simple" style="display:none">
-          <div class="proof-label">How this shows up</div>
-          <h3 class="proof-headline">I cut 6 features before launch. Every cut made it stronger.</h3>
-          <p class="proof-body">Simplicity is the conclusion you reach after understanding what users need — not the starting point. Every feature I've removed has made the product stronger. The hardest product decision is often what not to build.</p>
-          <div class="proof-stat"><span class="ps-num">10→4</span><span class="ps-label">inputs cut after user research revealed complexity was the enemy</span></div>
-        </div>
-        <div class="proof-content" data-key="ship" style="display:none">
-          <div class="proof-label">How this shows up</div>
-          <h3 class="proof-headline">Clarity was running before the first user arrived.</h3>
-          <p class="proof-body">On PocketPlans, session recording and heatmaps were live from day one. That's how I caught a 26.67% dead click rate nobody mentioned in feedback. Data finds what conversations miss. I set up measurement before I need it.</p>
-          <div class="proof-stat"><span class="ps-num">97%</span><span class="ps-label">scroll depth — data confirmed what users wouldn't say</span></div>
-        </div>
-        <div class="proof-content" data-key="feedback" style="display:none">
-          <div class="proof-label">How this shows up</div>
-          <h3 class="proof-headline">The dead click rate became the entire v2 roadmap.</h3>
-          <p class="proof-body">Clarity flagged users clicking elements that weren't interactive. No one complained — the data found it. That signal became the foundation of the v2 interaction redesign. I didn't guess what to build next. The behavior told me.</p>
-          <div class="proof-stat"><span class="ps-num">26.67%</span><span class="ps-label">dead click rate → directly informed v2 roadmap priorities</span></div>
-        </div>
-        <div class="proof-content" data-key="ai" style="display:none">
-          <div class="proof-label">How this shows up</div>
-          <h3 class="proof-headline">Two AI products shipped. Neither started with "let's add AI."</h3>
-          <p class="proof-body">PocketPlans uses API orchestration — not LLM generation — because hallucinated venues destroy trust. Structify uses LLMs because the output format is predictable enough to automate reliably. I choose AI where it solves the problem. I remove it where it creates one.</p>
-          <div class="proof-stat"><span class="ps-num">0→2</span><span class="ps-label">live AI products, built where AI was the right tool — not the impressive one</span></div>
-        </div>
+        <div class="pc-inner on" data-k="people"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">100+ conversations before writing a single requirement.</h3><p class="pc-body">For Protothon, 100+ interviews in 12 hours revealed a retention problem disguised as a discovery problem. For PocketPlans, 25+ user sessions before touching code. At BVM, I spoke to administrators across 80+ districts before redesigning a single screen.</p><div class="pc-stat"><span class="pc-n">100+</span><span class="pc-l">user conversations before<br>first requirement, every project</span></div></div>
+        <div class="pc-inner" data-k="simple"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">85% reduction in training time. Simpler interface, same system.</h3><p class="pc-body">At BVM, redesigning two enterprise platforms — we didn't add features. We removed everything that didn't serve the user's next action. At PocketPlans, cutting inputs from 10 to 4 wasn't a scope compromise — it was the product decision that made everything else work.</p><div class="pc-stat"><span class="pc-n">85%</span><span class="pc-l">reduction in training time<br>by simplifying, not adding</span></div></div>
+        <div class="pc-inner" data-k="decisions"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">I chose API filtering over LLM generation. Reliability over impressiveness.</h3><p class="pc-body">On PocketPlans, LLM generation would have been more impressive to demo. I chose API-driven filtering because a hallucinated venue destroys trust faster than a slow product loses users. On Structify I chose LLMs because the output format is predictable enough to automate reliably.</p><div class="pc-stat"><span class="pc-n">0</span><span class="pc-l">hallucinated results —<br>right tool chosen deliberately</span></div></div>
+        <div class="pc-inner" data-k="ai"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">Two AI products shipped. Neither started with "let's add AI."</h3><p class="pc-body">I've designed for AI from the inside — I know where it creates confusion when it's too confident, where it needs to show reasoning, where it should give a decision instead of options. Designing around those moments is different when you've built the AI yourself.</p><div class="pc-stat"><span class="pc-n">2</span><span class="pc-l">live AI products shipped —<br>where AI earned its place</span></div></div>
+        <div class="pc-inner" data-k="measure"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">Clarity was live before the first user arrived.</h3><p class="pc-body">On PocketPlans, session recording and heatmaps were running from day one. That's how I caught a 26.67% dead click rate nobody mentioned in feedback. Users don't report what they don't notice. Data finds what conversations miss.</p><div class="pc-stat"><span class="pc-n">97%</span><span class="pc-l">scroll depth confirmed by data —<br>not assumed from feedback</span></div></div>
+        <div class="pc-inner" data-k="loop"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">The dead click rate became the entire v2 roadmap.</h3><p class="pc-body">Clarity flagged a 26.67% dead click rate. Nobody complained — the data found it. That signal became the foundation of v2: which elements needed to be interactive, which needed clearer affordances, which should be removed.</p><div class="pc-stat"><span class="pc-n">26.67%</span><span class="pc-l">dead click rate → shaped every<br>v2 product priority</span></div></div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="bring-section section" id="bring">
-  <p class="s-label">Capabilities</p>
-  <h2 class="s-title reveal">What I <em>bring.</em></h2>
-  <p class="s-sub reveal d1">The skills behind every product I've built.</p>
-  <div class="bring-grid reveal d2">
-    <div class="bring-group"><span class="bg-label">Discovery & Validation</span><div class="bg-pills"><span class="bpill ux">User Interviews</span><span class="bpill ux">Survey Design & Synthesis</span><span class="bpill ux">Persona Development</span><span class="bpill ux">Usability Testing</span><span class="bpill ux">Kano Model</span><span class="bpill ux">Market Sizing</span></div></div>
-    <div class="bring-group"><span class="bg-label">Product Strategy</span><div class="bg-pills"><span class="bpill gen">Roadmapping</span><span class="bpill gen">OKRs & North Star Metrics</span><span class="bpill gen">GTM Strategy</span><span class="bpill gen">Omnichannel Strategy</span><span class="bpill gen">Competitive Analysis</span><span class="bpill gen">Feature Prioritization</span></div></div>
-    <div class="bring-group"><span class="bg-label">Execution & Delivery</span><div class="bg-pills"><span class="bpill del">Agile / Scrum</span><span class="bpill del">Sprint Planning</span><span class="bpill del">Azure DevOps</span><span class="bpill del">Stakeholder Management</span><span class="bpill del">Backlog Grooming</span><span class="bpill del">Certified ScrumMaster</span></div></div>
-    <div class="bring-group"><span class="bg-label">AI & Technical Depth</span><div class="bg-pills"><span class="bpill ai">LLMs & RAG</span><span class="bpill ai">Prompt Engineering</span><span class="bpill ai">API Orchestration</span><span class="bpill ai">OCR Pipelines</span><span class="bpill ai">ML Model Evaluation</span><span class="bpill ai">Python & SQL</span></div></div>
-    <div class="bring-group"><span class="bg-label">Design & Analytics</span><div class="bg-pills"><span class="bpill gen">Figma</span><span class="bpill gen">A/B Testing</span><span class="bpill gen">Funnel Analysis</span><span class="bpill gen">Behavioral Analytics</span><span class="bpill gen">Microsoft Clarity</span><span class="bpill gen">Data Visualization</span></div></div>
   </div>
 </section>
 
 <section class="section" id="experience">
-  <p class="s-label">Experience</p>
+  <p class="s-eye">Experience</p>
   <h2 class="s-title reveal">Where I've <em>worked.</em></h2>
   <div class="exp-list reveal d1">
-    <div class="exp-item">
-      <div class="exp-meta"><span class="exp-date">Aug – Sep 2025 · India (Freelance)</span><span class="exp-role">Business Analyst, Product & Strategy</span></div>
-      <div class="exp-body">
-        <h3 class="exp-co">BVM Technology Associates</h3>
-        <p class="exp-story">When I joined BVM, two enterprise platforms were running on Excel with no sprint structure and inconsistent delivery. I didn't just migrate them to Azure DevOps — I diagnosed why delivery was failing, rebuilt the entire workflow, and got buy-in from CEOs and Senior Architects to change how the team operated. In practice, I functioned as the product owner across both platforms. The 70% improvement in sprint velocity wasn't the goal. It was proof the system was finally working.</p>
-        <div class="exp-tags"><span class="bpill del">Agile / Scrum</span><span class="bpill del">Azure DevOps</span><span class="bpill gen">Omnichannel Strategy</span><span class="bpill del">Sprint Planning</span><span class="bpill gen">Roadmapping</span><span class="bpill gen">Digital Transformation</span></div>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-meta"><span class="exp-date">Jul – Dec 2024 · Charlotte, NC</span><span class="exp-role">Associate Product Manager</span></div>
-      <div class="exp-body">
-        <h3 class="exp-co">Kreative Integrations LLC</h3>
-        <p class="exp-story">At Kreative I went further than the brief. I interviewed physicians, ran surveys, and used what I found to change the roadmap mid-build. The RAG chatbot accuracy improved 20% not because the model got better — but because I iterated on the prompts until the outputs were reliable enough for a healthcare context. I also built the investor CRM from scratch, wrote the pitches, and secured a potential investor.</p>
-        <div class="exp-tags"><span class="bpill ux">User Research</span><span class="bpill ux">Usability Testing</span><span class="bpill ai">LLMs & RAG</span><span class="bpill ai">Prompt Engineering</span><span class="bpill gen">Personalization</span><span class="bpill gen">A/B Testing</span></div>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-meta"><span class="exp-date">Jan – Jun 2021 · Bengaluru, India</span><span class="exp-role">Product Research Intern</span></div>
-      <div class="exp-body">
-        <h3 class="exp-co">STARC (SITAR)</h3>
-        <p class="exp-story">My first lesson in owning data as a product decision. I built the testing repository from scratch — every input, output, and finding documented. When I caught calibration errors others missed, I didn't just flag them — I proposed the process fix that delivered 10% accuracy improvement and ~$50K in revenue impact.</p>
-        <div class="exp-tags"><span class="bpill res">Hardware Research</span><span class="bpill del">Cross-functional Coordination</span><span class="bpill gen">Data Integrity</span><span class="bpill gen">Process Improvement</span></div>
-      </div>
-    </div>
+    <div class="exp-row"><div><span class="exp-date">Aug – Sep 2025 · India</span><span class="exp-role">Business Analyst, Product & Strategy</span></div><div><h3 class="exp-co">BVM Technology Associates</h3><p class="exp-story">Served as product owner for two enterprise platforms across 80+ school districts. Led end-to-end UX redesign in Figma — mapped user flows, ran accessibility testing (WCAG), simplified complex grant workflows for non-technical administrators, and delivered engineering specs. Staff training time dropped 85%. Also drove Azure DevOps migration improving sprint velocity 70% and presented milestone demos to CEOs and Senior Architects.</p><div class="exp-tags"><span class="etag">UX Redesign</span><span class="etag">Figma</span><span class="etag">Accessibility (WCAG)</span><span class="etag">Engineering Specs</span><span class="etag">Product Owner</span><span class="etag">Agile</span></div></div></div>
+    <div class="exp-row"><div><span class="exp-date">Jul – Dec 2024 · Charlotte, NC</span><span class="exp-role">Associate Product Manager</span></div><div><h3 class="exp-co">Kreative Integrations LLC</h3><p class="exp-story">Collaborated in Figma with UX designers on healthcare MVP interfaces — contributing to design reviews and translating user research into actionable product decisions. Designed and ran A/B tests end-to-end projecting 15% engagement increase. Fine-tuned a ChatGPT API RAG chatbot through prompt engineering, improving response accuracy 20%.</p><div class="exp-tags"><span class="etag">Figma</span><span class="etag">A/B Testing</span><span class="etag">User Research</span><span class="etag">LLMs & RAG</span><span class="etag">Prompt Engineering</span><span class="etag">Product Strategy</span></div></div></div>
+    <div class="exp-row"><div><span class="exp-date">Jan – Jun 2021 · Bengaluru</span><span class="exp-role">Research Analyst, Intern</span></div><div><h3 class="exp-co">SITAR</h3><p class="exp-story">Quantitative analysis of MEMS sensor data in a semiconductor lab. Built the testing repository from scratch. Identified calibration errors others missed — proposed the fix that delivered 12% efficiency improvement and ~$50K in new revenue.</p><div class="exp-tags"><span class="etag">Data Analysis</span><span class="etag">Research</span><span class="etag">Process Improvement</span></div></div></div>
   </div>
 </section>
 
-<section class="story-section" id="story">
-  <div class="story-inner reveal">
-    <span class="story-q">"</span>
-    <div class="story-text">
-      <p>In undergrad, I built a gesture-controlled laptop using Arduino and an ultrasound sensor, and it made me wonder: <em>what else is possible when you rethink how people interact with technology?</em></p>
-      <p>That curiosity brought me to Engineering Management, where I started understanding not just the technology, but the people using it and the problems worth solving for them.</p>
-      <p>Building products that start with a real problem, for a real person, is what gets me excited. <em>The engineer in me wants it to work. The PM in me needs to know why.</em></p>
+<section class="about-section" id="about">
+  <p class="s-eye">About</p>
+  <h2 class="s-title reveal">I'm <em>Amrutha.</em></h2>
+  <div class="about-grid reveal d1">
+    <div class="about-copy">
+      <p>I build things at the intersection of AI and human experience. I came to product work through engineering, through research, through shipping things and watching real people use them. The through line has always been the same: <em>I care more about the person using the thing than the thing itself.</em></p>
+      <p>I grew up in Bangalore in a home full of music. My mum plays the veena — a classical South Indian string instrument — and I learned alongside her. Those hours taught me something I still use: <strong>constraints don't limit expression, they focus it.</strong> Carnatic music has very specific rules, and within them, infinite possibility. That's how I approach product work too.</p>
+      <p>I came to the US for Engineering Management at Northeastern, published research in IEEE and ASEM, and built two AI products from scratch. Along the way I kept doing the design and research work — because that's always been the part I care about most.</p>
+      <p>Outside of work: I play the veena with my mum, eat my way through every city I visit, and recently started drawing on Procreate — new, imperfect, and the one thing I do where I'm not trying to solve a problem.</p>
+    </div>
+
+    <!-- POLAROID COLLAGE -->
+    <div class="polaroid-stage">
+      <span class="p-ambient pa1">🎵</span>
+      <span class="p-ambient pa2">🍜</span>
+      <span class="p-ambient pa3">🎶</span>
+      <span class="p-ambient pa4">✨</span>
+      <span class="p-ambient pa5">🌿</span>
+      <span class="p-ambient pa6">☀️</span>
+
+      <!-- HOW TO ADD PHOTOS:
+           Replace each <div class="polaroid-ph">...</div> with:
+           <img src="YOURFILE.jpg" alt="description">
+           inside the polaroid div. Name files and place next to index.html.
+           Suggested: p1=you, p2=food, p3=veena, p4=travel, p5=cooking, p6=art, p7=misc, p8=you2 -->
+
+      <div class="polaroid p1">
+        <img src="p1.jpg" alt="Amrutha">
+        <span class="polaroid-caption">Amrutha</span>
+      </div>
+      <div class="polaroid p2">
+        <img src="p2.jpg" alt="Food">
+        <span class="polaroid-caption">Boston eats</span>
+      </div>
+      <div class="polaroid p3">
+        <img src="p3.jpg" alt="Veena">
+        <span class="polaroid-caption">Veena with mum</span>
+      </div>
+      <div class="polaroid p4">
+        <img src="p4.jpg" alt="Travel">
+        <span class="polaroid-caption">Somewhere</span>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="contact-section" id="contact">
-  <p class="contact-warm reveal">Always happy to chat about products, ideas, or what you're building.</p>
+  <p class="contact-line reveal">Always happy to talk about products, people, or what you're building.</p>
   <div class="contact-btns reveal d1">
-    <a href="mailto:hari.am@northeastern.edu" class="c-btn primary">✉ Email</a>
+    <a href="mailto:hari.am@northeastern.edu" class="c-btn primary">✉ Email me</a>
     <a href="https://www.linkedin.com/in/amruthahari" target="_blank" class="c-btn">LinkedIn ↗</a>
     <a href="https://github.com/amruthahari1207" target="_blank" class="c-btn">GitHub ↗</a>
+    <a href="AmruthaHariResume.pdf" target="_blank" class="c-btn">Resume ↗</a>
   </div>
 </section>
 
 <script>
+// PAGE LOADER + NAME SCRAMBLE
+(function(){
+  var chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  var target="hello, i'm amrutha :)";
+  var el=document.getElementById('loaderName');
+  var iter=0;
+  var interval=setInterval(function(){
+    el.textContent=target.split('').map(function(c,i){
+      if(c===' ')return ' ';
+      if(i<iter)return target[i];
+      return chars[Math.floor(Math.random()*chars.length)];
+    }).join('');
+    iter+=.5;
+    if(iter>=target.length){
+      clearInterval(interval);
+      el.textContent=target;
+      setTimeout(function(){
+        document.getElementById('pageLoader').classList.add('gone');
+      },300);
+    }
+  },40);
+})();
+
+
+// MAGNETIC BUTTONS
+document.querySelectorAll('.btn,.c-btn,.proj-open-btn').forEach(function(b){
+  b.addEventListener('mousemove',function(e){
+    var r=b.getBoundingClientRect();
+    var x=(e.clientX-r.left-r.width/2)*.12;
+    var y=(e.clientY-r.top-r.height/2)*.12;
+    b.style.transform='translate('+x+'px,'+y+'px)';
+  });
+  b.addEventListener('mouseleave',function(){b.style.transform='';});
+});
+
+// CARD 3D TILT
+document.querySelectorAll('.proj-card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    if(card.classList.contains('hidden'))return;
+    var r=card.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-.5;
+    var y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform='translateY(-5px) rotateX('+(y*-6)+'deg) rotateY('+(x*6)+'deg)';
+  });
+  card.addEventListener('mouseleave',function(){
+    card.style.transform='translateY(0) rotateX(0) rotateY(0)';
+  });
+});
+
+// POLAROID TILT on hover
+document.querySelectorAll('.polaroid').forEach(function(p){
+  var baseRot=parseFloat(p.style.transform&&p.style.transform.match(/rotate\(([^)]+)deg\)/)?p.style.transform.match(/rotate\(([^)]+)deg\)/)[1]:0)||0;
+  p.addEventListener('mousemove',function(e){
+    var r=p.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-.5;
+    var y=(e.clientY-r.top)/r.height-.5;
+    p.style.animation='none';
+    p.style.transform='rotate('+baseRot+'deg) translateY(-12px) rotateX('+(y*-10)+'deg) rotateY('+(x*10)+'deg) scale(1.05)';
+    p.style.boxShadow='0 20px 50px rgba(0,0,0,.22),0 4px 12px rgba(0,0,0,.1)';
+  });
+  p.addEventListener('mouseleave',function(){
+    p.style.animation='';
+    p.style.transform='';
+    p.style.boxShadow='';
+  });
+});
+
+// HERO UNDERLINE DRAW
+setTimeout(function(){var h=document.getElementById('heroHl');if(h)h.classList.add('drawn');},900);
+
+// TAG CYCLING
+var tw=[document.getElementById('tw0'),document.getElementById('tw1'),document.getElementById('tw2'),document.getElementById('tw3')],tc=0;
+setInterval(function(){tw[tc].classList.remove('lit');tc=(tc+1)%tw.length;tw[tc].classList.add('lit');},1600);
+
+// STAT COUNTER with slot machine feel
+var sa=false;
+function animateStat(el,target,suf){
+  var steps=18,step=0;
+  var interval=setInterval(function(){
+    if(step<steps-3){
+      el.textContent=Math.floor(Math.random()*target)+suf;
+    } else {
+      el.textContent=Math.round(target*(step/(steps-1)))+suf;
+    }
+    step++;
+    if(step>=steps){clearInterval(interval);el.textContent=target+suf;}
+  },55);
+}
+new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting&&!sa){
+      sa=true;
+      document.querySelectorAll('.stat-num[data-t]').forEach(function(el){
+        var tgt=parseInt(el.getAttribute('data-t')),suf=el.getAttribute('data-s')||'';
+        setTimeout(function(){animateStat(el,tgt,suf);},Math.random()*300);
+      });
+    }
+  });
+},{threshold:.3}).observe(document.querySelector('.stats-row'));
+
+// SECTION EYE DRAW on scroll
+var eyeObs=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn');eyeObs.unobserve(e.target);}});
+},{threshold:.5});
+document.querySelectorAll('.s-eye').forEach(function(el){eyeObs.observe(el);});
+
+// STAGGERED CARD REVEAL
+var cardObs=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      var cards=document.querySelectorAll('.proj-card:not(.hidden):not(.revealed)');
+      cards.forEach(function(c,i){
+        setTimeout(function(){c.classList.add('revealed');},i*80);
+      });
+      cardObs.disconnect();
+    }
+  });
+},{threshold:.1});
+var pg=document.getElementById('projGrid');
+if(pg)cardObs.observe(pg);
+
+// REVEAL on scroll
+document.querySelectorAll('.reveal').forEach(function(el){
+  new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');e.target.style.transitionDelay=e.target.dataset.delay||'0s';}});
+  },{threshold:.08}).observe(el);
+});
+
+// ABOUT TEXT HIGHLIGHTS
+var aboutObs=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.querySelectorAll('em,strong').forEach(function(el,i){
+        el.classList.add('about-highlight');
+        setTimeout(function(){el.classList.add('lit');},i*200+300);
+      });
+      aboutObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+var ac=document.querySelector('.about-copy');
+if(ac)aboutObs.observe(ac);
+
+// ACTIVE NAV on scroll
+var sections=['hero','work','think','experience','about','contact'];
+window.addEventListener('scroll',function(){
+  var y=window.scrollY+100;
+  sections.forEach(function(id){
+    var sec=document.getElementById(id);
+    if(!sec)return;
+    var a=document.querySelector('.nav-links a[href="#'+id+'"]');
+    if(!a)return;
+    if(sec.offsetTop<=y&&sec.offsetTop+sec.offsetHeight>y){a.classList.add('active');}
+    else{a.classList.remove('active');}
+  });
+},{passive:true});
+
 var projects=[
-  {title:'PocketPlans',cat:'ai',catClass:'ai',catLabel:'AI Product',
-   live:'https://pocket-plans-pied.vercel.app/',github:'https://github.com/amruthahari1207/PocketPlans',
-   sections:[
-    {label:'The Problem',text:'People don\'t lack venue options. They lack a trusted voice that says "go here." Every existing solution gives more information. Nobody gave a decision.'},
-    {label:'The Decision',text:'I could have used LLM generation — it would have been more impressive to demo. I chose API-driven filtering instead, because hallucinated venues destroy trust faster than a slow product loses users. Reliability over impressiveness, every time.'},
-    {label:'How I Built It',text:'Cut inputs from 10 to 4 after user testing revealed complexity was the real barrier. Tracked everything from day one — Clarity was live before the first user arrived. Selected into Northeastern\'s IDEA Startup Incubator.'},
-    {type:'metrics',items:[{num:'97%',label:'Scroll depth'},{num:'0',label:'Drop-offs'},{num:'76%',label:'Activation rate'}]},
-    {label:'What Didn\'t Work',text:'26% dead click rate caught in Clarity — users expected interactive elements that weren\'t there. Nobody complained. The data found it.'},
-    {label:'What\'s Next',text:'Interactive venue cards, save and share plans, retention loop. Every v2 decision comes from behavioral data, not assumption.'}
-   ]},
-  {title:'Structify',cat:'ai',catClass:'ai',catLabel:'AI Product',
-   live:'https://structify.streamlit.app/',github:'https://github.com/amruthahari1207/structify',
-   sections:[
-    {label:'The Problem',text:'The format of a user story never changes. The thinking inside it does. PMs were spending 60–70% of their time on the wrapper, not the thinking.'},
-    {label:'The Decision',text:'I chose LLM + OCR + prompt engineering — not because AI is impressive, but because the output format is predictable enough to automate reliably. If structure is constant, creativity can live in the content, not the formatting.'},
-    {label:'How I Built It',text:'Iterated on prompt architecture until consistency improved 25% across varied input formats. Benchmark tested every change. Shipped on Streamlit as a live tool.'},
-    {type:'metrics',items:[{num:'60–70%',label:'Manual PM effort reduced'},{num:'<5s',label:'Time to structured output'},{num:'25%',label:'Output consistency improvement'}]},
-    {label:'What Didn\'t Work',text:'Early prompt architecture produced inconsistent epics across different input formats. Benchmark testing revealed the pattern — fixed in iteration 3.'},
-    {label:'What\'s Next',text:'Jira integration, team collaboration layer, input-type detection. Goal: zero formatting time for any PM.'}
-   ]},
-  {title:'Protothon — Eventbrite',cat:'ux',catClass:'ux',catLabel:'UX & Strategy',
-   proto:'https://www.figma.com/proto/HcPt0JqZnVm4qCIo1YFk7X/EventBrite?type=design&node-id=731-1305&t=N6f4pM33VOpaK7OK-0&scaling=scale-down&page-id=1669%3A162202&starting-point-node-id=731%3A1305',
-   sections:[
-    {label:'The Problem',text:'Eventbrite had a retention problem disguised as a discovery problem. Only 8% of users found events through Eventbrite directly — 76% relied on word of mouth. The platform wasn\'t sticky enough to bring people back.'},
-    {label:'The Decision',text:'I chose to start with user survey synthesis before touching Figma — a decision most teams skip under time pressure. 92% of users needed reviews to choose events. 96% loved connecting with people to go out with. That data changed everything: we deprioritized discovery and built the retention loop first.'},
-    {label:'How I Built It',text:'100+ user interviews, competitive analysis across 6 platforms including Meetup, Facebook Events, and Ticketmaster. Kano Model prioritization. North Star metrics defined before any wireframe.'},
-    {type:'metrics',items:[{num:'100+',label:'User interviews'},{num:'$6.24M',label:'SOM identified'},{num:'Top 2',label:'Of 45+ teams'}]},
-    {label:'What Didn\'t Work',text:'First prototype over-indexed on discovery features. User feedback in iteration 2 revealed retention was the real lever. Pivoted the entire concept in hour 8 of a 12-hour competition.'},
-    {label:'What\'s Next',text:'Personalized event recommendations based on past attendance. The social layer — connecting people to go out with — is the differentiator no competitor had.'}
-   ]},
-  {title:'Worldify',cat:'ux',catClass:'ux',catLabel:'UX & Strategy',
-   proto:'https://www.figma.com/proto/sAGz5CohWTE2WkyFQxluSG/Wireframing-(Copy)?type=design&node-id=889265-705',
-   sections:[
-    {label:'The Problem',text:'Language learners master vocabulary but fail professionally. The missing layer isn\'t grammar — it\'s cultural and industry-specific context nobody teaches.'},
-    {label:'The Decision',text:'I cut language features from the alpha entirely after user testing showed culture was the real differentiator. It felt counterintuitive for a language learning app — but the data was clear. Scope ruthlessly to what actually matters.'},
-    {label:'How I Built It',text:'Defined user segments before building anything. Alpha roadmap focused entirely on the culture layer. GTM strategy defined before any wireframe existed. Won 1st of 10 teams, presented to faculty and industry judges.'},
-    {type:'metrics',items:[{num:'1st',label:'Of 10 teams'},{num:'Full',label:'Alpha to launch roadmap'},{num:'Real',label:'User-validated MVP'}]},
-    {label:'What Didn\'t Work',text:'Initial scope tried to solve language AND culture simultaneously. User testing showed culture was the differentiator. Cut scope to focus.'},
-    {label:'What\'s Next',text:'Industry-specific modules — legal, medical, tech. Each vertical is its own GTM motion.'}
-   ]},
-  {title:'Alzheimer\'s Detection',cat:'research',catClass:'res',catLabel:'Research',
-   paper:'https://ieeexplore.ieee.org/document/9573589',
-   sections:[
-    {label:'The Problem',text:'Early Alzheimer\'s detection from MRI scans was slow and error-prone. Existing ML benchmarks lacked accuracy at scale. The data existed — the right model didn\'t.'},
-    {label:'The Decision',text:'I compared multiple ML models systematically — Regularised ELM and MLP ELM both explored — rather than defaulting to the most popular approach. I chose not to use SVMs or standard neural nets despite them being the convention. The benchmark decided, not the assumption.'},
-    {label:'How I Built It',text:'Preprocessed 6,000+ MRI scans, extracted 77 features using Matlab. Lead author and presenter at IEEE GUCON 2021, Kuala Lumpur, Malaysia. Selected from 1,386 submissions across 37 countries — 17% acceptance rate.'},
-    {type:'metrics',items:[{num:'95%',label:'Classification accuracy'},{num:'+17%',label:'vs SVMs & neural nets'},{num:'6,000+',label:'MRI scans processed'}]},
-    {label:'What Didn\'t Work',text:'Initial feature extraction produced noise that reduced accuracy. Reprocessing the full dataset with tighter parameters is where the 17% improvement actually came from.'},
-    {label:'What\'s Next',text:'The same model evaluation rigor I applied here is how I evaluate every product decision: what\'s the benchmark, what are the alternatives, what does the data actually say.'}
-   ]},
-  {title:'AI Lifecycle Framework',cat:'research',catClass:'res',catLabel:'Research',
-   proceedings:'https://asem.org/resources/Website/Publications/IAC%20Proceedings%20Files/ASEM%202025%20IAC%20Proceedings.pdf',
-   sections:[
-    {label:'The Problem',text:'AI product teams were applying traditional software lifecycle frameworks to AI development. The misalignment was costing teams months and producing roadmaps that didn\'t account for AI-specific constraints.'},
-    {label:'The Decision',text:'I chose to make every stage of the framework actionable with specific checkpoints — rather than keeping it academically elegant. The first version was more theoretically rigorous. Practitioner feedback changed the direction entirely. Usability over elegance.'},
-    {label:'How I Built It',text:'Co-authored and presented at ASEM 2025 International Annual Conference, Boise, ID. Validated against real product roadmap contexts before submission. Published in official conference proceedings.'},
-    {type:'metrics',items:[{num:'12–15%',label:'Faster launch timelines'},{num:'20%',label:'Better team alignment'},{num:'ASEM 2025',label:'Presented'}]},
-    {label:'What Didn\'t Work',text:'First framework version was too theoretical. Practitioner feedback pushed us to make every stage actionable. That revision is what made it adoptable.'},
-    {label:'What\'s Next',text:'This framework directly informs how I structure every product roadmap I own. It\'s not research for research\'s sake — it\'s how I work.'}
-   ]}
+  {title:'PocketPlans',cat:'ai',label:'AI Product',live:'https://pocket-plans-pied.vercel.app/',github:'https://github.com/amruthahari1207/PocketPlans',sections:[
+    {l:'The User',t:'College students and young professionals in Boston, 22–30, planning social outings. Time-constrained, decision-fatigued. They didn\'t need more options — they needed someone to just say "go here."'},
+    {l:'The Problem',t:'People don\'t lack venue options. They lack a trusted voice that says "go here." Every existing solution gives more information. Nobody gave a decision.'},
+    {l:'The Product Decision',t:'I chose API-driven filtering over LLM generation because hallucinated venues destroy trust faster than a slow product loses users. I cut inputs from 10 to 4 after usability testing showed users abandoning at field 6. Reliability over impressiveness. Simplicity over completeness.'},
+    {l:'How I Built It',t:'Designed full product UX in Figma — user flows, wireframes, interactive prototype — iterating through usability testing. Set up Microsoft Clarity before the first user arrived. Selected into Northeastern\'s IDEA Startup Incubator.'},
+    {m:[{n:'97%',l:'Scroll depth'},{n:'0',l:'Drop-offs'},{n:'76%',l:'Activation rate'}]},
+    {l:'What Didn\'t Work',t:'26.67% dead click rate caught in Clarity — users expected interactive elements that weren\'t there. Nobody mentioned it in feedback. The data found it. That signal became the foundation of v2.'},
+    {l:'What\'s Next',t:'Interactive venue cards, save and share plans, retention loop. Every v2 decision comes from behavioral data, not assumption.'}
+  ]},
+  {title:'Structify',cat:'ai',label:'AI Product',live:'https://structify.streamlit.app/',github:'https://github.com/amruthahari1207/structify',sections:[
+    {l:'The User',t:'Product managers spending 60–70% of their time on formatting — user stories, epics, acceptance criteria — rather than the actual thinking.'},
+    {l:'The Problem',t:'The format of a user story never changes. The thinking inside it does. PMs were spending most of their time on the wrapper, not the content.'},
+    {l:'The Product Decision',t:'Chose LLMs because the output format is predictable enough to automate reliably. Designed the input flow to accept unstructured formats so users don\'t need to think about how to provide information.'},
+    {l:'How I Built It',t:'Iterated on prompt architecture through benchmark testing until output consistency improved 25% across varied input formats. Shipped on Streamlit as a live tool.'},
+    {m:[{n:'60–70%',l:'Manual effort reduced'},{n:'<5s',l:'Time to output'},{n:'25%',l:'Consistency improvement'}]},
+    {l:'What Didn\'t Work',t:'Early prompt architecture produced inconsistent epics. Benchmark testing revealed the pattern — fixed in iteration 3.'},
+    {l:'What\'s Next',t:'Jira integration, team collaboration layer, input-type detection. Goal: zero formatting time for any PM.'}
+  ]},
+  {title:'Protothon — Eventbrite',cat:'ux',label:'UX & Research',proto:'https://www.figma.com/proto/HcPt0JqZnVm4qCIo1YFk7X/EventBrite?type=design&node-id=731-1305&t=N6f4pM33VOpaK7OK-0&scaling=scale-down&page-id=1669%3A162202&starting-point-node-id=731%3A1305',sections:[
+    {l:'The User',t:'Eventbrite users 21–35 who rely on word of mouth to find events. They want to go out but the platform doesn\'t create the habit of coming back.'},
+    {l:'The Problem',t:'Eventbrite had a retention problem disguised as a discovery problem. Only 8% found events through Eventbrite directly — 76% relied on word of mouth.'},
+    {l:'The Research Decision',t:'100+ user interviews before opening Figma. 92% needed reviews to choose events. 96% loved connecting with people to go out with. Data changed the entire direction: built the social retention loop first.'},
+    {l:'How I Built It',t:'Competitive analysis across 6 platforms. Kano Model prioritization. North Star metrics before any wireframe. Full Figma prototype presented to Google, McKinsey, and Schneider Electric panelists.'},
+    {m:[{n:'100+',l:'Interviews in 12hrs'},{n:'$6.24M',l:'SOM identified'},{n:'Top 2',l:'Of 45+ teams'}]},
+    {l:'What Didn\'t Work',t:'First prototype over-indexed on discovery. Iteration 2 revealed retention was the real lever. Pivoted in hour 8 of a 12-hour competition.'},
+    {l:'What\'s Next',t:'Personalized recommendations based on past attendance. The social layer is the differentiator no competitor has.'}
+  ]},
+  {title:'Worldify',cat:'ux',label:'UX & Research',proto:'https://www.figma.com/proto/sAGz5CohWTE2WkyFQxluSG/Wireframing-(Copy)?type=design&node-id=889265-705',sections:[
+    {l:'The Problem',t:'Language learners master vocabulary but fail professionally. The missing layer isn\'t grammar — it\'s cultural and industry-specific context nobody teaches.'},
+    {l:'The Product Decision',t:'Cut language features from the alpha after user testing showed culture was the real differentiator. Counterintuitive — but the data was clear.'},
+    {l:'How I Built It',t:'Defined user segments before building. Alpha roadmap focused on the culture layer. GTM strategy before any wireframe. Won 1st of 10 teams.'},
+    {m:[{n:'1st',l:'Of 10 teams'},{n:'Full',l:'Alpha to launch roadmap'},{n:'Real',l:'User-validated MVP'}]},
+    {l:'What Didn\'t Work',t:'Initial scope tried to solve language AND culture. User testing showed culture was the differentiator. Cut scope to focus.'},
+    {l:'What\'s Next',t:'Industry-specific modules — legal, medical, tech. Each vertical is its own GTM motion.'}
+  ]},
+  {title:"Alzheimer's Detection",cat:'research',label:'Publication · IEEE',paper:'https://ieeexplore.ieee.org/document/9573589',sections:[
+    {l:'The Problem',t:'Early Alzheimer\'s detection from MRI scans was slow and error-prone. The data existed — the right model didn\'t.'},
+    {l:'The Decision',t:'Compared multiple ML models systematically. Chose against SVMs and neural nets despite convention. The benchmark decided, not the assumption.'},
+    {l:'How I Built It',t:'Preprocessed 6,000+ MRI scans, extracted 77 features. Lead author at IEEE GUCON 2021, Kuala Lumpur. Selected from 1,386 submissions — 17% acceptance rate.'},
+    {m:[{n:'95%',l:'Classification accuracy'},{n:'+17%',l:'vs SVMs & neural nets'},{n:'6,000+',l:'MRI scans'}]},
+    {l:'What Didn\'t Work',t:'Initial feature extraction produced noise. Reprocessing with tighter parameters is where the 17% improvement came from.'},
+    {l:'What\'s Next',t:'The same evaluation rigor I applied here is how I evaluate every product decision.'}
+  ]},
+  {title:'AI Lifecycle Framework',cat:'research',label:'Publication · ASEM',proceedings:'https://asem.org/resources/Website/Publications/IAC%20Proceedings%20Files/ASEM%202025%20IAC%20Proceedings.pdf',sections:[
+    {l:'The Problem',t:'AI product teams were applying traditional software lifecycle frameworks to AI development. The misalignment was costing months.'},
+    {l:'The Decision',t:'Made every stage actionable with specific checkpoints. First version was too theoretical. Practitioner feedback changed it entirely. Usability over elegance.'},
+    {l:'How I Built It',t:'Co-authored and presented at ASEM 2025, Boise, ID. Validated against real product roadmap contexts before submission.'},
+    {m:[{n:'12–15%',l:'Faster launch timelines'},{n:'20%',l:'Better alignment'},{n:'ASEM 2025',l:'Published'}]},
+    {l:'What Didn\'t Work',t:'First framework was too theoretical. Practitioner feedback pushed toward actionable stages.'},
+    {l:'What\'s Next',t:'This framework directly informs how I structure every product roadmap I own.'}
+  ]}
 ];
 
-var activeFilter='all';
-var filteredIndices=[0,1,2,3,4,5];
-var currentModalIndex=0;
-
-document.querySelectorAll('.ftab').forEach(function(tab){
-  tab.addEventListener('click',function(){
-    document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('active');});
-    tab.classList.add('active');
-    activeFilter=tab.getAttribute('data-filter');
-    filteredIndices=[];
-    document.querySelectorAll('.proj-card').forEach(function(card){
-      var show=activeFilter==='all'||card.getAttribute('data-cat')===activeFilter;
-      if(show){card.classList.remove('hidden');filteredIndices.push(parseInt(card.getAttribute('data-index')));}
-      else{card.classList.add('hidden');}
+var fIdx=[0,1,2,3,4,5],cur=0;
+document.querySelectorAll('.ftab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.ftab').forEach(function(x){x.classList.remove('active');});
+    t.classList.add('active');
+    var f=t.getAttribute('data-f');fIdx=[];
+    document.querySelectorAll('.proj-card').forEach(function(c){
+      var show=f==='all'||c.getAttribute('data-cat')===f;
+      c.classList.toggle('hidden',!show);
+      if(show)fIdx.push(parseInt(c.getAttribute('data-i')));
     });
   });
 });
 
-function buildModalBody(p){
-  var html='';
-  p.sections.forEach(function(s){
-    if(s.type==='metrics'){
-      html+='<div class="modal-metrics-row" style="grid-template-columns:repeat('+s.items.length+',1fr)">';
-      s.items.forEach(function(m){
-        html+='<div class="modal-metric-item"><div class="modal-metric-num">'+m.num+'</div><div class="modal-metric-label">'+m.label+'</div></div>';
-      });
-      html+='</div>';
-    }else{
-      html+='<div class="modal-section"><span class="modal-section-label">'+s.label+'</span><div class="modal-section-text">'+s.text+'</div></div>';
-    }
-  });
-  return html;
+function buildBody(p){
+  return p.sections.map(function(s){
+    if(s.m)return '<div class="modal-metrics" style="grid-template-columns:repeat('+s.m.length+',1fr)">'+s.m.map(function(x){return '<div class="modal-metric"><div class="modal-metric-n" data-raw="'+x.n+'">'+x.n+'</div><div class="modal-metric-l">'+x.l+'</div></div>';}).join('')+'</div>';    return '<div class="modal-sec"><span class="modal-sec-lbl">'+s.l+'</span><div class="modal-sec-txt">'+s.t+'</div></div>';
+  }).join('');
 }
-
 function openModal(idx){
-  var p=projects[idx];
-  currentModalIndex=idx;
-  var catEl=document.getElementById('modalCat');
-  catEl.textContent=p.catLabel;
-  catEl.className='proj-cat '+p.catClass;
-  document.getElementById('modalProjectTitle').textContent=p.title;
-  var pos=filteredIndices.indexOf(idx);
-  document.getElementById('modalCounter').textContent=(pos+1)+' of '+filteredIndices.length;
-  document.getElementById('modalNavCounter').textContent=(pos+1)+' / '+filteredIndices.length;
-  var liveEl=document.getElementById('modalLive');
-  var ghEl=document.getElementById('modalGithub');
-  var paperEl=document.getElementById('modalPaper');
-  var protoEl=document.getElementById('modalProto');
-  var procEl=document.getElementById('modalProceedings');
-  liveEl.style.display=p.live?'inline':'none';
-  ghEl.style.display=p.github?'inline':'none';
-  paperEl.style.display=p.paper?'inline':'none';
-  protoEl.style.display=p.proto?'inline':'none';
-  procEl.style.display=p.proceedings?'inline':'none';
-  if(p.live)liveEl.href=p.live;
-  if(p.github)ghEl.href=p.github;
-  if(p.paper)paperEl.href=p.paper;
-  if(p.proto)protoEl.href=p.proto;
-  if(p.proceedings)procEl.href=p.proceedings;
-  document.getElementById('modalBody').innerHTML=buildModalBody(p);
-  document.getElementById('modalPrev').disabled=pos===0;
-  document.getElementById('modalNext').disabled=pos===filteredIndices.length-1;
+  var p=projects[idx];cur=idx;
+  document.getElementById('mCat').textContent=p.label;
+  document.getElementById('mTitle').textContent=p.title;
+  var pos=fIdx.indexOf(idx);
+  document.getElementById('mCtr').textContent=(pos+1)+' of '+fIdx.length;
+  document.getElementById('mNavC').textContent=(pos+1)+' / '+fIdx.length;
+  ['mLive','mGh','mPaper','mProto','mProc'].forEach(function(id){document.getElementById(id).style.display='none';});
+  if(p.live){var e=document.getElementById('mLive');e.style.display='inline';e.href=p.live;}
+  if(p.github){var e=document.getElementById('mGh');e.style.display='inline';e.href=p.github;}
+  if(p.paper){var e=document.getElementById('mPaper');e.style.display='inline';e.href=p.paper;}
+  if(p.proto){var e=document.getElementById('mProto');e.style.display='inline';e.href=p.proto;}
+  if(p.proceedings){var e=document.getElementById('mProc');e.style.display='inline';e.href=p.proceedings;}
+  document.getElementById('mBody').innerHTML=buildBody(p);
+  document.getElementById('mPrev').disabled=pos===0;
+  document.getElementById('mNext').disabled=pos===fIdx.length-1;
   document.getElementById('modalOverlay').classList.add('active');
   document.body.style.overflow='hidden';
-  document.getElementById('modalScroll').scrollTop=0;
+  document.getElementById('mScroll').scrollTop=0;
+  setTimeout(function(){
+  document.querySelectorAll('.modal-metric-n[data-raw]').forEach(function(el){
+    var raw=el.getAttribute('data-raw');
+    var num=parseFloat(raw.replace(/[^0-9.]/g,''));
+    var suf=raw.replace(/[0-9.]/g,'');
+    if(isNaN(num)){return;}
+    var s0=null;
+    requestAnimationFrame(function step(ts){
+      if(!s0)s0=ts;
+      var p=Math.min((ts-s0)/900,1);
+      var eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round(eased*num)+suf;
+      if(p<1)requestAnimationFrame(step);
+    });
+  });
+},100);
 }
-
-function closeModal(){
-  document.getElementById('modalOverlay').classList.remove('active');
-  document.body.style.overflow='';
-}
-
-document.querySelectorAll('.proj-card').forEach(function(card){
-  card.addEventListener('click',function(){openModal(parseInt(card.getAttribute('data-index')));});
-});
-document.getElementById('modalClose').addEventListener('click',closeModal);
+function closeModal(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow='';}
+document.querySelectorAll('.proj-card').forEach(function(c){c.addEventListener('click',function(){openModal(parseInt(c.getAttribute('data-i')));});});
+document.getElementById('mClose').addEventListener('click',closeModal);
 document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.getElementById('modalPrev').addEventListener('click',function(){
-  var pos=filteredIndices.indexOf(currentModalIndex);
-  if(pos>0)openModal(filteredIndices[pos-1]);
-});
-document.getElementById('modalNext').addEventListener('click',function(){
-  var pos=filteredIndices.indexOf(currentModalIndex);
-  if(pos<filteredIndices.length-1)openModal(filteredIndices[pos+1]);
-});
+document.getElementById('mPrev').addEventListener('click',function(){var p=fIdx.indexOf(cur);if(p>0)openModal(fIdx[p-1]);});
+document.getElementById('mNext').addEventListener('click',function(){var p=fIdx.indexOf(cur);if(p<fIdx.length-1)openModal(fIdx[p+1]);});
 document.addEventListener('keydown',function(e){
   if(!document.getElementById('modalOverlay').classList.contains('active'))return;
   if(e.key==='Escape')closeModal();
-  if(e.key==='ArrowLeft'){var pos=filteredIndices.indexOf(currentModalIndex);if(pos>0)openModal(filteredIndices[pos-1]);}
-  if(e.key==='ArrowRight'){var pos=filteredIndices.indexOf(currentModalIndex);if(pos<filteredIndices.length-1)openModal(filteredIndices[pos+1]);}
+  var p=fIdx.indexOf(cur);
+  if(e.key==='ArrowLeft'&&p>0)openModal(fIdx[p-1]);
+  if(e.key==='ArrowRight'&&p<fIdx.length-1)openModal(fIdx[p+1]);
 });
 
-var lastY=0;
-var navEl=document.getElementById('nav');
+var lastY=0,nav=document.getElementById('nav');
 window.addEventListener('scroll',function(){
   var y=window.scrollY;
-  if(y>lastY&&y>80){navEl.classList.add('hide');}else{navEl.classList.remove('hide');}
-  if(y>20){navEl.classList.add('shadow');}else{navEl.classList.remove('shadow');}
+  if(y>lastY&&y>80)nav.classList.add('hide');else nav.classList.remove('hide');
+  nav.classList.toggle('shadow',y>20);
   lastY=y;
-});
+},{passive:true});
 
-var revealObs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');revealObs.unobserve(e.target);}});
-},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
-
-var tagItems=document.querySelectorAll('.tag-item');
-if(tagItems.length){
-  var cur=0;tagItems[0].classList.add('active');
-  setInterval(function(){tagItems[cur].classList.remove('active');cur=(cur+1)%tagItems.length;tagItems[cur].classList.add('active');},1400);
-}
+// NAV scroll handled above
 
 document.querySelectorAll('.pitem').forEach(function(item){
   item.addEventListener('click',function(){
     document.querySelectorAll('.pitem').forEach(function(p){p.classList.remove('active');});
     item.classList.add('active');
-    var key=item.getAttribute('data-key');
-    document.querySelectorAll('.proof-content').forEach(function(p){p.style.display='none';});
-    var target=document.querySelector('.proof-content[data-key="'+key+'"]');
-    if(target){target.style.display='block';}
+    var k=item.getAttribute('data-k');
+    document.querySelectorAll('.pc-inner').forEach(function(p){p.classList.remove('on');});
+    var t=document.querySelector('.pc-inner[data-k="'+k+'"]');
+    if(t)t.classList.add('on');
   });
+});
+
+// stat counter handled above
+
+document.querySelectorAll('.btn,.c-btn,.proj-open-btn').forEach(function(b){
+  b.addEventListener('mousemove',function(e){
+    var r=b.getBoundingClientRect();
+    b.style.transform='translate('+(e.clientX-r.left-r.width/2)*.1+'px,'+(e.clientY-r.top-r.height/2)*.1+'px)';
+  });
+  b.addEventListener('mouseleave',function(){b.style.transform='';});
 });
 </script>
 </body>
