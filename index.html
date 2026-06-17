@@ -85,7 +85,24 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 
 /* HERO PHOTO */
 .hero-img-wrap{display:flex;align-items:center;justify-content:flex-start;margin-left:-40px;opacity:0;animation:fadeUp .7s ease forwards .38s;}
-.hero-img{width:300px;height:380px;object-fit:cover;object-position:70% 25%;border-radius:16px;border:1px solid var(--border2);box-shadow:0 12px 40px rgba(0,0,0,.12);}
+.hero-photo-frame{
+  width:300px;
+  height:380px;
+  border-radius:16px;
+  border:1px solid var(--border2);
+  box-shadow:0 12px 40px rgba(0,0,0,.12);
+  overflow:hidden;
+}
+
+.hero-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:60% 24%;
+  transform:scale(1.18);
+  transform-origin:60% 24%;
+  display:block;
+}
 .hero-img-ph{width:210px;height:260px;border-radius:20px;background:var(--sage-light);border:1px solid rgba(74,124,89,.12);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:5rem;color:var(--sage);opacity:.2;}
 
 /* STAT CARDS */
@@ -1401,6 +1418,96 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   font-weight:600;
   color:#555;
 }
+/* ===== PROJECT GRID CALMER + SAGE CARD FIX ===== */
+
+:root{
+  --page-bg: #FCFCFA;
+  --card-sage: #F5FAF6;
+  --card-sage-hover: #EEF6F0;
+  --card-border: #DDE8DF;
+  --tag-bg: #FBFDFB;
+  --tag-border: #D9E4DB;
+  --text-main: #1E1E1E;
+  --text-body: #4E4E4E;
+  --text-soft: #7A7A7A;
+}
+
+body{
+  background: var(--page-bg);
+}
+
+.proj-grid{
+  gap: 18px;
+}
+
+.proj-card{
+  background: var(--card-sage);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 18px rgba(74, 124, 89, 0.04);
+}
+
+.proj-card:hover{
+  background: var(--card-sage-hover);
+  border-color: #BDD1C0;
+  box-shadow: 0 12px 28px rgba(74, 124, 89, 0.08);
+}
+
+.proj-card-top{
+  padding: 24px 24px 0;
+}
+
+.proj-card-bottom{
+  padding: 14px 24px 22px;
+}
+
+.proj-num{
+  color: #B7B7B7;
+  font-size: .72rem;
+  margin-bottom: 10px;
+}
+
+.proj-title{
+  color: var(--text-main);
+  font-size: 1.28rem;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.proj-hook{
+  color: var(--text-body);
+  font-size: .95rem;
+  line-height: 1.65;
+  font-style: normal;
+  max-width: 95%;
+}
+
+.proj-tags{
+  gap: 7px;
+  margin-bottom: 14px;
+}
+
+.wtag{
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  color: var(--text-soft);
+  font-size: .68rem;
+  padding: 5px 10px;
+}
+
+.proj-open-btn{
+  background: #FFFFFF;
+  border: 1px solid var(--tag-border);
+  color: #424242;
+  font-size: .88rem;
+  font-weight: 600;
+  padding: 12px;
+}
+
+.proj-open-btn:hover{
+  background: #FAFCFA;
+  border-color: #C9D9CC;
+}
 </style>
 </head>
 <body>
@@ -1466,9 +1573,10 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
         <a href="#work" class="btn btn-primary">See the work ↓</a>
       </div>
     </div>
-    <div class="hero-img-wrap">
-      <img src="profile.jpg" alt="Amrutha Hari" class="hero-img">
-    </div>
+   <div class="hero-img-wrap">
+      <div class="hero-photo-frame">
+        <img src="profile.jpg" alt="Amrutha Hari" class="hero-img">
+      </div>
   </div>
   <div class="stats-row">
     <div class="stat-card"><div class="stat-icon">📄</div><div class="stat-num" data-t="2" data-s="×">2×</div><div class="stat-title">Peer-reviewed publications</div><div class="stat-sub">IEEE + ASEM international</div></div>
