@@ -890,6 +890,27 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
     display: none;
   }
 }
+/* FINAL FIX: keep About heading consistent with other section headings */
+.about-section .s-title {
+  font-size: clamp(2.2rem, 3.5vw, 3rem) !important;
+  line-height: 1.1 !important;
+  max-width: 760px;
+  margin-bottom: 30px !important;
+}
+
+@media (max-width: 960px) {
+  .about-section .s-title {
+    font-size: clamp(2.2rem, 3.5vw, 3rem) !important;
+    margin-bottom: 28px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-section .s-title {
+    font-size: clamp(2rem, 9vw, 2.7rem) !important;
+    margin-bottom: 24px !important;
+  }
+}
 </style>
 </head>
 <body>
