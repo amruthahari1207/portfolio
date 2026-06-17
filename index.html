@@ -1053,12 +1053,16 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   z-index:1;
 }
 
-.case-chip:nth-child(1)::before{content:'📌';margin-right:6px;}
-.case-chip:nth-child(3)::before{content:'⭐';margin-right:6px;}
-.case-chip:nth-child(5)::before{content:'🍽️';margin-right:6px;}
-.case-chip:nth-child(7)::before{content:'📍';margin-right:6px;}
-.case-chip:nth-child(9)::before{content:'💬';margin-right:6px;}
-.case-chip:nth-child(11)::before{content:'😵‍💫';margin-right:6px;}
+.case-chip::before{
+  content:'';
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--sage);
+  opacity:.55;
+  margin-right:7px;
+  flex-shrink:0;
+}
 
 .case-arrow {
   color:var(--sage);
