@@ -1360,7 +1360,7 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
         <a href="#" class="modal-link" id="mGh" target="_blank" style="display:none">GitHub ↗</a>
         <a href="#" class="modal-link" id="mPaper" target="_blank" style="display:none">Paper ↗</a>
         <a href="#" class="modal-link" id="mProto" target="_blank" style="display:none">Prototype ↗</a>
-        <a href="#" class="modal-link" id="mProc" target="_blank" style="display:none">Pitch Deck ↗</a>
+        <a href="#" class="modal-link" id="mProc" target="_blank" style="display:none">Deck ↗</a>
         <button class="modal-x" id="mClose">✕</button>
       </div>
     </div>
@@ -1419,7 +1419,7 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
     <div class="proj-card" data-cat="ai" data-i="1"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">AI Product</span><span class="proj-live">Live</span></div><div class="proj-num">02</div><div class="proj-title">Structify</div><div class="proj-hook">Designed an AI workflow that turns messy inputs into structured product specs in seconds.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">LLMs & RAG</span><span class="wtag">Prompt Engineering</span><span class="wtag">Workflow Design</span></div><button class="proj-open-btn">View case study →</button></div></div>
     <div class="proj-card" data-cat="ux" data-i="2"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Product Design</span><span class="proj-badge">🥈 2nd / 45+ teams</span></div><div class="proj-num">03</div><div class="proj-title">Protothon — Eventbrite</div><div class="proj-hook">2-week product sprint. 100+ user inputs. Figma prototype. $6.24M market opportunity identified.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">User Research</span><span class="wtag">Figma Prototype</span><span class="wtag">Market Sizing</span></div><button class="proj-open-btn">View case study →</button></div></div>
     <div class="proj-card" data-cat="ux" data-i="3"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Product Design</span><span class="proj-badge">🥇 1st / 10 teams</span></div><div class="proj-num">04</div><div class="proj-title">Worldify</div><div class="proj-hook">Designed a gamified language + work culture app for professionals building careers abroad.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">0→1 Roadmap</span><span class="wtag">GTM Strategy</span><span class="wtag">Usability Testing</span></div><button class="proj-open-btn">View case study →</button></div></div>
-    <div class="proj-card" data-cat="research" data-i="4"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Publication</span><span class="proj-badge">IEEE</span></div><div class="proj-num">05</div><div class="proj-title">Alzheimer's Detection</div><div class="proj-hook">Chose ELM over SVMs and neural nets. 95% accuracy proved the call.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">Machine Learning</span><span class="wtag">Model Evaluation</span><span class="wtag">Research</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
+    <div class="proj-card" data-cat="research" data-i="4"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Publication</span><span class="proj-badge">IEEE</span></div><div class="proj-num">05</div><div class="proj-title">Alzheimer's Detection</div><div class="proj-hook">Built an MRI classification pipeline using ELM variants, reaching 90% test accuracy.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">Machine Learning</span><span class="wtag">Model Evaluation</span><span class="wtag">Research</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
     <div class="proj-card" data-cat="research" data-i="5"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Publication</span><span class="proj-badge">ASEM</span></div><div class="proj-num">06</div><div class="proj-title">AI Lifecycle Framework</div><div class="proj-hook">Built a framework that cuts AI product launch timelines by 12–15%.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">AI Strategy</span><span class="wtag">Product Roadmapping</span><span class="wtag">Lead Author</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
   </div>
 </section>
@@ -1937,14 +1937,40 @@ var projects=[
     t:'If this moved forward, I would validate whether users learn better when vocabulary and work culture are taught together.<div class="case-priorities"><span class="case-priority">Onboarding test</span><span class="case-priority">Lesson completion</span><span class="case-priority">Vocabulary retention</span><span class="case-priority">Culture module usefulness</span><span class="case-priority">DAU / MAU engagement</span></div><div class="case-note">The goal would be to test whether professional context improves retention, confidence, and repeat learning behavior.</div>'
   }
 ]},
-  {title:"Alzheimer's Detection",cat:'research',label:'Publication · IEEE',paper:'https://ieeexplore.ieee.org/document/9573589',sections:[
-    {l:'The Problem',t:'Early Alzheimer\'s detection from MRI scans was slow and error-prone. The data existed — the right model didn\'t.'},
-    {l:'The Decision',t:'Compared multiple ML models systematically. Chose against SVMs and neural nets despite convention. The benchmark decided, not the assumption.'},
-    {l:'How I Built It',t:'Preprocessed 6,000+ MRI scans, extracted 77 features. Lead author at IEEE GUCON 2021, Kuala Lumpur. Selected from 1,386 submissions — 17% acceptance rate.'},
-    {m:[{n:'95%',l:'Classification accuracy'},{n:'+17%',l:'vs SVMs & neural nets'},{n:'6,000+',l:'MRI scans'}]},
-    {l:'What Didn\'t Work',t:'Initial feature extraction produced noise. Reprocessing with tighter parameters is where the 17% improvement came from.'},
-    {l:'What\'s Next',t:'The same evaluation rigor I applied here is how I evaluate every product decision.'}
-  ]},
+{title:"Alzheimer's Detection",cat:'research',label:'Publication · IEEE',paper:'https://ieeexplore.ieee.org/document/9573589',proceedings:'https://docs.google.com/presentation/d/1ihUyvhboxOq-D_Ux3N_DVpuRlGrb41P9/edit?usp=sharing&ouid=114780488405466491892&rtpof=true&sd=true',sections:[
+  {
+    l:'Research Context',
+    t:'Alzheimer’s Disease is progressive and difficult to reverse, which makes early detection especially important. This research explored whether MRI image features could help classify Alzheimer’s severity using faster machine learning models.<div class="case-flow"><span class="case-chip">MRI scans</span><span class="case-arrow">→</span><span class="case-chip">Preprocessing</span><span class="case-arrow">→</span><span class="case-chip">Segmentation</span><span class="case-arrow">→</span><span class="case-chip">Feature extraction</span><span class="case-arrow">→</span><span class="case-chip">ELM classifier</span></div><div class="case-note"><strong>The research goal was not just accuracy.</strong> We compared ELM variants based on both classification performance and training speed.</div>'
+  },
+  {
+    l:'Problem',
+    t:'Conventional machine learning models can be slower to train in medical imaging workflows. The challenge was to build a pipeline that could process MRI scans, extract meaningful features, and classify Alzheimer’s Disease severity efficiently.<div class="case-question">Can Extreme Learning Machine variants improve Alzheimer’s detection from MRI features while keeping training time low?</div><div class="case-list"><span>Use MRI data from the OASIS database.</span><span>Preprocess and segment brain images before classification.</span><span>Compare ELM variants using accuracy and training/testing time.</span></div>'
+  },
+  {
+    l:'Key Decision',
+    t:'We chose Extreme Learning Machine because it is designed for faster training compared with many conventional neural network approaches.<span class="case-mini-title">Model direction</span><div class="case-split"><div class="case-box bad"><span class="case-box-lbl">Conventional approach</span><span class="case-box-main">Slower training</span><span class="case-box-txt">Useful models, but training speed can become a bottleneck.</span></div><div class="case-vs">TO</div><div class="case-box good"><span class="case-box-lbl">ELM approach</span><span class="case-box-main">Faster learning</span><span class="case-box-txt">Hidden node parameters are randomly generated, reducing training complexity.</span></div></div><div class="case-note">We tested multiple ELM activation functions and implemented two ELM variations: <strong>Regularized ELM</strong> and <strong>Multi Layer Perceptron ELM</strong>.</div>'
+  },
+  {
+    l:'Method',
+    t:'The pipeline combined image processing, feature extraction, and model comparison.<div class="case-path"><div class="case-path-line"><b>Raw MRI</b><span class="case-arrow">→</span><b>Noise reduction</b><span class="case-arrow">→</span><b>Segmentation</b><span class="case-arrow">→</span><b>77 features</b><span class="case-arrow">→</span><b>ELM variants</b><span class="case-arrow">→</span><b>Accuracy comparison</b></div></div><div class="case-list"><span>Tested preprocessing techniques including Gaussian filter, histogram equalization, and median filter.</span><span>Compared segmentation methods including edge-based, region-based, and thresholding methods.</span><span>Extracted texture-based features including contrast, correlation, homogeneity, entropy, kurtosis, skewness, energy, and GLCM-based features.</span></div>'
+  },
+  {
+    m:[
+      {n:'90%',l:'MLP-ELM test accuracy'},
+      {n:'95%',l:'MLP-ELM train accuracy'},
+      {n:'77',l:'Features extracted'},
+      {n:'6414',l:'MRI images processed'}
+    ]
+  },
+  {
+    l:'Results',
+    t:'MLP-ELM produced the strongest performance among the tested models, reaching 95% training accuracy and 90% testing accuracy. Standard ELM variants performed lower, while the triangular activation function performed poorly compared with sigmoid and hard-limit activation functions.<div class="case-split"><div class="case-box good"><span class="case-box-lbl">Best model</span><span class="case-box-main">MLP-ELM</span><span class="case-box-txt">Highest testing accuracy among the evaluated approaches.</span></div><div class="case-vs">VS</div><div class="case-box bad"><span class="case-box-lbl">Lowest model</span><span class="case-box-main">Triangular ELM</span><span class="case-box-txt">Lower accuracy, showing activation choice mattered.</span></div></div><div class="case-note"><strong>Result signal:</strong> the benchmark mattered more than assumptions. Model choice, activation function, and preprocessing decisions directly affected performance.</div>'
+  },
+  {
+    l:'Future Scope',
+    t:'The next research step would be to explore additional ELM variants and apply feature reduction techniques to improve accuracy and reduce unnecessary complexity.<div class="case-priorities"><span class="case-priority">Feature reduction</span><span class="case-priority">More ELM variants</span><span class="case-priority">Model generalization</span><span class="case-priority">Clinical validation</span><span class="case-priority">Larger datasets</span></div><div class="case-note">The project taught me how to compare models systematically, explain tradeoffs clearly, and evaluate performance using evidence instead of assumptions.</div>'
+  }
+]},
   {title:'AI Lifecycle Framework',cat:'research',label:'Publication · ASEM',proceedings:'https://asem.org/resources/Website/Publications/IAC%20Proceedings%20Files/ASEM%202025%20IAC%20Proceedings.pdf',sections:[
     {l:'The Problem',t:'AI product teams were applying traditional software lifecycle frameworks to AI development. The misalignment was costing months.'},
     {l:'The Decision',t:'Made every stage actionable with specific checkpoints. First version was too theoretical. Practitioner feedback changed it entirely. Usability over elegance.'},
