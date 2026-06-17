@@ -148,7 +148,19 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(12,12,12,.6);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .26s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
 .modal-overlay.active{opacity:1;pointer-events:all;}
-.modal{background:var(--white);border-radius:18px;width:100%;max-width:730px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;animation:modalIn .34s cubic-bezier(.34,1.56,.64,1) forwards;border:1px solid var(--border);}
+.modal{
+  background:var(--white);
+  border-radius:22px;
+  width:100%;
+  max-width:920px;
+  max-height:92vh;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  animation:modalIn .34s cubic-bezier(.34,1.56,.64,1) forwards;
+  border:1px solid var(--border);
+  box-shadow:0 30px 90px rgba(0,0,0,.22);
+}
 .modal-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .modal-header-left{display:flex;align-items:center;gap:9px;}
 .modal-title-wrap{display:flex;flex-direction:column;gap:1px;}
@@ -162,19 +174,80 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 .modal-scroll{flex:1;overflow-y:auto;}
 .modal-fade{position:sticky;bottom:0;height:30px;background:linear-gradient(transparent,rgba(255,255,255,.97));pointer-events:none;margin-top:-30px;}
 .modal-body{padding:0;}
-.modal-sec{padding:18px 24px;border-bottom:1px solid var(--border);}
-.modal-sec-lbl{font-size:.54rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;display:block;}
-.modal-sec-txt{font-size:.95rem;color:var(--ink-soft);line-height:1.84;}
-.modal-metrics{display:grid;background:var(--off);border-bottom:1px solid var(--border);}
-.modal-metric{padding:20px 18px;text-align:center;border-right:1px solid var(--border);}
-.modal-metric:last-child{border-right:none;}
-.modal-metric-n{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:900;color:var(--sage);line-height:1;margin-bottom:3px;}
+.modal-sec{
+  padding:30px 34px;
+  border-bottom:1px solid var(--border);
+  position:relative;
+  background:linear-gradient(180deg,#fff 0%,#fff 70%,rgba(238,244,240,.25) 100%);
+}
+  
+.modal-sec-lbl{
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--sage);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.modal-sec-lbl::before{
+  content:'';
+  width:22px;
+  height:2px;
+  border-radius:999px;
+  background:var(--sage);
+  opacity:.75;
+}
+.modal-sec-txt{
+  font-size:1rem;
+  color:var(--ink-soft);
+  line-height:1.78;
+}
+  
+.modal-metrics{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  background:linear-gradient(135deg,var(--sage-light),#fff);
+  border-bottom:1px solid var(--border);
+  padding:16px;
+  gap:12px;
+}
+.modal-metric{
+  padding:22px 16px;
+  text-align:center;
+  border:1px solid rgba(74,124,89,.13);
+  border-radius:18px;
+  background:rgba(255,255,255,.78);
+  box-shadow:0 8px 24px rgba(74,124,89,.06);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.modal-metric:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 34px rgba(74,124,89,.12);
+}
+
+.modal-metric:last-child{
+  border-right:1px solid rgba(74,124,89,.13);
+}
+.modal-metric-n{
+  font-family:'Playfair Display',serif;
+  font-size:2.1rem;
+  font-weight:900;
+  color:var(--sage);
+  line-height:1;
+  margin-bottom:8px;
+}
 .modal-metric-l{font-size:.63rem;color:var(--muted);line-height:1.4;}
 .modal-nav{padding:10px 20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .modal-nav-btn{display:flex;align-items:center;gap:5px;font-size:.71rem;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;padding:6px 10px;border-radius:7px;transition:all .18s;}
 .modal-nav-btn:hover:not(:disabled){color:var(--sage);background:var(--sage-light);}
 .modal-nav-btn:disabled{opacity:.18;cursor:not-allowed;}
 .modal-nav-c{font-size:.71rem;color:var(--muted);}
+
 
 /* HOW I THINK */
 .think-section{background:var(--off);padding:88px 56px;}
@@ -938,52 +1011,104 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 ========================= */
 
 .case-flow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 7px;
-  margin: 12px 0 14px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:9px;
+  margin:18px 0 18px;
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,var(--sage-light),#fff);
+  border:1px solid rgba(74,124,89,.16);
+  position:relative;
+  overflow:hidden;
+}
+
+.case-flow::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,.85) 45%,transparent 70%);
+  transform:translateX(-120%);
+  animation:flowShine 3.2s ease-in-out infinite;
+  pointer-events:none;
 }
 
 .case-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: var(--sage-light);
-  border: 1px solid rgba(74,124,89,.14);
-  color: var(--ink-soft);
-  font-size: .72rem;
-  font-weight: 500;
-  line-height: 1.2;
-  opacity: 0;
-  transform: translateY(8px);
-  animation: chipIn .45s ease forwards;
+  display:inline-flex;
+  align-items:center;
+  padding:8px 13px;
+  border-radius:999px;
+  background:rgba(255,255,255,.82);
+  border:1px solid rgba(74,124,89,.18);
+  color:var(--ink);
+  font-size:.78rem;
+  font-weight:600;
+  line-height:1.2;
+  opacity:0;
+  transform:translateY(10px) scale(.96);
+  animation:chipPop .48s cubic-bezier(.34,1.56,.64,1) forwards;
+  box-shadow:0 6px 18px rgba(74,124,89,.06);
+  position:relative;
+  z-index:1;
 }
 
-.case-chip:nth-child(1) { animation-delay: .05s; }
-.case-chip:nth-child(3) { animation-delay: .12s; }
-.case-chip:nth-child(5) { animation-delay: .19s; }
-.case-chip:nth-child(7) { animation-delay: .26s; }
-.case-chip:nth-child(9) { animation-delay: .33s; }
-.case-chip:nth-child(11) { animation-delay: .40s; }
+.case-chip:nth-child(1)::before{content:'📌';margin-right:6px;}
+.case-chip:nth-child(3)::before{content:'⭐';margin-right:6px;}
+.case-chip:nth-child(5)::before{content:'🍽️';margin-right:6px;}
+.case-chip:nth-child(7)::before{content:'📍';margin-right:6px;}
+.case-chip:nth-child(9)::before{content:'💬';margin-right:6px;}
+.case-chip:nth-child(11)::before{content:'😵‍💫';margin-right:6px;}
 
 .case-arrow {
-  color: var(--sage);
-  font-size: .8rem;
-  opacity: .55;
+  color:var(--sage);
+  font-size:1rem;
+  opacity:.75;
+  animation:arrowPulse 1.4s ease-in-out infinite;
+  position:relative;
+  z-index:1;
+}
+
+@keyframes chipPop {
+  to {
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes arrowPulse {
+  0%,100% { transform:translateX(0); opacity:.45; }
+  50% { transform:translateX(3px); opacity:1; }
+}
+
+@keyframes flowShine {
+  0% { transform:translateX(-120%); }
+  45%,100% { transform:translateX(120%); }
 }
 
 .case-question {
-  margin: 12px 0 6px;
-  padding: 12px 14px;
-  border-left: 3px solid var(--sage);
-  background: var(--sage-light);
-  border-radius: 0 10px 10px 0;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.08rem;
-  line-height: 1.45;
-  color: var(--ink);
+  margin:18px 0 14px;
+  padding:22px 24px;
+  border-left:5px solid var(--sage);
+  background:linear-gradient(135deg,var(--sage-light),#fff);
+  border-radius:0 18px 18px 0;
+  font-family:'Playfair Display',serif;
+  font-size:1.35rem;
+  line-height:1.45;
+  color:var(--ink);
+  box-shadow:0 10px 30px rgba(74,124,89,.08);
+  position:relative;
+}
+
+.case-question::before{
+  content:'“';
+  position:absolute;
+  top:-12px;
+  right:18px;
+  font-family:'Playfair Display',serif;
+  font-size:4.2rem;
+  color:rgba(74,124,89,.13);
+  line-height:1;
 }
 
 .case-split {
@@ -995,10 +1120,16 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 }
 
 .case-box {
-  border: 1px solid var(--border);
-  background: var(--white);
-  border-radius: 12px;
-  padding: 12px;
+  border:1px solid var(--border);
+  background:var(--white);
+  border-radius:18px;
+  padding:20px;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.case-box:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(74,124,89,.1);
 }
 
 .case-box.bad {
@@ -1021,13 +1152,14 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 }
 
 .case-box-main {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: var(--sage);
-  line-height: 1;
-  margin-bottom: 4px;
+  display:block;
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  font-weight:900;
+  color:var(--sage);
+  line-height:1;
+  margin-bottom:8px;
+  letter-spacing:-.03em;
 }
 
 .case-box-txt {
@@ -1068,14 +1200,20 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 }
 
 .case-note {
-  margin-top: 12px;
-  padding: 11px 13px;
-  border-radius: 10px;
-  background: var(--off);
-  border: 1px solid var(--border);
-  color: var(--ink-soft);
-  font-size: .86rem;
-  line-height: 1.65;
+  margin-top:16px;
+  padding:16px 18px;
+  border-radius:16px;
+  background:#fff;
+  border:1px solid var(--border);
+  color:var(--ink-soft);
+  font-size:.94rem;
+  line-height:1.72;
+  box-shadow:0 8px 24px rgba(0,0,0,.035);
+}
+
+.case-note strong {
+  color:var(--ink);
+  font-weight:800;
 }
 
 .case-note strong {
@@ -1084,13 +1222,13 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 }
 
 .case-mini-title {
-  display: block;
-  font-size: .68rem;
-  font-weight: 700;
-  color: var(--sage);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  margin: 12px 0 6px;
+  display:block;
+  font-size:.76rem;
+  font-weight:900;
+  color:var(--sage);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin:20px 0 10px;
 }
 
 .case-path {
@@ -1131,8 +1269,20 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   color: var(--ink-soft);
 }
 
-.modal-sec {
-  animation: modalSectionIn .38s ease both;
+.modal-sec::after{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:0;
+  background:var(--sage);
+  opacity:.55;
+  animation:sectionLineIn .6s ease forwards;
+}
+
+@keyframes sectionLineIn{
+  to{width:3px;}
 }
 
 .modal-sec:nth-child(1) { animation-delay: .03s; }
@@ -1339,14 +1489,14 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
     </div>
     <div class="proof-wrap">
       <div class="proof-card">
-        <div class="pc-inner on" data-k="problem">
+        <div class="pc-inner on" data-k="frame">
           <div class="pc-lbl">How this shows up</div>
           <h3 class="pc-head">I look for the problem underneath the request.</h3>
           <p class="pc-body">For Eventbrite, interviews showed the issue was not just event discovery — it was retention and trust. For PocketPlans, users did not want more venue options; they wanted a faster way to decide where to go.</p>
           <div class="pc-stat"><span class="pc-n">100+</span><span class="pc-l">user conversations shaped<br>problem framing and direction</span></div>
         </div>
 
-        <div class="pc-inner" data-k="simple">
+        <div class="pc-inner" data-k="simplify">
           <div class="pc-lbl">How this shows up</div>
           <h3 class="pc-head">I simplify flows until the next action feels obvious.</h3>
           <p class="pc-body">At BVM, simplifying complex grant workflows reduced staff training time by 85%. In PocketPlans, cutting the experience from 10 inputs to 4 steps helped users reach a decision faster instead of getting stuck in setup.</p>
@@ -1374,7 +1524,7 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
           <div class="pc-stat"><span class="pc-n">26.67%</span><span class="pc-l">dead click rate became<br>a product iteration signal</span></div>
         </div>
 
-        <div class="pc-inner" data-k="execution">
+        <div class="pc-inner" data-k="build">
           <div class="pc-lbl">How this shows up</div>
           <h3 class="pc-head">I translate ideas into buildable work.</h3>
           <p class="pc-body">At BVM, I moved from user flows and accessibility checks to PRDs, acceptance criteria, and engineering-ready specs. That bridge between user need, design detail, and implementation is where my PM and UX strengths meet.</p>
@@ -1679,7 +1829,7 @@ var projects=[
   },
   {
     l:'Behavioral Insights',
-    t:'After launch, I used Microsoft Clarity to understand what people actually did.<div class="case-note"><strong>Activation = Homepage → Plan flow.</strong> A 76% activation rate meant users were not just visiting — they were entering the core product experience.</div><div class="case-split"><div class="case-box good"><span class="case-box-lbl">Strong signal</span><span class="case-box-main">99.7%</span><span class="case-box-txt">Average scroll depth showed users were exploring the page.</span></div><div class="case-vs">AND</div><div class="case-box bad"><span class="case-box-lbl">Friction signal</span><span class="case-box-main">9.1%</span><span class="case-box-txt">Dead clicks showed some elements looked interactive but were not.</span></div></div>'
+    t:'After launch, I used Microsoft Clarity to understand what people actually did.<div class="case-note"><strong>Activation = Homepage → Plan flow.</strong> A 76% activation rate meant users were not just visiting — they were entering the core product experience.</div><div class="case-split"><div class="case-box good"><span class="case-box-lbl">Strong signal</span><span class="case-box-main">97%</span><span class="case-box-txt">Average scroll depth showed users were exploring the page.</span></div><div class="case-vs">AND</div><div class="case-box bad"><span class="case-box-lbl">Friction signal</span><span class="case-box-main">9.1%</span><span class="case-box-txt">Dead clicks showed some elements looked interactive but were not.</span></div></div>'
   },
   {
     l:'Next Iteration',
