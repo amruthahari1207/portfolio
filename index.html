@@ -493,6 +493,200 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   }
 }
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+/* =========================
+   FINAL ABOUT SECTION FIX
+   2x2 editorial collage
+========================= */
+
+.about-section {
+  padding: 88px 56px;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.about-section .s-title {
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  max-width: 780px;
+  margin-bottom: 34px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(420px, 0.95fr) minmax(420px, 0.85fr);
+  gap: 72px;
+  align-items: center;
+}
+
+.about-copy {
+  max-width: 680px;
+}
+
+.about-copy p {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.82;
+  margin-bottom: 15px;
+}
+
+.about-copy p:last-child {
+  margin-bottom: 0;
+}
+
+/* New collage: no more absolute positioning */
+.polaroid-stage {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 18px;
+  overflow: visible;
+  perspective: 1000px;
+}
+
+/* Reset old absolute card behavior */
+.polaroid {
+  position: relative;
+  top: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 3 / 4;
+  background: #fff;
+  padding: 9px 9px 30px;
+  border-radius: 4px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: box-shadow 0.25s ease;
+  will-change: transform;
+  transform-style: preserve-3d;
+  animation: none !important;
+}
+
+.polaroid img {
+  width: 100%;
+  height: calc(100% - 30px);
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: 9px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.63rem;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Gentle editorial stagger */
+.p1 {
+  --r: -4deg;
+  transform: rotate(var(--r)) translateY(10px);
+}
+
+.p2 {
+  --r: 3deg;
+  transform: rotate(var(--r)) translateY(-12px);
+}
+
+.p3 {
+  --r: 2deg;
+  transform: rotate(var(--r)) translateY(8px);
+}
+
+.p4 {
+  --r: -3deg;
+  transform: rotate(var(--r)) translateY(-8px);
+}
+
+.polaroid:hover {
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
+}
+
+/* Keep small icons, but make them subtle */
+.p-ambient {
+  position: absolute;
+  font-size: 1rem;
+  opacity: 0.28;
+  pointer-events: none;
+  user-select: none;
+  animation: none !important;
+}
+
+.pa1 {
+  bottom: -8px;
+  left: -18px;
+}
+
+.pa2 {
+  bottom: -6px;
+  right: -18px;
+}
+
+.pa3 {
+  top: -16px;
+  right: 42%;
+}
+
+/* Tablet */
+@media (max-width: 960px) {
+  .about-section {
+    padding: 72px 20px;
+  }
+
+  .about-section .s-title {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    margin-bottom: 28px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 46px;
+  }
+
+  .about-copy {
+    max-width: 760px;
+  }
+
+  .polaroid-stage {
+    max-width: 520px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .about-copy p {
+    font-size: 0.94rem;
+    line-height: 1.78;
+  }
+
+  .polaroid-stage {
+    max-width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .polaroid {
+    padding: 7px 7px 26px;
+    aspect-ratio: 3 / 4;
+    transform: none !important;
+  }
+
+  .polaroid-caption {
+    bottom: 8px;
+    font-size: 0.58rem;
+  }
+
+  .p-ambient {
+    display: none;
+  }
+}
 </style>
 </head>
 <body>
@@ -634,11 +828,11 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   <h2 class="s-title reveal">The person behind the <em>process.</em></h2>
   <div class="about-grid reveal d1">
     <div class="about-copy">
-      <p>I started out building things as an engineer. In undergrad, I built a gesture-controlled laptop using Arduino and an ultrasound sensor, and it made me wonder: <em>what happens when we rethink how people interact with technology?</em></p>
-      <p>That curiosity led me from Electronics and Communication Engineering to Engineering Management at Northeastern, where I learned that great products are not defined by features alone, but by how well they solve real problems for real people.</p>
-      <p>Since then, I’ve built AI-powered products, conducted user research, and worked across product strategy and design to turn ideas into intuitive experiences. The engineer in me wants things to work. The designer in me wants them to feel effortless. The product thinker in me wants them to matter.</p>
-      <p>I grew up in a home full of music, with a mum who teaches and plays the veena. Watching her taught me that creativity is equal parts structure, patience, and feeling — something I carry into the way I design.</p>
-      <p>Outside of work, I’m usually playing the veena when I'm back home, eating my way through a new city, taking photos of small details, or sketching on Procreate — little reminders to stay curious, observant, and open to being a beginner.</p>
+  <p>I started out building things as an engineer. In undergrad, I built a gesture-controlled laptop using Arduino and an ultrasound sensor, and it made me wonder: <em>what happens when we rethink how people interact with technology?</em></p>
+  <p>That curiosity took me from Electronics and Communication Engineering to Engineering Management at Northeastern, where I learned to look beyond the technology and understand the people using it.</p>
+  <p>Since then, I’ve built AI-powered products, conducted user research, and worked across product strategy and design to turn ideas into intuitive experiences. The engineer in me wants things to work. The designer in me wants them to feel effortless. The product thinker in me wants them to matter.</p>
+  <p>I grew up in a home full of music, with a mum who teaches and plays the veena, a classical Indian instrument. Watching her taught me that creativity is equal parts structure, patience, and feeling — something I carry into the way I design.</p>
+  <p>Outside of work, I’m usually taking photos of small details, eating my way through a new city, playing the veena when I’m back home, or sketching on Procreate — reminders to stay curious, observant, and open to being a beginner.</p>
     </div>
 
     <div class="polaroid-stage">
@@ -669,7 +863,7 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   <p class="contact-line reveal">Always happy to talk about products, people, or what you're building.</p>
   <div class="contact-btns reveal d1">
     <a href="https://www.linkedin.com/in/amruthahari" target="_blank" class="c-btn">LinkedIn ↗</a>
-    <a href="mailto:hari.am@northeastern.edu" class="c-btn">✉ Email me</a>
+    <a href="mailto:hari.am@northeastern.edu" class="c-btn">✉ Email</a>
     <a href="https://github.com/amruthahari1207" target="_blank" class="c-btn">GitHub ↗</a>
   </div>
 </section>
@@ -804,14 +998,9 @@ document.querySelectorAll('.proj-card').forEach(function(card){
   card.addEventListener('mouseleave',function(){card.style.transform='';});
 });
 
-// POLAROID TILT — keeps each card's original rotation and layout
+// POLAROID TILT — works with 2x2 grid layout
 document.querySelectorAll('.polaroid').forEach(function(p) {
-  var baseRotation = '0deg';
-
-  if (p.classList.contains('p1')) baseRotation = '-6deg';
-  if (p.classList.contains('p2')) baseRotation = '2deg';
-  if (p.classList.contains('p3')) baseRotation = '-2deg';
-  if (p.classList.contains('p4')) baseRotation = '4deg';
+  var baseRotation = getComputedStyle(p).getPropertyValue('--r').trim() || '0deg';
 
   p.addEventListener('mousemove', function(e) {
     if (window.innerWidth <= 600) return;
@@ -820,13 +1009,12 @@ document.querySelectorAll('.polaroid').forEach(function(p) {
     var x = (e.clientX - r.left) / r.width - 0.5;
     var y = (e.clientY - r.top) / r.height - 0.5;
 
-    p.style.animationPlayState = 'paused';
     p.style.transform =
       'rotate(' + baseRotation + ') ' +
-      'translateY(-12px) ' +
-      'rotateX(' + (y * -8) + 'deg) ' +
-      'rotateY(' + (x * 8) + 'deg) ' +
-      'scale(1.04)';
+      'translateY(-10px) ' +
+      'rotateX(' + (y * -7) + 'deg) ' +
+      'rotateY(' + (x * 7) + 'deg) ' +
+      'scale(1.035)';
 
     p.style.boxShadow = '0 24px 50px rgba(0,0,0,.18)';
     p.style.zIndex = '30';
@@ -835,8 +1023,11 @@ document.querySelectorAll('.polaroid').forEach(function(p) {
   p.addEventListener('mouseleave', function() {
     if (window.innerWidth <= 600) return;
 
-    p.style.animationPlayState = '';
-    p.style.transform = 'rotate(' + baseRotation + ')';
+    if (p.classList.contains('p1')) p.style.transform = 'rotate(' + baseRotation + ') translateY(10px)';
+    if (p.classList.contains('p2')) p.style.transform = 'rotate(' + baseRotation + ') translateY(-12px)';
+    if (p.classList.contains('p3')) p.style.transform = 'rotate(' + baseRotation + ') translateY(8px)';
+    if (p.classList.contains('p4')) p.style.transform = 'rotate(' + baseRotation + ') translateY(-8px)';
+
     p.style.boxShadow = '';
     p.style.zIndex = '';
   });
