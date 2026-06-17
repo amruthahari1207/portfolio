@@ -1417,7 +1417,7 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   <div class="proj-grid reveal d2" id="projGrid">
     <div class="proj-card" data-cat="ai" data-i="0"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">AI Product</span><span class="proj-live">Live</span><span class="proj-badge">🏫 IDEA Incubator</span></div><div class="proj-num">01</div><div class="proj-title">PocketPlans</div><div class="proj-hook">Cut a 10-input experience to 4 steps so users could get to a decision faster. That cut is the product.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">UX Research</span><span class="wtag">Figma</span><span class="wtag">Behavioral Analytics</span><span class="wtag">0→1</span></div><button class="proj-open-btn">View case study →</button></div></div>
     <div class="proj-card" data-cat="ai" data-i="1"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">AI Product</span><span class="proj-live">Live</span></div><div class="proj-num">02</div><div class="proj-title">Structify</div><div class="proj-hook">Designed an AI workflow that turns messy inputs into structured product specs in seconds.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">LLMs & RAG</span><span class="wtag">Prompt Engineering</span><span class="wtag">Workflow Design</span></div><button class="proj-open-btn">View case study →</button></div></div>
-    <div class="proj-card" data-cat="ux" data-i="2"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Product Design</span><span class="proj-badge">🥈 2nd / 45+ teams</span></div><div class="proj-num">03</div><div class="proj-title">Protothon — Eventbrite</div><div class="proj-hook">100+ interviews. 12 hours. Figma prototype. $6.24M opportunity identified.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">User Research</span><span class="wtag">Figma Prototype</span><span class="wtag">Market Sizing</span></div><button class="proj-open-btn">View case study →</button></div></div>
+    <div class="proj-card" data-cat="ux" data-i="2"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Product Design</span><span class="proj-badge">🥈 2nd / 45+ teams</span></div><div class="proj-num">03</div><div class="proj-title">Protothon — Eventbrite</div><div class="proj-hook">2-week product sprint. 100+ user inputs. Figma prototype. $6.24M opportunity identified.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">User Research</span><span class="wtag">Figma Prototype</span><span class="wtag">Market Sizing</span></div><button class="proj-open-btn">View case study →</button></div></div>
     <div class="proj-card" data-cat="ux" data-i="3"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Product Design</span><span class="proj-badge">🥇 1st / 10 teams</span></div><div class="proj-num">04</div><div class="proj-title">Worldify</div><div class="proj-hook">Defined the roadmap before anyone knew if the product should exist.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">0→1 Roadmap</span><span class="wtag">GTM Strategy</span><span class="wtag">Usability Testing</span></div><button class="proj-open-btn">View case study →</button></div></div>
     <div class="proj-card" data-cat="research" data-i="4"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Publication</span><span class="proj-badge">IEEE</span></div><div class="proj-num">05</div><div class="proj-title">Alzheimer's Detection</div><div class="proj-hook">Chose ELM over SVMs and neural nets. 95% accuracy proved the call.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">Machine Learning</span><span class="wtag">Model Evaluation</span><span class="wtag">Research</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
     <div class="proj-card" data-cat="research" data-i="5"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Publication</span><span class="proj-badge">ASEM</span></div><div class="proj-num">06</div><div class="proj-title">AI Lifecycle Framework</div><div class="proj-hook">Built a framework that cuts AI product launch timelines by 12–15%.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">AI Strategy</span><span class="wtag">Product Roadmapping</span><span class="wtag">Lead Author</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
@@ -1843,7 +1843,7 @@ var projects=[
   },
   {
     l:'Problem',
-    t:'PM work often gets slowed down by the wrapper around the work. A PM may already know what needs to be built, but still has to translate that thinking into developer-ready format.<div class="case-question">How do we help builders move from messy product thinking to clear execution faster?</div><div class="case-list"><span>Reduce repetitive formatting across user stories, epics, and acceptance criteria.</span><span>Accept messy input instead of forcing users into a strict template.</span><span>Help PMs spend more time on judgment and less time on structure.</span></div>'
+    t:'PM work often slows down when messy ideas need to become clear tasks for engineers. A PM may already know what needs to be built, but still has to translate that thinking into developer-ready format.<div class="case-question">How do we help builders move from messy product thinking to clear execution faster?</div><div class="case-list"><span>Reduce repetitive formatting across user stories, epics, and acceptance criteria.</span><span>Accept messy input instead of forcing users into a strict template.</span><span>Help PMs spend more time on judgment and less time on structure.</span></div>'
   },
   {
     l:'Key Decision',
@@ -1855,8 +1855,8 @@ var projects=[
   },
   {
     m:[
-      {n:'60–70%',l:'Manual effort reduced'},
-      {n:'<5s',l:'Time to output'},
+      {n:'60%',l:'Manual effort reduced'},
+      {n:'5s',l:'Time to output'},
       {n:'25%',l:'Consistency improvement'}
     ]
   },
@@ -1869,15 +1869,40 @@ var projects=[
     t:'The next version should move Structify from a single-use tool to a PM workflow assistant.<div class="case-priorities"><span class="case-priority">Jira integration</span><span class="case-priority">Input-type detection</span><span class="case-priority">Editable output sections</span><span class="case-priority">Team collaboration</span><span class="case-priority">PRD export</span></div><div class="case-note">The goal is to remove repetitive formatting from product work, without removing the PM’s judgment.</div>'
   }
 ]},
-  {title:'Protothon — Eventbrite',cat:'ux',label:'UX & Research',proto:'https://www.figma.com/proto/HcPt0JqZnVm4qCIo1YFk7X/EventBrite?type=design&node-id=731-1305&t=N6f4pM33VOpaK7OK-0&scaling=scale-down&page-id=1669%3A162202&starting-point-node-id=731%3A1305',sections:[
-    {l:'The User',t:'Eventbrite users 21–35 who rely on word of mouth to find events. They want to go out but the platform doesn\'t create the habit of coming back.'},
-    {l:'The Problem',t:'Eventbrite had a retention problem disguised as a discovery problem. Only 8% found events through Eventbrite directly — 76% relied on word of mouth.'},
-    {l:'The Research Decision',t:'100+ user interviews before opening Figma. 92% needed reviews to choose events. 96% loved connecting with people to go out with. Data changed the entire direction: built the social retention loop first.'},
-    {l:'How I Built It',t:'Competitive analysis across 6 platforms. Kano Model prioritization. North Star metrics before any wireframe. Full Figma prototype presented to Google, McKinsey, and Schneider Electric panelists.'},
-    {m:[{n:'100+',l:'Interviews in 12hrs'},{n:'$6.24M',l:'SOM identified'},{n:'Top 2',l:'Of 45+ teams'}]},
-    {l:'What Didn\'t Work',t:'First prototype over-indexed on discovery. Iteration 2 revealed retention was the real lever. Pivoted in hour 8 of a 12-hour competition.'},
-    {l:'What\'s Next',t:'Personalized recommendations based on past attendance. The social layer is the differentiator no competitor has.'}
-  ]},
+{title:'Protothon — Eventbrite',cat:'ux',label:'Product Design',proto:'#',sections:[
+  {
+    l:'User & Context',
+    t:'Eventbrite users come to the platform looking for live experiences — workshops, meetups, networking events, concerts, and community activities.<div class="case-flow"><span class="case-chip">Eventbrite</span><span class="case-arrow">→</span><span class="case-chip">Instagram</span><span class="case-arrow">→</span><span class="case-chip">Google</span><span class="case-arrow">→</span><span class="case-chip">Friends</span><span class="case-arrow">→</span><span class="case-chip">Reviews</span><span class="case-arrow">→</span><span class="case-chip">Still unsure</span></div><div class="case-note"><strong>The user was not just searching for an event.</strong> They were trying to decide whether the event was worth their time, trustworthy, and enjoyable enough to commit to.</div>'
+  },
+  {
+    l:'Problem',
+    t:'Event discovery had two connected problems: helping new users find the right event, and giving them a reason to come back after the first one.<div class="case-question">How do we help users feel confident enough to choose an event — and motivated enough to return?</div><div class="case-list"><span>Users felt overwhelmed by scattered event information.</span><span>Many wanted reviews before choosing an event.</span><span>Users wanted easier ways to find people with similar interests.</span></div>'
+  },
+  {
+    l:'Key Decision',
+    t:'We chose not to solve discovery by adding more event listings. More listings would only create more noise.<span class="case-mini-title">Product direction</span><div class="case-split"><div class="case-box bad"><span class="case-box-lbl">More listings</span><span class="case-box-main">More noise</span><span class="case-box-txt">Users still have to compare, verify, and decide alone.</span></div><div class="case-vs">TO</div><div class="case-box good"><span class="case-box-lbl">Better signals</span><span class="case-box-main">More trust</span><span class="case-box-txt">Reviews, rewards, and connect features help users decide faster.</span></div></div><div class="case-note"><strong>Reward points</strong> were designed for users who posted useful photo/video reviews or referred friends. Reviews created trust; rewards gave users a reason to contribute.</div>'
+  },
+  {
+    l:'Design / Build',
+    t:'We moved from research to prototype through a structured product process.<div class="case-path"><div class="case-path-line"><b>Problem framing</b><span class="case-arrow">→</span><b>Survey synthesis</b><span class="case-arrow">→</span><b>Personas</b><span class="case-arrow">→</span><b>User journey</b><span class="case-arrow">→</span><b>Kano model</b><span class="case-arrow">→</span><b>Prototype</b></div></div><div class="case-list"><span>Designed features around reviews, social connection, rewards, and referrals.</span><span>Used competitor analysis to find gaps in event reviews, reward points, and referrals.</span><span>Built a Q1–Q4 roadmap to connect the prototype to execution.</span></div>'
+  },
+  {
+    m:[
+      {n:'2',l:'Place among 45+ teams'},
+      {n:'100+',l:'User inputs'},
+      {n:'6.24M',l:'SOM opportunity'},
+      {n:'2',l:'Weeks product sprint'}
+    ]
+  },
+  {
+    l:'Behavioral Insights',
+    t:'The strongest survey signals pointed toward trust, contribution, and social motivation.<div class="case-split"><div class="case-box good"><span class="case-box-lbl">Trust signal</span><span class="case-box-main">92%</span><span class="case-box-txt">Needed reviews to choose events.</span></div><div class="case-vs">+</div><div class="case-box good"><span class="case-box-lbl">Contribution signal</span><span class="case-box-main">94%</span><span class="case-box-txt">Favored incentives for posting photo/video reviews.</span></div></div><div class="case-note"><strong>Another strong signal:</strong> 96% liked the idea of connecting with people to go out with. The insight was clear: users did not just want event discovery — they wanted confidence, motivation, and someone to go with.</div>'
+  },
+  {
+    l:'Next Iteration',
+    t:'If this moved forward, I would validate the riskiest assumptions before building more features.<div class="case-priorities"><span class="case-priority">Review creation flow</span><span class="case-priority">Reward point behavior</span><span class="case-priority">Connect opt-in rate</span><span class="case-priority">Referral completion</span><span class="case-priority">Repeat event booking</span></div><div class="case-note">The goal would be to test whether trust signals and social loops can turn first-time event discovery into repeat Eventbrite usage.</div>'
+  }
+]},
   {title:'Worldify',cat:'ux',label:'UX & Research',proto:'https://www.figma.com/proto/sAGz5CohWTE2WkyFQxluSG/Wireframing-(Copy)?type=design&node-id=889265-705',sections:[
     {l:'The Problem',t:'Language learners master vocabulary but fail professionally. The missing layer isn\'t grammar — it\'s cultural and industry-specific context nobody teaches.'},
     {l:'The Product Decision',t:'Cut language features from the alpha after user testing showed culture was the real differentiator. Counterintuitive — but the data was clear.'},
