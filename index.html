@@ -1837,14 +1837,38 @@ var projects=[
   }
 ]},
   {title:'Structify',cat:'ai',label:'AI Product',live:'https://structify.streamlit.app/',github:'https://github.com/amruthahari1207/structify',sections:[
-    {l:'The User',t:'Product managers spending 60–70% of their time on formatting — user stories, epics, acceptance criteria — rather than the actual thinking.'},
-    {l:'The Problem',t:'The format of a user story never changes. The thinking inside it does. PMs were spending most of their time on the wrapper, not the content.'},
-    {l:'The Product Decision',t:'Chose LLMs because the output format is predictable enough to automate reliably. Designed the input flow to accept unstructured formats so users don\'t need to think about how to provide information.'},
-    {l:'How I Built It',t:'Iterated on prompt architecture through benchmark testing until output consistency improved 25% across varied input formats. Shipped on Streamlit as a live tool.'},
-    {m:[{n:'60–70%',l:'Manual effort reduced'},{n:'<5s',l:'Time to output'},{n:'25%',l:'Consistency improvement'}]},
-    {l:'What Didn\'t Work',t:'Early prompt architecture produced inconsistent epics. Benchmark testing revealed the pattern — fixed in iteration 3.'},
-    {l:'What\'s Next',t:'Jira integration, team collaboration layer, input-type detection. Goal: zero formatting time for any PM.'}
-  ]},
+  {
+    l:'User & Context',
+    t:'Structify is for product managers, founders, and builders who have messy product ideas but need clean, execution-ready outputs.<div class="case-flow"><span class="case-chip">Raw idea</span><span class="case-arrow">→</span><span class="case-chip">Scattered notes</span><span class="case-arrow">→</span><span class="case-chip">User stories</span><span class="case-arrow">→</span><span class="case-chip">Epics</span><span class="case-arrow">→</span><span class="case-chip">Acceptance criteria</span><span class="case-arrow">→</span><span class="case-chip">PRD-ready specs</span></div><div class="case-note"><strong>The thinking was not the repetitive part.</strong> The repetitive part was turning messy inputs into the same structured product documents again and again.</div>'
+  },
+  {
+    l:'Problem',
+    t:'PM work often gets slowed down by the wrapper around the work. A PM may already know what needs to be built, but still has to translate that thinking into developer-ready format.<div class="case-question">How do we help builders move from messy product thinking to clear execution faster?</div><div class="case-list"><span>Reduce repetitive formatting across user stories, epics, and acceptance criteria.</span><span>Accept messy input instead of forcing users into a strict template.</span><span>Help PMs spend more time on judgment and less time on structure.</span></div>'
+  },
+  {
+    l:'Key Decision',
+    t:'For Structify, I chose to use an LLM because the task had a predictable structure.<span class="case-mini-title">Why AI fit here</span><div class="case-split"><div class="case-box bad"><span class="case-box-lbl">Manual workflow</span><span class="case-box-main">Messy → Manual</span><span class="case-box-txt">Users had to reformat ideas into product specs themselves.</span></div><div class="case-vs">TO</div><div class="case-box good"><span class="case-box-lbl">Structify workflow</span><span class="case-box-main">Messy → Structured</span><span class="case-box-txt">The tool transformed rough input into reviewable outputs.</span></div></div><div class="case-note">Unlike PocketPlans, where AI-generated venues could break trust, Structify had a safer AI use case: <strong>transforming user-provided input into a constrained, reviewable format.</strong></div>'
+  },
+  {
+    l:'Design / Build',
+    t:'I designed the flow so users would not need to think about the “right” way to write an input. They could paste rough notes, feature ideas, meeting bullets, or user pain points.<div class="case-path"><div class="case-path-line"><b>Messy input</b><span class="case-arrow">→</span><b>Prompt structure</b><span class="case-arrow">→</span><b>User stories</b><span class="case-arrow">→</span><b>Epics</b><span class="case-arrow">→</span><b>Acceptance criteria</b></div></div><div class="case-list"><span>Built and shipped the MVP in Streamlit.</span><span>Iterated on prompt architecture to improve output consistency.</span><span>Tested varied input formats so the tool could handle real PM behavior.</span></div>'
+  },
+  {
+    m:[
+      {n:'60–70%',l:'Manual effort reduced'},
+      {n:'<5s',l:'Time to output'},
+      {n:'25%',l:'Consistency improvement'}
+    ]
+  },
+  {
+    l:'Behavioral Insights',
+    t:'Early versions worked, but the output quality changed when the input was vague or formatted differently.<div class="case-note"><strong>Main learning:</strong> users could be messy, but the output still had to feel predictable.</div><div class="case-split"><div class="case-box bad"><span class="case-box-lbl">Early friction</span><span class="case-box-main">Inconsistent epics</span><span class="case-box-txt">The model sometimes grouped work differently across inputs.</span></div><div class="case-vs">FIXED BY</div><div class="case-box good"><span class="case-box-lbl">Iteration</span><span class="case-box-main">Prompt structure</span><span class="case-box-txt">Refined instructions improved consistency across varied input styles.</span></div></div>'
+  },
+  {
+    l:'Next Iteration',
+    t:'The next version should move Structify from a single-use tool to a PM workflow assistant.<div class="case-priorities"><span class="case-priority">Jira integration</span><span class="case-priority">Input-type detection</span><span class="case-priority">Editable output sections</span><span class="case-priority">Team collaboration</span><span class="case-priority">PRD export</span></div><div class="case-note">The goal is to remove repetitive formatting from product work, without removing the PM’s judgment.</div>'
+  }
+]},
   {title:'Protothon — Eventbrite',cat:'ux',label:'UX & Research',proto:'https://www.figma.com/proto/HcPt0JqZnVm4qCIo1YFk7X/EventBrite?type=design&node-id=731-1305&t=N6f4pM33VOpaK7OK-0&scaling=scale-down&page-id=1669%3A162202&starting-point-node-id=731%3A1305',sections:[
     {l:'The User',t:'Eventbrite users 21–35 who rely on word of mouth to find events. They want to go out but the platform doesn\'t create the habit of coming back.'},
     {l:'The Problem',t:'Eventbrite had a retention problem disguised as a discovery problem. Only 8% found events through Eventbrite directly — 76% relied on word of mouth.'},
