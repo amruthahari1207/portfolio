@@ -911,6 +911,272 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
     margin-bottom: 24px !important;
   }
 }
+/* FINAL: keep About heading consistent with other section headings */
+.about-section .s-title {
+  font-size: clamp(2.2rem, 3.5vw, 3rem) !important;
+  line-height: 1.1 !important;
+  max-width: 760px;
+  margin-bottom: 30px !important;
+}
+
+@media (max-width: 960px) {
+  .about-section .s-title {
+    font-size: clamp(2.2rem, 3.5vw, 3rem) !important;
+    margin-bottom: 28px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-section .s-title {
+    font-size: clamp(2rem, 9vw, 2.7rem) !important;
+    margin-bottom: 24px !important;
+  }
+}
+/* =========================
+   CASE STUDY VISUAL BLOCKS
+   Works inside existing modal
+========================= */
+
+.case-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin: 12px 0 14px;
+}
+
+.case-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--sage-light);
+  border: 1px solid rgba(74,124,89,.14);
+  color: var(--ink-soft);
+  font-size: .72rem;
+  font-weight: 500;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: chipIn .45s ease forwards;
+}
+
+.case-chip:nth-child(1) { animation-delay: .05s; }
+.case-chip:nth-child(3) { animation-delay: .12s; }
+.case-chip:nth-child(5) { animation-delay: .19s; }
+.case-chip:nth-child(7) { animation-delay: .26s; }
+.case-chip:nth-child(9) { animation-delay: .33s; }
+.case-chip:nth-child(11) { animation-delay: .40s; }
+
+.case-arrow {
+  color: var(--sage);
+  font-size: .8rem;
+  opacity: .55;
+}
+
+.case-question {
+  margin: 12px 0 6px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--sage);
+  background: var(--sage-light);
+  border-radius: 0 10px 10px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.08rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.case-split {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 10px;
+  align-items: stretch;
+  margin: 13px 0;
+}
+
+.case-box {
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.case-box.bad {
+  background: #fff;
+}
+
+.case-box.good {
+  background: var(--sage-light);
+  border-color: rgba(74,124,89,.18);
+}
+
+.case-box-lbl {
+  display: block;
+  font-size: .55rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.case-box-main {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--sage);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.case-box-txt {
+  display: block;
+  font-size: .74rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.case-vs {
+  align-self: center;
+  font-size: .64rem;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.case-list {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.case-list span {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: .86rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.case-list span::before {
+  content: "→";
+  color: var(--sage);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.case-note {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border-radius: 10px;
+  background: var(--off);
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-size: .86rem;
+  line-height: 1.65;
+}
+
+.case-note strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.case-mini-title {
+  display: block;
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--sage);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin: 12px 0 6px;
+}
+
+.case-path {
+  margin: 12px 0;
+  padding: 13px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--sage-light), #fff);
+  border: 1px solid rgba(74,124,89,.14);
+}
+
+.case-path-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+
+.case-path-line b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.case-priorities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.case-priority {
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  font-size: .76rem;
+  color: var(--ink-soft);
+}
+
+.modal-sec {
+  animation: modalSectionIn .38s ease both;
+}
+
+.modal-sec:nth-child(1) { animation-delay: .03s; }
+.modal-sec:nth-child(2) { animation-delay: .07s; }
+.modal-sec:nth-child(3) { animation-delay: .11s; }
+.modal-sec:nth-child(4) { animation-delay: .15s; }
+.modal-sec:nth-child(6) { animation-delay: .19s; }
+.modal-sec:nth-child(7) { animation-delay: .23s; }
+
+@keyframes chipIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalSectionIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media(max-width:600px) {
+  .case-split {
+    grid-template-columns: 1fr;
+  }
+
+  .case-vs {
+    text-align: center;
+  }
+
+  .case-flow {
+    gap: 6px;
+  }
+
+  .case-chip {
+    font-size: .68rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -965,15 +1231,14 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
     <div class="hero-left">
       <div class="hero-eyebrow">
         <div class="tag-row">
-          <span class="tw lit" id="tw0">Builder</span><span class="tsep">·</span>
-          <span class="tw" id="tw1">Researcher</span><span class="tsep">·</span>
-          <span class="tw" id="tw2">PM</span><span class="tsep">·</span>
-          <span class="tw" id="tw3">Designer</span>
+           <span class="tw lit" id="tw0">Designer</span><span class="tsep">·</span>
+           <span class="tw" id="tw1">Product Thinker</span><span class="tsep">·</span>
+           <span class="tw" id="tw2">Builder</span><span class="tsep">·</span>
+           <span class="tw" id="tw3">Researcher</span>
         </div>
       </div>
       <h1 class="hero-name">Amrutha Hari</h1>
-      <p class="hero-sub">I've always cared more about the <span class="hl" id="heroHl">person using the product</span> than the product itself. I research what they need, design what makes sense, build it, and measure whether it worked. <em>Everything follows from that.</em></p>
-      <div class="hero-cta">
+      <p class="hero-sub">I design product experiences from messy user problems to clear flows, prototypes, and engineering-ready specs. I care most about the <span class="hl" id="heroHl">person using the product</span> — then use research, data, and cross-functional collaboration to make the experience feel simple enough to trust. <em>Everything follows from that.</em></p>      <div class="hero-cta">
         <a href="#work" class="btn btn-primary">See the work ↓</a>
       </div>
     </div>
@@ -992,18 +1257,18 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 <section class="section" id="work">
   <p class="s-eye">Work</p>
   <h2 class="s-title reveal">What I've <em>shipped.</em></h2>
-  <p class="s-sub reveal d1">Problems researched, experiences designed, products built. Click any to read the thinking.</p>
+  <p class="s-sub reveal d1">Interaction design, research, AI product thinking, and the tradeoffs behind what shipped. Click any to read the thinking.</p>
   <div class="filter-bar reveal d1">
     <button class="ftab active" data-f="all">All</button>
     <button class="ftab" data-f="ai">AI Products</button>
-    <button class="ftab" data-f="ux">UX & Research</button>
+    <button class="ftab" data-f="ux">Product Design</button>
     <button class="ftab" data-f="research">Publications</button>
   </div>
   <div class="proj-grid reveal d2" id="projGrid">
-    <div class="proj-card" data-cat="ai" data-i="0"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">AI Product</span><span class="proj-live">Live</span><span class="proj-badge">🏫 IDEA Incubator</span></div><div class="proj-num">01</div><div class="proj-title">PocketPlans</div><div class="proj-hook">Went from 10 inputs to 4 because users told me to. That cut is the product.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">UX Research</span><span class="wtag">Figma</span><span class="wtag">Behavioral Analytics</span><span class="wtag">0→1</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
-    <div class="proj-card" data-cat="ai" data-i="1"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">AI Product</span><span class="proj-live">Live</span></div><div class="proj-num">02</div><div class="proj-title">Structify</div><div class="proj-hook">PMs spend hours formatting what should take seconds. I fixed that.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">LLMs & RAG</span><span class="wtag">Prompt Engineering</span><span class="wtag">Workflow Design</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
-    <div class="proj-card" data-cat="ux" data-i="2"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">UX & Research</span><span class="proj-badge">🥈 2nd / 45+ teams</span></div><div class="proj-num">03</div><div class="proj-title">Protothon — Eventbrite</div><div class="proj-hook">100+ interviews. 12 hours. Figma prototype. $6.24M opportunity identified.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">User Research</span><span class="wtag">Figma Prototype</span><span class="wtag">Market Sizing</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
-    <div class="proj-card" data-cat="ux" data-i="3"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">UX & Research</span><span class="proj-badge">🥇 1st / 10 teams</span></div><div class="proj-num">04</div><div class="proj-title">Worldify</div><div class="proj-hook">Defined the roadmap before anyone knew if the product should exist.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">0→1 Roadmap</span><span class="wtag">GTM Strategy</span><span class="wtag">Usability Testing</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
+    <div class="proj-card" data-cat="ai" data-i="0"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">AI Product</span><span class="proj-live">Live</span><span class="proj-badge">🏫 IDEA Incubator</span></div><div class="proj-num">01</div><div class="proj-title">PocketPlans</div><div class="proj-hook">Cut a 10-input experience to 4 steps so users could get to a decision faster. That cut is the product.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">UX Research</span><span class="wtag">Figma</span><span class="wtag">Behavioral Analytics</span><span class="wtag">0→1</span></div><button class="proj-open-btn">View case study →</button></div></div>
+    <div class="proj-card" data-cat="ai" data-i="1"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">AI Product</span><span class="proj-live">Live</span></div><div class="proj-num">02</div><div class="proj-title">Structify</div><div class="proj-hook">Designed an AI workflow that turns messy inputs into structured product specs in seconds.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">LLMs & RAG</span><span class="wtag">Prompt Engineering</span><span class="wtag">Workflow Design</span></div><button class="proj-open-btn">View case study →</button></div></div>
+    <div class="proj-card" data-cat="ux" data-i="2"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Product Design</span><span class="proj-badge">🥈 2nd / 45+ teams</span></div><div class="proj-num">03</div><div class="proj-title">Protothon — Eventbrite</div><div class="proj-hook">100+ interviews. 12 hours. Figma prototype. $6.24M opportunity identified.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">User Research</span><span class="wtag">Figma Prototype</span><span class="wtag">Market Sizing</span></div><button class="proj-open-btn">View case study →</button></div></div>
+    <div class="proj-card" data-cat="ux" data-i="3"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Product Design</span><span class="proj-badge">🥇 1st / 10 teams</span></div><div class="proj-num">04</div><div class="proj-title">Worldify</div><div class="proj-hook">Defined the roadmap before anyone knew if the product should exist.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">0→1 Roadmap</span><span class="wtag">GTM Strategy</span><span class="wtag">Usability Testing</span></div><button class="proj-open-btn">View case study →</button></div></div>
     <div class="proj-card" data-cat="research" data-i="4"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Publication</span><span class="proj-badge">IEEE</span></div><div class="proj-num">05</div><div class="proj-title">Alzheimer's Detection</div><div class="proj-hook">Chose ELM over SVMs and neural nets. 95% accuracy proved the call.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">Machine Learning</span><span class="wtag">Model Evaluation</span><span class="wtag">Research</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
     <div class="proj-card" data-cat="research" data-i="5"><div class="proj-card-top"><div class="proj-card-meta"><span class="proj-cat">Publication</span><span class="proj-badge">ASEM</span></div><div class="proj-num">06</div><div class="proj-title">AI Lifecycle Framework</div><div class="proj-hook">Built a framework that cuts AI product launch timelines by 12–15%.</div></div><div class="proj-card-bottom"><div class="proj-tags"><span class="wtag">AI Strategy</span><span class="wtag">Product Roadmapping</span><span class="wtag">Lead Author</span></div><button class="proj-open-btn">Read the thinking →</button></div></div>
   </div>
@@ -1014,25 +1279,107 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
     <div>
       <p class="s-eye">Philosophy</p>
       <h2 class="s-title">How I think about <em>problems.</em></h2>
-      <p style="font-size:.83rem;color:var(--muted);line-height:1.75;margin-top:8px;">Whether building a product, designing a flow, or researching a market — the process is the same.</p>
+      <p style="font-size:.83rem;color:var(--muted);line-height:1.75;margin-top:8px;">From initial research to final product release, I care about the decisions that make products useful, usable, and buildable.</p>      
+    
       <div class="principle-list">
-        <div class="pitem active" data-k="people"><div class="pitem-icon">👥</div><div class="pitem-body"><div class="pitem-title">Talk to people first, always</div><div class="pitem-sub">What they say and what they do are different signals.</div></div><div class="pitem-arr">→</div></div>
-        <div class="pitem" data-k="simple"><div class="pitem-icon">✂️</div><div class="pitem-body"><div class="pitem-title">Complexity is a failure, not a feature</div><div class="pitem-sub">Simple is harder and more valuable than complex.</div></div><div class="pitem-arr">→</div></div>
-        <div class="pitem" data-k="decisions"><div class="pitem-icon">🎯</div><div class="pitem-body"><div class="pitem-title">Make decisions deliberately</div><div class="pitem-sub">Every product choice has a reason. I know mine.</div></div><div class="pitem-arr">→</div></div>
-        <div class="pitem" data-k="ai"><div class="pitem-icon">🤖</div><div class="pitem-body"><div class="pitem-title">AI where it earns its place</div><div class="pitem-sub">I've shipped LLM products. I know where AI creates confusion.</div></div><div class="pitem-arr">→</div></div>
-        <div class="pitem" data-k="measure"><div class="pitem-icon">📊</div><div class="pitem-body"><div class="pitem-title">Shipping is the start, not the end</div><div class="pitem-sub">Data finds what conversations miss.</div></div><div class="pitem-arr">→</div></div>
-        <div class="pitem" data-k="loop"><div class="pitem-icon">🔁</div><div class="pitem-body"><div class="pitem-title">Close the loop</div><div class="pitem-sub">Every signal shapes what gets built next.</div></div><div class="pitem-arr">→</div></div>
+        <div class="pitem active" data-k="frame">
+          <div class="pitem-icon">🔍</div>
+          <div class="pitem-body">
+            <div class="pitem-title">Frame before solving</div>
+            <div class="pitem-sub">The first problem is rarely the real one.</div>
+          </div>
+          <div class="pitem-arr">→</div>
+        </div>
+
+        <div class="pitem" data-k="simplify">
+          <div class="pitem-icon">✂️</div>
+          <div class="pitem-body">
+            <div class="pitem-title">Simplify the path</div>
+            <div class="pitem-sub">Good products reduce decisions, not just clicks.</div>
+          </div>
+          <div class="pitem-arr">→</div>
+        </div>
+
+        <div class="pitem" data-k="prototype">
+          <div class="pitem-icon">🧪</div>
+          <div class="pitem-body">
+            <div class="pitem-title">Prototype to learn</div>
+            <div class="pitem-sub">Make ideas tangible before they become expensive.</div>
+          </div>
+          <div class="pitem-arr">→</div>
+        </div>
+
+        <div class="pitem" data-k="ai">
+          <div class="pitem-icon">🤖</div>
+          <div class="pitem-body">
+            <div class="pitem-title">Use AI where it helps</div>
+            <div class="pitem-sub">AI should reduce friction, not add mystery.</div>
+          </div>
+          <div class="pitem-arr">→</div>
+        </div>
+
+        <div class="pitem" data-k="measure">
+          <div class="pitem-icon">📊</div>
+          <div class="pitem-body">
+            <div class="pitem-title">Measure behavior</div>
+            <div class="pitem-sub">What users do often says more than what they say.</div>
+          </div>
+          <div class="pitem-arr">→</div>
+        </div>
+
+        <div class="pitem" data-k="build">
+          <div class="pitem-icon">🧱</div>
+          <div class="pitem-body">
+            <div class="pitem-title">Make it buildable</div>
+            <div class="pitem-sub">Clear decisions should become clear specs.</div>
+          </div>
+          <div class="pitem-arr">→</div>
+        </div>
       </div>
     </div>
     <div class="proof-wrap">
       <div class="proof-card">
-        <div class="pc-inner on" data-k="people"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">100+ conversations before writing a single requirement.</h3><p class="pc-body">For Protothon, 100+ interviews in 12 hours revealed a retention problem disguised as a discovery problem. For PocketPlans, 25+ user sessions before touching code. At BVM, I spoke to administrators across 80+ districts before redesigning a single screen.</p><div class="pc-stat"><span class="pc-n">100+</span><span class="pc-l">user conversations before<br>first requirement, every project</span></div></div>
-        <div class="pc-inner" data-k="simple"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">85% reduction in training time. Simpler interface, same system.</h3><p class="pc-body">At BVM, redesigning two enterprise platforms — we didn't add features. We removed everything that didn't serve the user's next action. At PocketPlans, cutting inputs from 10 to 4 wasn't a scope compromise — it was the product decision that made everything else work.</p><div class="pc-stat"><span class="pc-n">85%</span><span class="pc-l">reduction in training time<br>by simplifying, not adding</span></div></div>
-        <div class="pc-inner" data-k="decisions"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">I chose API filtering over LLM generation. Reliability over impressiveness.</h3><p class="pc-body">On PocketPlans, LLM generation would have been more impressive to demo. I chose API-driven filtering because a hallucinated venue destroys trust faster than a slow product loses users. On Structify I chose LLMs because the output format is predictable enough to automate reliably.</p><div class="pc-stat"><span class="pc-n">0</span><span class="pc-l">hallucinated results —<br>right tool chosen deliberately</span></div></div>
-        <div class="pc-inner" data-k="ai"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">Two AI products shipped. Neither started with "let's add AI."</h3><p class="pc-body">I've designed for AI from the inside — I know where it creates confusion when it's too confident, where it needs to show reasoning, where it should give a decision instead of options. Designing around those moments is different when you've built the AI yourself.</p><div class="pc-stat"><span class="pc-n">2</span><span class="pc-l">live AI products shipped —<br>where AI earned its place</span></div></div>
-        <div class="pc-inner" data-k="measure"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">Clarity was live before the first user arrived.</h3><p class="pc-body">On PocketPlans, session recording and heatmaps were running from day one. That's how I caught a 26.67% dead click rate nobody mentioned in feedback. Users don't report what they don't notice. Data finds what conversations miss.</p><div class="pc-stat"><span class="pc-n">97%</span><span class="pc-l">scroll depth confirmed by data —<br>not assumed from feedback</span></div></div>
-        <div class="pc-inner" data-k="loop"><div class="pc-lbl">How this shows up</div><h3 class="pc-head">The dead click rate became the entire v2 roadmap.</h3><p class="pc-body">Clarity flagged a 26.67% dead click rate. Nobody complained — the data found it. That signal became the foundation of v2: which elements needed to be interactive, which needed clearer affordances, which should be removed.</p><div class="pc-stat"><span class="pc-n">26.67%</span><span class="pc-l">dead click rate → shaped every<br>v2 product priority</span></div></div>
-      </div>
+        <div class="pc-inner on" data-k="problem">
+          <div class="pc-lbl">How this shows up</div>
+          <h3 class="pc-head">I look for the problem underneath the request.</h3>
+          <p class="pc-body">For Eventbrite, interviews showed the issue was not just event discovery — it was retention and trust. For PocketPlans, users did not want more venue options; they wanted a faster way to decide where to go.</p>
+          <div class="pc-stat"><span class="pc-n">100+</span><span class="pc-l">user conversations shaped<br>problem framing and direction</span></div>
+        </div>
+
+        <div class="pc-inner" data-k="simple">
+          <div class="pc-lbl">How this shows up</div>
+          <h3 class="pc-head">I simplify flows until the next action feels obvious.</h3>
+          <p class="pc-body">At BVM, simplifying complex grant workflows reduced staff training time by 85%. In PocketPlans, cutting the experience from 10 inputs to 4 steps helped users reach a decision faster instead of getting stuck in setup.</p>
+          <div class="pc-stat"><span class="pc-n">85%</span><span class="pc-l">training time reduced through<br>clearer workflows</span></div>
+        </div>
+
+        <div class="pc-inner" data-k="prototype">
+          <div class="pc-lbl">How this shows up</div>
+          <h3 class="pc-head">I use prototypes to make tradeoffs visible.</h3>
+          <p class="pc-body">For Eventbrite and Worldify, Figma prototypes helped turn research insights into testable product directions. Prototyping made it easier to discuss what mattered: the flow, the priority, and the user behavior we wanted to change.</p>
+          <div class="pc-stat"><span class="pc-n">2</span><span class="pc-l">award-winning prototypes built<br>from research-backed decisions</span></div>
+        </div>
+
+        <div class="pc-inner" data-k="ai">
+          <div class="pc-lbl">How this shows up</div>
+          <h3 class="pc-head">I use AI when it earns trust.</h3>
+          <p class="pc-body">On PocketPlans, I chose API-driven filtering over LLM generation because hallucinated venues would break user trust. On Structify, I used LLMs because the output structure was predictable enough to automate reliably.</p>
+          <div class="pc-stat"><span class="pc-n">2</span><span class="pc-l">AI products shipped with<br>different AI decisions</span></div>
+        </div>
+
+        <div class="pc-inner" data-k="measure">
+          <div class="pc-lbl">How this shows up</div>
+          <h3 class="pc-head">I do not stop at launch.</h3>
+          <p class="pc-body">On PocketPlans, Microsoft Clarity revealed a 26.67% dead click rate that users never mentioned in feedback. That signal shaped v2 priorities around affordances, interactivity, and retention loops.</p>
+          <div class="pc-stat"><span class="pc-n">26.67%</span><span class="pc-l">dead click rate became<br>a product iteration signal</span></div>
+        </div>
+
+        <div class="pc-inner" data-k="execution">
+          <div class="pc-lbl">How this shows up</div>
+          <h3 class="pc-head">I translate ideas into buildable work.</h3>
+          <p class="pc-body">At BVM, I moved from user flows and accessibility checks to PRDs, acceptance criteria, and engineering-ready specs. That bridge between user need, design detail, and implementation is where my PM and UX strengths meet.</p>
+          <div class="pc-stat"><span class="pc-n">80+</span><span class="pc-l">school districts supported through<br>clearer product execution</span></div>
+        </div>
     </div>
   </div>
 </section>
@@ -1041,9 +1388,9 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   <p class="s-eye">Experience</p>
   <h2 class="s-title reveal">Where I've <em>worked.</em></h2>
   <div class="exp-list reveal d1">
-    <div class="exp-row"><div><span class="exp-date">Aug – Sep 2025 · India</span><span class="exp-role">Business Analyst, Product & Strategy</span></div><div><h3 class="exp-co">BVM Technology Associates</h3><p class="exp-story">Served as product owner for two enterprise platforms across 80+ school districts. Led end-to-end UX redesign in Figma — mapped user flows, ran accessibility testing (WCAG), simplified complex grant workflows for non-technical administrators, and delivered engineering specs. Staff training time dropped 85%. Also drove Azure DevOps migration improving sprint velocity 70% and presented milestone demos to CEOs and Senior Architects.</p><div class="exp-tags"><span class="etag">UX Redesign</span><span class="etag">Figma</span><span class="etag">Accessibility (WCAG)</span><span class="etag">Engineering Specs</span><span class="etag">Product Owner</span><span class="etag">Agile</span></div></div></div>
-    <div class="exp-row"><div><span class="exp-date">Jul – Dec 2024 · Charlotte, NC</span><span class="exp-role">Associate Product Manager</span></div><div><h3 class="exp-co">Kreative Integrations LLC</h3><p class="exp-story">Collaborated in Figma with UX designers on healthcare MVP interfaces — contributing to design reviews and translating user research into actionable product decisions. Designed and ran A/B tests end-to-end projecting 15% engagement increase. Fine-tuned a ChatGPT API RAG chatbot through prompt engineering, improving response accuracy 20%.</p><div class="exp-tags"><span class="etag">Figma</span><span class="etag">A/B Testing</span><span class="etag">User Research</span><span class="etag">LLMs & RAG</span><span class="etag">Prompt Engineering</span><span class="etag">Product Strategy</span></div></div></div>
-    <div class="exp-row"><div><span class="exp-date">Jan – Jun 2021 · Bengaluru</span><span class="exp-role">Research Analyst, Intern</span></div><div><h3 class="exp-co">SITAR</h3><p class="exp-story">Quantitative analysis of MEMS sensor data in a semiconductor lab. Built the testing repository from scratch. Identified calibration errors others missed — proposed the fix that delivered 12% efficiency improvement and ~$50K in new revenue.</p><div class="exp-tags"><span class="etag">Data Analysis</span><span class="etag">Research</span><span class="etag">Process Improvement</span></div></div></div>
+    <div class="exp-row"><div><span class="exp-date">Aug – Sep 2025 · India</span><span class="exp-role">Business Analyst, Product & UX Strategy</span></div><div><h3 class="exp-co">BVM Technology Associates</h3><p class="exp-story">Owned product and UX strategy for two enterprise platforms used across 80+ school districts. Led the UX redesign by mapping user flows, simplifying complex grant workflows, running accessibility checks, and translating requirements into engineering-ready specs. The redesign reduced staff training time by 85%, while stakeholder demos and Azure DevOps migration helped align leadership, engineering, and rollout execution.</p><div class="exp-tags"><span class="etag">UX Redesign</span><span class="etag">Figma</span><span class="etag">Accessibility (WCAG)</span><span class="etag">Engineering Specs</span><span class="etag">Product Owner</span><span class="etag">Agile</span></div></div></div>
+    <div class="exp-row"><div><span class="exp-date">Jul – Dec 2024 · Charlotte, NC</span><span class="exp-role">Associate Product Manager</span></div><div><h3 class="exp-co">Kreative Integrations LLC</h3><p class="exp-story">Worked across product, design, and engineering on an AI-powered healthcare MVP. Partnered with UX designers in Figma, synthesized user research into product and interaction decisions, and ran A/B tests that informed roadmap priorities with a projected 15% engagement lift. Also tested and refined a ChatGPT API–based RAG chatbot, improving response accuracy by 20%.</p><div class="exp-tags"><span class="etag">Figma</span><span class="etag">A/B Testing</span><span class="etag">User Research</span><span class="etag">LLMs & RAG</span><span class="etag">Prompt Engineering</span><span class="etag">Product Strategy</span></div></div></div>
+    <div class="exp-row"><div><span class="exp-date">Jan – Jun 2021 · Bengaluru</span><span class="exp-role">Research Analyst, Intern</span></div><div><h3 class="exp-co">SITAR</h3><p class="exp-story">Analyzed MEMS sensor performance data in a semiconductor lab, built a testing repository from scratch, and translated technical findings into clear reports. Identified calibration errors others missed and proposed a fix that improved production efficiency by 12% and contributed ~$50K in revenue.</p><div class="exp-tags"><span class="etag">Data Analysis</span><span class="etag">Technical Research</span><span class="etag">Systems Thinking</span><span class="etag">Process Improvement</span></div></div></div>
   </div>
 </section>
 
@@ -1060,9 +1407,8 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 
         <p>Since then, I’ve built AI-powered products, conducted user research, and worked across product strategy and design to turn ideas into intuitive experiences. The engineer in me wants things to work. The designer in me wants them to feel effortless. The product thinker in me wants them to matter.</p>
 
-        <p>I grew up in a home full of music, with a mum who teaches and plays the veena, a classical South Indian string instrument. Watching her taught me that creativity is equal parts structure, patience, and feeling — something I carry into the way I design.</p>
-
-        <p>Outside of work, I’m usually taking photos of small details, eating my way through a new city, playing the veena when I’m back home, or sketching on Procreate — reminders to stay curious, observant, and open to being a beginner.</p>
+        <p>I grew up in a home full of music, with a mum who teaches and plays the veena, a classical South Indian string instrument. Watching her taught me that creativity is equal parts structure, patience, and feeling. Something I carry into the way I solve problems.</p>
+        <p>Outside of work, I’m usually taking photos of small details, eating my way through a new city, playing the veena when I’m back home, or sketching on Procreate. Reminders to stay curious, observant, and open to being a beginner.</p>
       </div>
     </div>
 
@@ -1307,14 +1653,39 @@ document.querySelectorAll('.pitem').forEach(function(item){
 // MODAL DATA
 var projects=[
   {title:'PocketPlans',cat:'ai',label:'AI Product',live:'https://pocket-plans-pied.vercel.app/',github:'https://github.com/amruthahari1207/PocketPlans',sections:[
-    {l:'The User',t:'College students and young professionals in Boston, 22–30, planning social outings. Time-constrained, decision-fatigued. They didn\'t need more options — they needed someone to just say "go here."'},
-    {l:'The Problem',t:'People don\'t lack venue options. They lack a trusted voice that says "go here." Every existing solution gives more information. Nobody gave a decision.'},
-    {l:'The Product Decision',t:'I chose API-driven filtering over LLM generation because hallucinated venues destroy trust faster than a slow product loses users. I cut inputs from 10 to 4 after usability testing showed users abandoning at field 6. Reliability over impressiveness. Simplicity over completeness.'},
-    {l:'How I Built It',t:'Designed full product UX in Figma — user flows, wireframes, interactive prototype — iterating through usability testing. Set up Microsoft Clarity before the first user arrived. Selected into Northeastern\'s IDEA Startup Incubator.'},
-    {m:[{n:'97%',l:'Scroll depth'},{n:'0',l:'Drop-offs'},{n:'76%',l:'Activation rate'}]},
-    {l:'What Didn\'t Work',t:'26.67% dead click rate caught in Clarity — users expected interactive elements that weren\'t there. Nobody mentioned it in feedback. The data found it. That signal became the foundation of v2.'},
-    {l:'What\'s Next',t:'Interactive venue cards, save and share plans, retention loop. Every v2 decision comes from behavioral data, not assumption.'}
-  ]},
+  {
+    l:'User & Context',
+    t:'PocketPlans is for students and young professionals planning casual outings with friends.<div class="case-flow"><span class="case-chip">Instagram saves</span><span class="case-arrow">→</span><span class="case-chip">Google reviews</span><span class="case-arrow">→</span><span class="case-chip">Menus</span><span class="case-arrow">→</span><span class="case-chip">Maps</span><span class="case-arrow">→</span><span class="case-chip">Group chat</span><span class="case-arrow">→</span><span class="case-chip">Still undecided</span></div><div class="case-note"><strong>The user was not starting from zero.</strong> They already had too many options, too many opinions, and no fast way to choose.</div>'
+  },
+  {
+    l:'Problem',
+    t:'The problem was not finding places. The problem was moving from searching to deciding.<div class="case-question">How do we help people answer “where should we go?” without making planning feel like work?</div><div class="case-list"><span>Reduce the back-and-forth between tabs, reviews, and group chats.</span><span>Give users useful recommendations sooner.</span><span>Make the experience feel lightweight enough for casual plans.</span></div>'
+  },
+  {
+    l:'Key Decision',
+    t:'I made two product decisions that shaped the MVP.<span class="case-mini-title">Decision 1 · Simplify the flow</span><div class="case-split"><div class="case-box bad"><span class="case-box-lbl">Early idea</span><span class="case-box-main">10 inputs</span><span class="case-box-txt">Too much setup before users saw value.</span></div><div class="case-vs">TO</div><div class="case-box good"><span class="case-box-lbl">Final MVP</span><span class="case-box-main">4 inputs</span><span class="case-box-txt">Faster path to recommendations.</span></div></div><span class="case-mini-title">Decision 2 · Remove unreliable AI venue generation</span><div class="case-note">AI-generated venue recommendations sounded useful, but unreliable results created a trust problem. I moved away from AI-generated venues and chose <strong>API-driven filtering</strong> so recommendations stayed grounded and reliable.</div>'
+  },
+  {
+    l:'Design / Build',
+    t:'I started with rough concept sketches to map the decision flow, then built and launched the MVP using AI-assisted development with Claude Code.<div class="case-path"><div class="case-path-line"><b>Intent</b><span class="case-arrow">→</span><b>4 lightweight inputs</b><span class="case-arrow">→</span><b>API-filtered recommendation</b><span class="case-arrow">→</span><b>Next action</b></div></div><div class="case-list"><span>Owned the product framing and MVP scope.</span><span>Designed the interaction flow around speed and trust.</span><span>Used AI to accelerate development, while keeping product judgment human-led.</span></div>'
+  },
+  {
+    m:[
+      {n:'180',l:'Sessions tracked'},
+      {n:'165',l:'Unique users'},
+      {n:'76%',l:'Activation rate'},
+      {n:'97%',l:'Avg. scroll depth'}
+    ]
+  },
+  {
+    l:'Behavioral Insights',
+    t:'After launch, I used Microsoft Clarity to understand what people actually did.<div class="case-note"><strong>Activation = Homepage → Plan flow.</strong> A 76% activation rate meant users were not just visiting — they were entering the core product experience.</div><div class="case-split"><div class="case-box good"><span class="case-box-lbl">Strong signal</span><span class="case-box-main">99.7%</span><span class="case-box-txt">Average scroll depth showed users were exploring the page.</span></div><div class="case-vs">AND</div><div class="case-box bad"><span class="case-box-lbl">Friction signal</span><span class="case-box-main">9.1%</span><span class="case-box-txt">Dead clicks showed some elements looked interactive but were not.</span></div></div>'
+  },
+  {
+    l:'Next Iteration',
+    t:'The next version focuses on making recommendations easier to act on, especially for group planning.<div class="case-priorities"><span class="case-priority">Clearer clickable states</span><span class="case-priority">Better recommendation cards</span><span class="case-priority">Save/share options</span><span class="case-priority">Group planning support</span><span class="case-priority">More obvious next actions</span></div><div class="case-note">The goal is to move PocketPlans from “find a place” to <strong>make a plan together.</strong></div>'
+  }
+]
   {title:'Structify',cat:'ai',label:'AI Product',live:'https://structify.streamlit.app/',github:'https://github.com/amruthahari1207/structify',sections:[
     {l:'The User',t:'Product managers spending 60–70% of their time on formatting — user stories, epics, acceptance criteria — rather than the actual thinking.'},
     {l:'The Problem',t:'The format of a user story never changes. The thinking inside it does. PMs were spending most of their time on the wrapper, not the content.'},
