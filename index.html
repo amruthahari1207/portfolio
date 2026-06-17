@@ -84,7 +84,7 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 .btn-ghost:hover{border-color:var(--sage);color:var(--sage);background:var(--sage-light);}
 
 /* HERO PHOTO */
-.hero-img-wrap{display:flex;align-items:center;justify-content:center;opacity:0;animation:fadeUp .7s ease forwards .38s;}
+.hero-img-wrap{display:flex;align-items:center;justify-content:flex-start;opacity:0;animation:fadeUp .7s ease forwards .38s;}
 .hero-img{width:260px;height:340px;object-fit:cover;object-position:center 20%;border-radius:16px;border:1px solid var(--border2);box-shadow:0 12px 40px rgba(0,0,0,.12);}
 .hero-img-ph{width:210px;height:260px;border-radius:20px;background:var(--sage-light);border:1px solid rgba(74,124,89,.12);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:5rem;color:var(--sage);opacity:.2;}
 
@@ -216,7 +216,7 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 
 /* ABOUT */
 .about-section{padding:88px 56px;background:var(--white);}
-.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:start;}
+.about-grid{display:grid;grid-template-columns:0.85fr 1.4fr;gap:40px;align-items:start;}
 .about-copy p{font-size:1rem;color:var(--ink-soft);line-height:1.92;margin-bottom:16px;}
 .about-copy p:last-child{margin-bottom:0;}
 .about-copy em{color:var(--sage);font-style:italic;}
@@ -227,7 +227,7 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 /* POLAROID COLLAGE — 4 photos, better layout */
 .polaroid-stage{position:relative;width:100%;height:440px;overflow:visible;}
 .polaroid{position:absolute;background:#fff;padding:8px 8px 26px;box-shadow:0 4px 20px rgba(0,0,0,.12),0 1px 4px rgba(0,0,0,.06);cursor:pointer;transition:box-shadow .25s ease;will-change:transform;}
-.polaroid img{width:100%;height:340px;object-fit:cover;display:block;}
+.polaroid img{width:100%;height:420px;object-fit:cover;display:block;}
 .polaroid-ph{width:100%;height:100%;background:var(--sage-light);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--sage);opacity:.5;}
 .polaroid-ph .ph-icon{font-size:1.6rem;}
 .polaroid-ph .ph-label{font-size:.6rem;font-weight:500;font-family:'Inter',sans-serif;}
@@ -518,17 +518,20 @@ function animStat(el,tgt,suf){
     st++;if(st>=steps){clearInterval(iv);el.textContent=tgt+suf;}
   },50);
 }
-new IntersectionObserver(function(es){
-  es.forEach(function(e){
-    if(e.isIntersecting&&!sa){
-      sa=true;
-      document.querySelectorAll('[data-t]').forEach(function(el){
-        var t=parseInt(el.getAttribute('data-t')),s=el.getAttribute('data-s')||'';
-        setTimeout(function(){animStat(el,t,s);},Math.random()*250);
-      });
-    }
-  });
-},{threshold:.3}).observe(document.querySelector('.stats-row'));
+var statsEl=document.querySelector('.stats-row');
+if(statsEl){
+  new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting&&!sa){
+        sa=true;
+        document.querySelectorAll('.stat-num[data-t]').forEach(function(el){
+          var t=parseInt(el.getAttribute('data-t')),s=el.getAttribute('data-s')||'';
+          setTimeout(function(){animStat(el,t,s);},Math.random()*250);
+        });
+      }
+    });
+  },{threshold:.2}).observe(statsEl);
+}
 
 // SECTION EYE DRAW
 var eo=new IntersectionObserver(function(es){
