@@ -687,6 +687,209 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
     display: none;
   }
 }
+
+  /* =========================
+   FINAL ABOUT LAYOUT OVERRIDE
+   Heading + copy left, photos right
+========================= */
+
+.about-section {
+  padding: 96px 56px 104px;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(520px, 0.95fr) minmax(420px, 0.75fr);
+  gap: 88px;
+  align-items: start;
+}
+
+.about-left {
+  max-width: 760px;
+}
+
+.about-section .s-eye {
+  margin-bottom: 18px;
+}
+
+.about-section .s-title {
+  font-size: clamp(2.9rem, 4.8vw, 5rem);
+  line-height: 0.98;
+  max-width: 760px;
+  margin-bottom: 44px;
+}
+
+.about-copy {
+  max-width: 700px;
+}
+
+.about-copy p {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.82;
+  margin-bottom: 17px;
+}
+
+.about-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.polaroid-stage {
+  position: sticky;
+  top: 96px;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 72px auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 18px;
+  overflow: visible;
+  perspective: 1000px;
+}
+
+.polaroid {
+  position: relative;
+  top: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 3 / 4;
+  background: #fff;
+  padding: 9px 9px 30px;
+  border-radius: 4px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: box-shadow 0.25s ease;
+  will-change: transform;
+  transform-style: preserve-3d;
+  animation: none !important;
+}
+
+.polaroid img {
+  width: 100%;
+  height: calc(100% - 30px);
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: 9px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.63rem;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.p1 {
+  --r: -4deg;
+  transform: rotate(var(--r)) translateY(10px);
+}
+
+.p2 {
+  --r: 3deg;
+  transform: rotate(var(--r)) translateY(-12px);
+}
+
+.p3 {
+  --r: 2deg;
+  transform: rotate(var(--r)) translateY(8px);
+}
+
+.p4 {
+  --r: -3deg;
+  transform: rotate(var(--r)) translateY(-8px);
+}
+
+.p-ambient {
+  position: absolute;
+  font-size: 1rem;
+  opacity: 0.28;
+  pointer-events: none;
+  user-select: none;
+  animation: none !important;
+}
+
+.pa1 {
+  bottom: -8px;
+  left: -18px;
+}
+
+.pa2 {
+  bottom: -6px;
+  right: -18px;
+}
+
+.pa3 {
+  top: -16px;
+  right: 42%;
+}
+
+@media (max-width: 960px) {
+  .about-section {
+    padding: 72px 20px 88px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-left {
+    max-width: 760px;
+  }
+
+  .about-section .s-title {
+    font-size: clamp(2.6rem, 8vw, 4rem);
+    margin-bottom: 34px;
+  }
+
+  .polaroid-stage {
+    position: relative;
+    top: auto;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-section .s-title {
+    font-size: clamp(2.3rem, 12vw, 3.3rem);
+    margin-bottom: 28px;
+  }
+
+  .about-copy p {
+    font-size: 0.94rem;
+    line-height: 1.78;
+  }
+
+  .polaroid-stage {
+    max-width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .polaroid {
+    padding: 7px 7px 26px;
+    aspect-ratio: 3 / 4;
+    transform: none !important;
+  }
+
+  .polaroid-caption {
+    bottom: 8px;
+    font-size: 0.58rem;
+  }
+
+  .p-ambient {
+    display: none;
+  }
+}
 </style>
 </head>
 <body>
@@ -824,33 +1027,44 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 </section>
 
 <section class="about-section" id="about">
-  <p class="s-eye">About</p>
-  <h2 class="s-title reveal">The person behind the <em>process.</em></h2>
   <div class="about-grid reveal d1">
-    <div class="about-copy">
-  <p>I started out building things as an engineer. In undergrad, I built a gesture-controlled laptop using Arduino and an ultrasound sensor, and it made me wonder: <em>what happens when we rethink how people interact with technology?</em></p>
-  <p>That curiosity took me from Electronics and Communication Engineering to Engineering Management at Northeastern, where I learned to look beyond the technology and understand the people using it.</p>
-  <p>Since then, I’ve built AI-powered products, conducted user research, and worked across product strategy and design to turn ideas into intuitive experiences. The engineer in me wants things to work. The designer in me wants them to feel effortless. The product thinker in me wants them to matter.</p>
-  <p>I grew up in a home full of music, with a mum who teaches and plays the veena, a classical Indian string instrument. Watching her taught me that creativity is equal parts structure, patience, and feeling — something I carry into the way I design.</p>
-  <p>Outside of work, I’m usually taking photos of small details, eating my way through a new city, playing the veena when I’m back home, or sketching on Procreate — reminders to stay curious, observant, and open to being a beginner.</p>
+    <div class="about-left">
+      <p class="s-eye">About</p>
+      <h2 class="s-title">The person behind the <em>process.</em></h2>
+
+      <div class="about-copy">
+        <p>I started out building things as an engineer. In undergrad, I built a gesture-controlled laptop using Arduino and an ultrasound sensor, and it made me wonder: <em>what happens when we rethink how people interact with technology?</em></p>
+
+        <p>That curiosity took me from Electronics and Communication Engineering to Engineering Management at Northeastern, where I learned to look beyond the technology and understand the people using it.</p>
+
+        <p>Since then, I’ve built AI-powered products, conducted user research, and worked across product strategy and design to turn ideas into intuitive experiences. The engineer in me wants things to work. The designer in me wants them to feel effortless. The product thinker in me wants them to matter.</p>
+
+        <p>I grew up in a home full of music, with a mum who teaches and plays the veena, a classical South Indian string instrument. Watching her taught me that creativity is equal parts structure, patience, and feeling — something I carry into the way I design.</p>
+
+        <p>Outside of work, I’m usually taking photos of small details, eating my way through a new city, playing the veena when I’m back home, or sketching on Procreate — reminders to stay curious, observant, and open to being a beginner.</p>
+      </div>
     </div>
 
     <div class="polaroid-stage">
       <span class="p-ambient pa1">🎵</span>
       <span class="p-ambient pa2">🍜</span>
       <span class="p-ambient pa3">✨</span>
+
       <div class="polaroid p1">
         <img src="p1.JPG" alt="creative hours">
         <span class="polaroid-caption">creative hours</span>
       </div>
+
       <div class="polaroid p2">
         <img src="p2.JPG" alt="classical notes">
         <span class="polaroid-caption">classical notes</span>
       </div>
+
       <div class="polaroid p3">
         <img src="p3.JPG" alt="local finds">
         <span class="polaroid-caption">local finds</span>
       </div>
+
       <div class="polaroid p4">
         <img src="p4.JPG" alt="chasing sunsets">
         <span class="polaroid-caption">chasing sunsets</span>
