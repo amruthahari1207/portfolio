@@ -98,7 +98,7 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:60% 24%;
+  object-position:75% 30%;
   transform:scale(1.18);
   transform-origin:60% 24%;
   display:block;
@@ -1349,8 +1349,8 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   }
 }
 /* =========================
-   CALMER PROJECT CARD FIX
-   Less competition, more breathing room
+   FINAL PROJECT CARD CLEAN FIX
+   White cards + readable text
 ========================= */
 
 .proj-grid{
@@ -1358,13 +1358,15 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
 }
 
 .proj-card{
-  border-color:#EEEEEC;
-  box-shadow:none;
+  background:#FFFFFF;
+  border:1px solid #E8E8E5;
+  box-shadow:0 4px 18px rgba(0,0,0,.025);
 }
 
 .proj-card:hover{
-  border-color:rgba(74,124,89,.22);
-  box-shadow:0 10px 30px rgba(74,124,89,.07);
+  background:#FFFFFF;
+  border-color:rgba(74,124,89,.28);
+  box-shadow:0 12px 32px rgba(0,0,0,.055);
 }
 
 .proj-card-top{
@@ -1375,138 +1377,42 @@ nav.shadow{box-shadow:0 1px 20px rgba(0,0,0,.05);}
   padding:14px 24px 22px;
 }
 
-.proj-card-meta{
-  margin-bottom:20px;
-}
-
-.proj-num{
-  font-size:.72rem;
-  color:#C8C8C8;
-  margin-bottom:8px;
-}
-
 .proj-title{
-  font-size:1.28rem;
+  color:#080808;
+  font-size:1.32rem;
   line-height:1.18;
   letter-spacing:-.015em;
-  margin-bottom:10px;
 }
 
 .proj-hook{
-  font-size:.88rem;
+  color:#303030;
+  font-size:.92rem;
   line-height:1.72;
   font-style:normal;
-  color:#5C5C5C;
-  max-width:95%;
-}
-
-.proj-tags{
-  gap:6px;
-  margin-bottom:14px;
-}
-
-.wtag{
-  font-size:.67rem;
-  padding:4px 9px;
-  color:#8C8C8C;
-  background:#FAFAF9;
-}
-
-.proj-open-btn{
-  padding:11px;
-  font-size:.8rem;
-  font-weight:600;
-  color:#555;
-}
-/* ===== PROJECT GRID CALMER + SAGE CARD FIX ===== */
-
-:root{
-  --page-bg: #FCFCFA;
-  --card-sage: #F5FAF6;
-  --card-sage-hover: #EEF6F0;
-  --card-border: #DDE8DF;
-  --tag-bg: #FBFDFB;
-  --tag-border: #D9E4DB;
-  --text-main: #1E1E1E;
-  --text-body: #4E4E4E;
-  --text-soft: #7A7A7A;
-}
-
-body{
-  background: var(--page-bg);
-}
-
-.proj-grid{
-  gap: 18px;
-}
-
-.proj-card{
-  background: var(--card-sage);
-  border: 1px solid var(--card-border);
-  box-shadow: 0 4px 18px rgba(74, 124, 89, 0.04);
-}
-
-.proj-card:hover{
-  background: var(--card-sage-hover);
-  border-color: #BDD1C0;
-  box-shadow: 0 12px 28px rgba(74, 124, 89, 0.08);
-}
-
-.proj-card-top{
-  padding: 24px 24px 0;
-}
-
-.proj-card-bottom{
-  padding: 14px 24px 22px;
+  font-weight:400;
+  max-width:94%;
 }
 
 .proj-num{
-  color: #B7B7B7;
-  font-size: .72rem;
-  margin-bottom: 10px;
-}
-
-.proj-title{
-  color: var(--text-main);
-  font-size: 1.28rem;
-  line-height: 1.18;
-  letter-spacing: -0.015em;
-  margin-bottom: 10px;
-}
-
-.proj-hook{
-  color: var(--text-body);
-  font-size: .95rem;
-  line-height: 1.65;
-  font-style: normal;
-  max-width: 95%;
-}
-
-.proj-tags{
-  gap: 7px;
-  margin-bottom: 14px;
+  color:#B5B5B5;
 }
 
 .wtag{
-  background: var(--tag-bg);
-  border: 1px solid var(--tag-border);
-  color: var(--text-soft);
-  font-size: .68rem;
-  padding: 5px 10px;
+  background:#FAFAF9;
+  border:1px solid #E4E4E1;
+  color:#777;
 }
 
 .proj-open-btn{
-  background: #FFFFFF;
-  border: 1px solid var(--tag-border);
-  color: #424242;
-  font-size: .88rem;
-  font-weight: 600;
-  padding: 12px;
+  background:#FFFFFF;
+  color:#222;
+  border:1px solid #DDDDD9;
 }
 
 .proj-open-btn:hover{
-  background: #FAFCFA;
-  border-color: #C9D9CC;
+  background:#FAFAF9;
+  color:var(--sage);
+  border-color:rgba(74,124,89,.35);
 }
 </style>
 </head>
