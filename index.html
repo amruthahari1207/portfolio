@@ -2194,5 +2194,320 @@ document.addEventListener('keydown',function(e){
   if(e.key==='ArrowRight'&&p<fIdx.length-1)openModal(fIdx[p+1]);
 });
 </script>
+<!-- =====================================================
+     MOBILE-ONLY LAYOUT PATCH
+     Paste this entire block immediately before </body>
+====================================================== -->
+
+<style>
+/* Everything below applies only to phones */
+@media (max-width: 600px) {
+
+  /* -----------------------------------------
+     1. CONSISTENT SECTION SPACING
+  ----------------------------------------- */
+  .section,
+  .think-section,
+  .about-section,
+  .contact-section {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* Do not add excessive space above the first hero section */
+  .hero {
+    padding: 96px 20px 56px !important;
+  }
+
+  /* Consistent spacing beneath section introductions */
+  .s-sub {
+    margin-bottom: 32px !important;
+  }
+
+
+  /* -----------------------------------------
+     2. PROFILE PICTURE
+  ----------------------------------------- */
+  .hero-top {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+
+  .hero-img-wrap {
+    width: 100% !important;
+    margin-left: 0 !important;
+    justify-content: center !important;
+  }
+
+  .hero-photo-frame {
+    width: min(78vw, 290px) !important;
+    height: min(98vw, 365px) !important;
+    margin: 0 auto !important;
+    border-radius: 16px !important;
+  }
+
+  .hero-img {
+    width: 100% !important;
+    height: 100% !important;
+
+    /* Removes the desktop zoom on mobile */
+    transform: none !important;
+    transform-origin: center !important;
+
+    /* Keeps the face naturally framed */
+    object-fit: cover !important;
+    object-position: 62% 24% !important;
+  }
+
+
+  /* -----------------------------------------
+     3. HOW I THINK
+     The active content will be moved directly
+     below the item that was tapped.
+  ----------------------------------------- */
+  .think-grid {
+    display: block !important;
+  }
+
+  .principle-list {
+    width: 100% !important;
+  }
+
+  .pitem {
+    width: 100% !important;
+    min-height: 64px !important;
+    padding: 13px 12px !important;
+  }
+
+  .pitem.mobile-proof-open {
+    border-radius: 10px 10px 0 0 !important;
+    border-bottom-color: transparent !important;
+  }
+
+  .proof-wrap.mobile-inline-proof {
+    position: relative !important;
+    top: auto !important;
+    width: 100% !important;
+    margin: 0 0 10px !important;
+  }
+
+  .proof-wrap.mobile-inline-proof .proof-card {
+    width: 100% !important;
+    min-height: 0 !important;
+    padding: 20px 18px !important;
+    border-radius: 0 0 12px 12px !important;
+    border-top-color: rgba(74, 124, 89, 0.14) !important;
+    box-shadow: 0 8px 24px rgba(74, 124, 89, 0.07) !important;
+  }
+
+  .proof-wrap.mobile-inline-proof .pc-head {
+    font-size: 1.08rem !important;
+  }
+
+  .proof-wrap.mobile-inline-proof .pc-body {
+    font-size: 0.88rem !important;
+    line-height: 1.72 !important;
+  }
+
+  .proof-wrap.mobile-inline-proof .pc-n {
+    font-size: 1.65rem !important;
+  }
+
+
+  /* -----------------------------------------
+     4. PERSON BEHIND THE PROCESS PHOTOS
+     Large, visible, swipeable cards
+  ----------------------------------------- */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 38px !important;
+  }
+
+  .polaroid-stage {
+    position: relative !important;
+    top: auto !important;
+    width: calc(100% + 20px) !important;
+    max-width: none !important;
+    height: auto !important;
+
+    display: flex !important;
+    grid-template-columns: none !important;
+
+    gap: 14px !important;
+    margin: 4px -20px 0 0 !important;
+    padding: 12px 20px 28px 2px !important;
+
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding-left: 2px !important;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .polaroid-stage::-webkit-scrollbar {
+    display: none;
+  }
+
+  .polaroid {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+
+    flex: 0 0 min(74vw, 280px) !important;
+    width: min(74vw, 280px) !important;
+    height: auto !important;
+    aspect-ratio: 3 / 4 !important;
+
+    transform: none !important;
+    animation: none !important;
+    scroll-snap-align: start !important;
+  }
+
+  .polaroid img {
+    width: 100% !important;
+    height: calc(100% - 28px) !important;
+    object-fit: cover !important;
+  }
+
+  .p-ambient {
+    display: none !important;
+  }
+}
+
+
+/* Extra-small phones */
+@media (max-width: 380px) {
+  .section,
+  .think-section,
+  .about-section,
+  .contact-section {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .hero {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .hero-photo-frame {
+    width: min(82vw, 276px) !important;
+    height: min(104vw, 350px) !important;
+  }
+
+  .polaroid {
+    flex-basis: 78vw !important;
+    width: 78vw !important;
+  }
+}
+</style>
+
+
+<script>
+(function () {
+  const mobileBreakpoint = 600;
+  const thinkGrid = document.querySelector('.think-grid');
+  const proofWrap = document.querySelector('.proof-wrap');
+  const principleItems = Array.from(document.querySelectorAll('.pitem'));
+
+  if (!thinkGrid || !proofWrap || principleItems.length === 0) {
+    return;
+  }
+
+  /*
+   * Invisible marker remembers the proof card's
+   * original desktop position.
+   */
+  const desktopMarker = document.createComment(
+    'Original proof-wrap desktop position'
+  );
+
+  proofWrap.parentNode.insertBefore(desktopMarker, proofWrap);
+
+  function isMobile() {
+    return window.innerWidth <= mobileBreakpoint;
+  }
+
+  function clearMobileState() {
+    principleItems.forEach(function (item) {
+      item.classList.remove('mobile-proof-open');
+    });
+
+    proofWrap.classList.remove('mobile-inline-proof');
+  }
+
+  function placeProofBelow(item) {
+    if (!isMobile() || !item) {
+      return;
+    }
+
+    clearMobileState();
+
+    item.classList.add('mobile-proof-open');
+    proofWrap.classList.add('mobile-inline-proof');
+
+    /* Move the existing proof card directly below the tapped item */
+    item.insertAdjacentElement('afterend', proofWrap);
+  }
+
+  function restoreDesktopPosition() {
+    clearMobileState();
+
+    if (desktopMarker.parentNode) {
+      desktopMarker.parentNode.insertBefore(
+        proofWrap,
+        desktopMarker.nextSibling
+      );
+    }
+  }
+
+  /*
+   * Your existing code already changes which .pc-inner
+   * is visible. This listener only moves the existing
+   * proof card beneath the selected mobile item.
+   */
+  principleItems.forEach(function (item) {
+    item.addEventListener('click', function () {
+      if (isMobile()) {
+        placeProofBelow(item);
+      }
+    });
+  });
+
+  function syncLayout() {
+    if (isMobile()) {
+      const activeItem =
+        document.querySelector('.pitem.active') || principleItems[0];
+
+      placeProofBelow(activeItem);
+    } else {
+      restoreDesktopPosition();
+    }
+  }
+
+  /*
+   * Prevent repeated resize calls while rotating
+   * the phone or opening responsive browser tools.
+   */
+  let resizeTimer;
+
+  window.addEventListener('resize', function () {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(syncLayout, 100);
+  });
+
+  window.addEventListener('orientationchange', function () {
+    window.setTimeout(syncLayout, 150);
+  });
+
+  syncLayout();
+})();
+</script>
 </body>
 </html>
